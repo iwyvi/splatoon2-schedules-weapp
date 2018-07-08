@@ -1,0 +1,228 @@
+<template>
+  <view class="schedule-card {{mode}}">
+    <view class="schedule-card-title">
+      <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
+      <text>{{titleText}}</text>
+    </view>
+    <view class="schedule-card-block">
+      <view class="schedule-card-block-title">
+        <text class="schedule-card-block-title-mode">{{battleNow.rule.name}}</text>
+        <text>{{timeWxs.generateScheduleTimeString(battleNow.start_time, battleNow.end_time)}}</text>
+      </view>
+      <view class="schedule-card-block-images">
+        <view>
+          <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_a.image)}}"></image>
+          <text>{{battleNow.stage_a.name}}</text>
+        </view>
+        <view>
+          <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_b.image)}}"></image>
+          <text>{{battleNow.stage_b.name}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="schedule-card-block-tiny-wrap">
+      <view class="schedule-card-block">
+        <view class="schedule-card-block-title">
+          <text class="schedule-card-block-title-mode">{{battleNext.rule.name}}</text>
+          <text>{{timeWxs.generateScheduleTimeString(battleNext.start_time, battleNext.end_time)}}</text>
+        </view>
+        <view class="schedule-card-block-images">
+          <view>
+            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_a.image)}}"></image>
+            <text>{{battleNext.stage_a.name}}</text>
+          </view>
+          <view>
+            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_b.image)}}"></image>
+            <text>{{battleNext.stage_b.name}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="schedule-card-button">
+      <button>查看更多</button>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import timeWxs from '../wxs/time.wxs'
+import imageWxs from '../wxs/image.wxs'
+
+export default class ScheduleCard extends wepy.component {
+  props = {
+    mode: {
+      type: String,
+      required: true
+    },
+    list: {
+      type: [Object],
+      default: []
+    }
+  }
+
+  wxs = {
+    timeWxs,
+    imageWxs
+  }
+
+  computed = {
+    logoImageSrc() {
+      switch (this.mode) {
+        case 'regular':
+          return '../assets/img/battle-regular.png'
+        case 'gachi':
+          return '../assets/img/battle-ranked.png'
+        case 'league':
+          return '../assets/img/battle-league.png'
+        default:
+          return ''
+      }
+    },
+    titleText() {
+      switch (this.mode) {
+        case 'regular':
+          return 'Regular Battle'
+        case 'gachi':
+          return 'Ranked Battle'
+        case 'league':
+          return 'League Battle'
+        default:
+          return ''
+      }
+    },
+    battleNow() {
+      return (
+        this.list[0] || {
+          rule: {},
+          stage_a: {},
+          stage_b: {}
+        }
+      )
+    },
+    battleNext() {
+      return (
+        this.list[1] || {
+          rule: {},
+          stage_a: {},
+          stage_b: {}
+        }
+      )
+    }
+  }
+
+  data = {}
+
+  methods = {}
+
+  onLoad() {}
+}
+</script>
+<style lang="less">
+.schedule-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 5px;
+  position: relative;
+  color: white;
+  background-image: linear-gradient(180deg, transparent, rgba(36, 36, 36, 0.1)),
+    url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAADiBAMAAAChPgbkAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURRcXF0dwTBUVFRYWFgAAABoaGhkZGRUVFRgYGAAAAAAAAB4eHiQkJBISEkRDNy8AAAAOdFJOUxYAGBcDEwoMFQUBEQcOBwHpdgAAAjdJREFUeNrt271NBDEUReGnjUlGIoGICCKkbYIKqIASqIEm6IGMDiiBjtj5XXvGz9k9Cde5dfTFvo6Xc6TnacjP/Xd+7/TbuRi3r52b752bXw/5xedecaCRMdDIGGjkpQgjL0UYORZZ5FhkkVMRRU5FFDkXSeRcJJFLEUQuRRC5FjnkWuSQWxFDbkUMeS1SyGuRQhZFCFkUIWRZZJBlkUFWRQRZFRFkXSSQdZFA7ooAclcEkPuiHrkv6pGHohx5KMqRx6IaeSyqkY2iGNkoipGtohbZKmqRzaIU2SxKke2iEtkuKpFJUYhMikJkVtQhs6IOmRZlyLQoQ+ZFFTIvqpCdogjZKYqQvaIGGW80Mh5pZJxoZBhppJFGGmmkkUYaaaSRRhpppJFGGmmkkUYaaeR/Rp5pZHzQyPikkXFHI2OgkTHQyBho5KUII8f3RxY5Flnk9MaKIqciipzfkUnkXCSRy1s5iFyKIHLdA3DItcght80DhtyKGPK666CQ1yKFLLYrELIoQshyn8MgyyKDrDZICLIqIsh6Z0Ug6yKB3G3JAOSuCCD3ezk9cl/UIw+bQDnyUJQjj7tHNfJYVCMb204xslEUI1v7VS2yVdQimxtdKbJZlCLbO2Qlsl1UIpOttRCZFIXIbE+uQ2ZFHTLdzMuQaVGGzP8FqJB5UYXs/H0QITtFEbL3v0OD7BU1yPihkXFDIwNHhpFGGmmkkUYaaaSRRhpppJFGGmmkkUYaaaSRRhoJIgNH/gHUGcb6oO4YfwAAAABJRU5ErkJggg==');
+  background-size: 100% 100%, 80px 80px;
+  &.regular {
+    background-color: #19d719;
+  }
+  &.gachi {
+    background-color: #f54910;
+  }
+  &.league {
+    background-color: #f02d7d;
+  }
+}
+.schedule-card-title {
+  display: flex;
+  justify-items: center;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  .schedule-card-logo {
+    width: 30px;
+    height: 0;
+  }
+  text {
+    margin-left: 10px;
+  }
+}
+.schedule-card-block {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 24rpx;
+  .schedule-card-block-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 0 5px;
+    text {
+      color: #eeeeee;
+      font-size: 1.2em;
+    }
+    .schedule-card-block-title-mode {
+      color: #ffffff;
+      font-size: 1.4em;
+    }
+  }
+  .schedule-card-block-images {
+    display: flex;
+    & > view {
+      width: 50%;
+      position: relative;
+      padding: 0 5px;
+      image {
+        width: 100%;
+        height: 0;
+        border-radius: 5px;
+      }
+      text {
+        position: absolute;
+        font-size: 1em;
+        bottom: 8px;
+        right: 8px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 5px;
+        line-height: 1em;
+        padding: 5px 5px;
+      }
+    }
+  }
+}
+.schedule-card-block-tiny-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  .schedule-card-block {
+    width: 90%;
+    font-size: 21rpx;
+  }
+}
+.schedule-card-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  button {
+    font-size: 32rpx;
+    border-radius: 100px;
+    padding-left: 18px;
+    padding-right: 18px;
+    background: hsla(0, 0%, 96%, 0.4);
+    border: hsla(0, 0%, 96%, 0.9);
+    color: #f5f5f5;
+    line-height: 1.8em;
+    &.button-hover {
+      background: hsla(0, 0%, 100%, 0.5);
+      border: #fff;
+      color: #fff;
+    }
+  }
+}
+</style>

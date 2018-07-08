@@ -1,0 +1,21 @@
+function formatMinute(minute) {
+  var m = '0' + minute
+  return m.slice(-2)
+}
+module.exports = {
+  generateScheduleTimeString: function (startTime, endTime) {
+    if (!startTime || !endTime) {
+      return ''
+    }
+    var now = getDate()
+    var start = getDate(parseInt(startTime + '000'))
+    var end = getDate(parseInt(endTime + '000'))
+    var isToday = start.getDate() === now.getDate()
+    var string = ''
+    if (!isToday) {
+      string += (start.getMonth() + 1) + '/' + start.getDate() + ' '
+    }
+    string += start.getHours() + ':' + formatMinute(start.getMinutes()) + ' - ' + (end.getHours() === 0 ? 24 : end.getHours()) + ':' + formatMinute(end.getMinutes())
+    return string
+  }
+}

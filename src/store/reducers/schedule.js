@@ -2,18 +2,35 @@ import {
   handleActions
 } from 'redux-actions'
 import {
-  UPDATE
+  UPDATE_SCHEDULE
 } from '../types/schedule'
 
 const defaultState = {
-  regular: [],
-  gachi: [],
-  league: []
+  regular: {
+    lastEndTime: 0,
+    list: []
+  },
+  gachi: {
+    lastEndTime: 0,
+    list: []
+  },
+  league: {
+    lastEndTime: 0,
+    list: []
+  }
 }
 
 export default handleActions({
-  [UPDATE](state, action) {
-    state[action.mode].push(...action.list)
+  [UPDATE_SCHEDULE](state, {
+    payload
+  }) {
+    const list = payload.map((v) => v.attributes)
+    state.regular.list.push(...list.filter((v) => v.mode_key === 'regular' && v.end_time > state.regular.lastEndTime))
+    state.regular.lastEndTime = state.regular.list[state.regular.list.length - 1].end_time
+    state.gachi.list.push(...list.filter((v) => v.mode_key === 'gachi' && v.end_time > state.gachi.lastEndTime))
+    state.gachi.lastEndTime = state.gachi.list[state.gachi.list.length - 1].end_time
+    state.league.list.push(...list.filter((v) => v.mode_key === 'league' && v.end_time > state.league.lastEndTime))
+    state.league.lastEndTime = state.league.list[state.league.list.length - 1].end_time
     return {
       ...state
     }

@@ -1,0 +1,8 @@
+module.exports = {
+  getImageUrl: function (image) {
+    if (!image) {
+      return ''
+    }
+    return 'https://app.splatoon2.nintendo.net' + image
+  }
+}

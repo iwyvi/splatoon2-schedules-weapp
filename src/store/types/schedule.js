@@ -1,1 +1,1 @@
-export const UPDATE = 'UPDATE'
+export const UPDATE_SCHEDULE = 'UPDATE_SCHEDULE'

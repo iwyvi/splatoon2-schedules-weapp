@@ -2,7 +2,9 @@
 </style>
 <template>
   <view class="container">
-
+    <regular-card mode="regular" :list.sync="regularList" />
+    <gachi-card mode="gachi" :list.sync="gachiList" />
+    <league-card mode="league" :list.sync="leagueList" />
   </view>
 </template>
 
@@ -12,19 +14,48 @@ import { connect } from 'wepy-redux'
 
 import { updateSchedule } from '../store/actions'
 
-@connect({}, { updateSchedule })
+import scheduleCard from '@/components/schedule-card'
+
+@connect(
+  {
+    schedule(state) {
+      return state.schedule
+    }
+  },
+  { updateSchedule }
+)
 export default class Index extends wepy.page {
   config = {
     navigationBarTitleText: '日程'
   }
-  components = {}
 
-  data = {}
+  components = {
+    'regular-card': scheduleCard,
+    'gachi-card': scheduleCard,
+    'league-card': scheduleCard
+  }
+
+  data = {
+    regularList: [],
+    gachiList: [],
+    leagueList: []
+  }
+
+  watch = {
+    schedule(newValue) {
+      this.regularList = newValue.regular.list
+      this.gachiList = newValue.gachi.list
+      this.leagueList = newValue.league.list
+      this.$apply()
+    }
+  }
 
   computed = {}
 
   methods = {}
 
-  onLoad() {}
+  onLoad() {
+    this.methods.updateSchedule()
+  }
 }
 </script>

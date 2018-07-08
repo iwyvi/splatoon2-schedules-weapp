@@ -3,14 +3,14 @@ import {
 } from 'redux-actions'
 import AV from 'leancloud-storage'
 import {
-  UPDATE
+  UPDATE_SCHEDULE
 } from '../types/schedule'
 
-export const updateSchedule = createAction(UPDATE, () => {
+export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
   const query = new AV.Query('Schedule')
   query.greaterThan('end_time', parseInt(Date.now() / 1000))
   return query.find()
     .then((results) => {
-      console.log(results)
+      return results
     })
 })

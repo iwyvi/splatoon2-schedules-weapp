@@ -10,12 +10,17 @@ module.exports = {
     var now = getDate()
     var start = getDate(parseInt(startTime + '000'))
     var end = getDate(parseInt(endTime + '000'))
-    var isToday = start.getDate() === now.getDate()
+    var isStartTimeToday = start.getDate() === now.getDate()
+    var isEndTimeToday = end.getDate() === now.getDate()
     var string = ''
-    if (!isToday) {
+    if (!isStartTimeToday) {
       string += (start.getMonth() + 1) + '/' + start.getDate() + ' '
     }
-    string += start.getHours() + ':' + formatMinute(start.getMinutes()) + ' - ' + (end.getHours() === 0 ? 24 : end.getHours()) + ':' + formatMinute(end.getMinutes())
+    string += start.getHours() + ':' + formatMinute(start.getMinutes()) + ' - '
+    if(isStartTimeToday && !isEndTimeToday){
+      string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
+    }
+    string += end.getHours() + ':' + formatMinute(end.getMinutes())
     return string
   }
 }

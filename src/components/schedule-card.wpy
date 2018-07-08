@@ -2,38 +2,38 @@
   <view class="schedule-card {{mode}}">
     <view class="schedule-card-title">
       <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
-      <text>{{titleText}}</text>
+      <text class="splatoon2">{{titleText}}</text>
     </view>
     <view class="schedule-card-block">
       <view class="schedule-card-block-title">
-        <text class="schedule-card-block-title-mode">{{battleNow.rule.name}}</text>
-        <text>{{timeWxs.generateScheduleTimeString(battleNow.start_time, battleNow.end_time)}}</text>
+        <text class="schedule-card-block-title-mode splatoon2">{{battleNow.rule.name}}</text>
+        <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNow.start_time, battleNow.end_time)}}</text>
       </view>
       <view class="schedule-card-block-images">
         <view>
           <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_a.image)}}"></image>
-          <text>{{battleNow.stage_a.name}}</text>
+          <text class="splatoon2">{{battleNow.stage_a.name}}</text>
         </view>
         <view>
           <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_b.image)}}"></image>
-          <text>{{battleNow.stage_b.name}}</text>
+          <text class="splatoon2">{{battleNow.stage_b.name}}</text>
         </view>
       </view>
     </view>
     <view class="schedule-card-block-tiny-wrap">
       <view class="schedule-card-block">
         <view class="schedule-card-block-title">
-          <text class="schedule-card-block-title-mode">{{battleNext.rule.name}}</text>
-          <text>{{timeWxs.generateScheduleTimeString(battleNext.start_time, battleNext.end_time)}}</text>
+          <text class="schedule-card-block-title-mode splatoon2">{{battleNext.rule.name}}</text>
+          <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNext.start_time, battleNext.end_time)}}</text>
         </view>
         <view class="schedule-card-block-images">
           <view>
             <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_a.image)}}"></image>
-            <text>{{battleNext.stage_a.name}}</text>
+            <text class="splatoon2">{{battleNext.stage_a.name}}</text>
           </view>
           <view>
             <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_b.image)}}"></image>
-            <text>{{battleNext.stage_b.name}}</text>
+            <text class="splatoon2">{{battleNext.stage_b.name}}</text>
           </view>
         </view>
       </view>
@@ -142,7 +142,7 @@ export default class ScheduleCard extends wepy.component {
 }
 .schedule-card-title {
   display: flex;
-  justify-items: center;
+  align-items: center;
   margin-top: 5px;
   margin-bottom: 10px;
   .schedule-card-logo {
@@ -151,6 +151,7 @@ export default class ScheduleCard extends wepy.component {
   }
   text {
     margin-left: 10px;
+    line-height: 1em;
   }
 }
 .schedule-card-block {
@@ -161,9 +162,12 @@ export default class ScheduleCard extends wepy.component {
   .schedule-card-block-title {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 5px;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
     padding: 0 5px;
     text {
+      line-height: 1em;
       color: #eeeeee;
       font-size: 1.2em;
     }

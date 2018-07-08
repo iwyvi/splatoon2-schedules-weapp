@@ -1,7 +1,7 @@
 {
-  "name": "splatoon2-schedules",
+  "name": "splatoon2-schedules-weapp",
   "version": "0.0.2",
-  "description": "A WePY project",
+  "description": "乌贼日历",
   "main": "dist/app.js",
   "scripts": {
     "dev": "wepy build --watch",
@@ -23,7 +23,6 @@
     "redux-promise": "^0.5.3",
     "wepy": "^1.7.2",
     "wepy-async-function": "^1.4.4",
-    "wepy-com-toast": "^1.0.2",
     "wepy-redux": "^1.5.3"
   },
   "devDependencies": {

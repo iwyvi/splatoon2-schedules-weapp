@@ -1,13 +1,15 @@
 {
-  "description": "A WePY project",
-  "setting": {
-    "urlCheck": true,
-    "es6": false,
-    "postcss": false,
-    "minified": false
-  },
-  "compileType": "miniprogram",
-  "appid": "wx1f05fd247e4274ab",
-  "projectname": "splatoon2-schedules",
-  "miniprogramRoot": "./dist"
+	"description": "乌贼日历",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wx1f05fd247e4274ab",
+	"projectname": "%E4%B9%8C%E8%B4%BC%E6%97%A5%E5%8E%86",
+	"miniprogramRoot": "./dist",
+	"condition": {}
 }

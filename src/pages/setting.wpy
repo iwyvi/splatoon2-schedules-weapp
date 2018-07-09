@@ -8,14 +8,14 @@
       </view>
     </view>
     <view class="setting-content">
-      <view class="setting-item dot-background">
+      <!-- <view class="setting-item dot-background">
         <text>语言设置</text>
         <picker range-key="value" @change="changeLocale" value="{{localeIndex}}" range="{{localeList}}">
           <view class="picker">
             {{localeList[localeIndex].value}}
           </view>
         </picker>
-      </view>
+      </view> -->
       <view class="setting-item dot-background">
         <text>关于</text>
       </view>

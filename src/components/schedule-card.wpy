@@ -39,7 +39,7 @@
       </view>
     </view>
     <view class="schedule-card-button">
-      <button>查看更多</button>
+      <button class="splatoon2">MORE</button>
     </view>
   </view>
 </template>
@@ -157,7 +157,7 @@ export default class ScheduleCard extends wepy.component {
 .schedule-card-block {
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 5px;
-  padding: 5px 5px;
+  padding: 5px 5px 10px;
   font-size: 24rpx;
   .schedule-card-block-title {
     display: flex;
@@ -212,7 +212,7 @@ export default class ScheduleCard extends wepy.component {
 .schedule-card-button {
   display: flex;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 8px;
   button {
     font-size: 32rpx;
     border-radius: 100px;

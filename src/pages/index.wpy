@@ -1,10 +1,20 @@
 <style lang="less">
+.index-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.index-schedule-card {
+  transform: rotate(0.5deg);
+  &:nth-child(even) {
+    transform: rotate(-0.5deg);
+  }
+}
 </style>
 <template>
-  <view class="container">
-    <regular-card mode="regular" :list.sync="regularList" />
-    <gachi-card mode="gachi" :list.sync="gachiList" />
-    <league-card mode="league" :list.sync="leagueList" />
+  <view class="container index-container">
+    <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
+    <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
+    <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
   </view>
 </template>
 

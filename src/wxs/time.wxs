@@ -2,6 +2,16 @@ function formatMinute(minute) {
   var m = '0' + minute
   return m.slice(-2)
 }
+
+/** 只生成时间 */
+function generateTimeString(time) {
+  var hour = time.getHours()
+  var minute = formatMinute(time.getMinutes())
+  var meridiem = hour < 12 ? 'AM' : 'PM'
+  hour = hour === 0 ? 12 : hour > 12 ? hour - 12 : hour
+  return hour + ':' + minute + ' ' + meridiem
+}
+
 module.exports = {
   generateScheduleTimeString: function (startTime, endTime) {
     if (!startTime || !endTime) {
@@ -16,11 +26,11 @@ module.exports = {
     if (!isStartTimeToday) {
       string += (start.getMonth() + 1) + '/' + start.getDate() + ' '
     }
-    string += start.getHours() + ':' + formatMinute(start.getMinutes()) + ' - '
-    if(isStartTimeToday && !isEndTimeToday){
-      string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
-    }
-    string += end.getHours() + ':' + formatMinute(end.getMinutes())
+    string += generateTimeString(start) + ' - '
+    // if (isStartTimeToday && !isEndTimeToday) {
+    //   string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
+    // }
+    string += generateTimeString(end)
     return string
   }
 }

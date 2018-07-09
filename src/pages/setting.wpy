@@ -1,5 +1,26 @@
 <template>
-  <view>设置</view>
+  <view class="container setting-container">
+    <view class="setting-header">
+      <image class="setting-header-background" src="../assets/img/bg-mask-ink-splat.svg"></image>
+      <view class="setting-header-content">
+        <image class="setting-logo" src="../assets/img/logo.jpg"></image>
+        <text class="splatoon2">乌贼日历</text>
+      </view>
+    </view>
+    <view class="setting-content">
+      <view class="setting-item dot-background">
+        <text>语言设置</text>
+        <picker range-key="value" @change="changeLocale" value="{{localeIndex}}" range="{{localeList}}">
+          <view class="picker">
+            {{localeList[localeIndex].value}}
+          </view>
+        </picker>
+      </view>
+      <view class="setting-item dot-background">
+        <text>关于</text>
+      </view>
+    </view>
+  </view>
 </template>
 <script>
 import wepy from 'wepy'
@@ -8,7 +29,77 @@ export default class Setting extends wepy.page {
   config = {
     navigationBarTitleText: '设置'
   }
+
+  data = {
+    localeIndex: 0,
+    localeList: [
+      {
+        id: 'en',
+        value: '英语'
+      },
+      {
+        id: 'jp',
+        value: '日语'
+      }
+    ]
+  }
+
+  methods = {
+    changeLocale({ detail }) {
+      this.localeIndex = detail.value
+    }
+  }
 }
 </script>
 <style lang="less">
+.setting-header {
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  .setting-header-background {
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+  }
+  .setting-header-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .setting-logo {
+      margin: 5px 0 10px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+    text {
+      line-height: 1em;
+      color: #ffffff;
+    }
+  }
+}
+.setting-content {
+  width: 90%;
+}
+.setting-item {
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 15px;
+  position: relative;
+  transform: rotate(0.2deg);
+  background-color: #808080;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+}
 </style>

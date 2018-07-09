@@ -35,7 +35,6 @@
   margin-bottom: 10px;
 }
 .schedule-wrap {
-  color: white;
   width: 90%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;

@@ -35,6 +35,10 @@ page {
     background-color: #f02d7d;
   }
 }
+.dot-background {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAABQBAMAAAB8P++eAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAYUExURUdwTP///////////////////////////x1LVb4AAAAIdFJOUwAmJRkOEhcNpVTHdwAAAG1JREFUSMdjEGEAA0VCNEMAhMFMiGYYIoBRgTiaQVCYOJpwGEJpwmEYMFQCkcgwZGQgMgwFGUbT42h6HE2Po+lxND2OjPQoRKQ8o2AC3jCEyzMJFuANQ7g8gwmBdGmC7pahmw5H0+No+Tgi0iMAOIoo57MsGxkAAAAASUVORK5CYII=);
+  background-color: gray;
+}
 </style>
 
 <script>

@@ -11,5 +11,32 @@
 	"appid": "wx1f05fd247e4274ab",
 	"projectname": "%E4%B9%8C%E8%B4%BC%E6%97%A5%E5%8E%86",
 	"miniprogramRoot": "./dist",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "日程页面",
+					"pathName": "pages/schedule",
+					"query": "mode=regular"
+				}
+			]
+		}
+	}
 }

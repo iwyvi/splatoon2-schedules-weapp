@@ -1,0 +1,14 @@
+<template>
+  <view>设置</view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Setting extends wepy.page {
+  config = {
+    navigationBarTitleText: '设置'
+  }
+}
+</script>
+<style lang="less">
+</style>

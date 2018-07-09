@@ -36,7 +36,7 @@ import scheduleCard from '@/components/schedule-card'
 )
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '日程'
+    navigationBarTitleText: '乌贼日历'
   }
 
   components = {
@@ -53,10 +53,7 @@ export default class Index extends wepy.page {
 
   watch = {
     schedule(newValue) {
-      this.regularList = newValue.regular.list
-      this.gachiList = newValue.gachi.list
-      this.leagueList = newValue.league.list
-      this.$apply()
+      this.loadSchedule()
     }
   }
 
@@ -64,8 +61,18 @@ export default class Index extends wepy.page {
 
   methods = {}
 
+  loadSchedule() {
+    this.regularList = this.schedule.regular.list
+    this.gachiList = this.schedule.gachi.list
+    this.leagueList = this.schedule.league.list
+    this.$apply()
+  }
+
   onLoad() {
     this.methods.updateSchedule()
+    this.loadSchedule()
   }
+
+  onShareAppMessage() {}
 }
 </script>

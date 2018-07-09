@@ -1,5 +1,5 @@
 <template>
-  <view class="schedule-card {{mode}}">
+  <view class="schedule-card stripe-background {{mode}}">
     <view class="schedule-card-title">
       <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
       <text class="splatoon2">{{titleText}}</text>
@@ -39,7 +39,7 @@
       </view>
     </view>
     <view class="schedule-card-button">
-      <button class="splatoon2">MORE</button>
+      <navigator url="schedule?mode={{mode}}" class="splatoon2">MORE</navigator>
     </view>
   </view>
 </template>
@@ -112,7 +112,11 @@ export default class ScheduleCard extends wepy.component {
 
   data = {}
 
-  methods = {}
+  methods = {
+    tapMore() {
+      wx.navigateTo('pages/schedule?mode=regular')
+    }
+  }
 
   onLoad() {}
 }
@@ -124,21 +128,9 @@ export default class ScheduleCard extends wepy.component {
   width: 90%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   position: relative;
   color: white;
-  background-image: linear-gradient(180deg, transparent, rgba(36, 36, 36, 0.1)),
-    url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOIAAADiBAMAAAChPgbkAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAqUExURRcXF0dwTBUVFRYWFgAAABoaGhkZGRUVFRgYGAAAAAAAAB4eHiQkJBISEkRDNy8AAAAOdFJOUxYAGBcDEwoMFQUBEQcOBwHpdgAAAjdJREFUeNrt271NBDEUReGnjUlGIoGICCKkbYIKqIASqIEm6IGMDiiBjtj5XXvGz9k9Cde5dfTFvo6Xc6TnacjP/Xd+7/TbuRi3r52b752bXw/5xedecaCRMdDIGGjkpQgjL0UYORZZ5FhkkVMRRU5FFDkXSeRcJJFLEUQuRRC5FjnkWuSQWxFDbkUMeS1SyGuRQhZFCFkUIWRZZJBlkUFWRQRZFRFkXSSQdZFA7ooAclcEkPuiHrkv6pGHohx5KMqRx6IaeSyqkY2iGNkoipGtohbZKmqRzaIU2SxKke2iEtkuKpFJUYhMikJkVtQhs6IOmRZlyLQoQ+ZFFTIvqpCdogjZKYqQvaIGGW80Mh5pZJxoZBhppJFGGmmkkUYaaaSRRhpppJFGGmmkkUYaaeR/Rp5pZHzQyPikkXFHI2OgkTHQyBho5KUII8f3RxY5Flnk9MaKIqciipzfkUnkXCSRy1s5iFyKIHLdA3DItcght80DhtyKGPK666CQ1yKFLLYrELIoQshyn8MgyyKDrDZICLIqIsh6Z0Ug6yKB3G3JAOSuCCD3ezk9cl/UIw+bQDnyUJQjj7tHNfJYVCMb204xslEUI1v7VS2yVdQimxtdKbJZlCLbO2Qlsl1UIpOttRCZFIXIbE+uQ2ZFHTLdzMuQaVGGzP8FqJB5UYXs/H0QITtFEbL3v0OD7BU1yPihkXFDIwNHhpFGGmmkkUYaaaSRRhpppJFGGmmkkUYaaaSRRhoJIgNH/gHUGcb6oO4YfwAAAABJRU5ErkJggg==');
-  background-size: 100% 100%, 80px 80px;
-  &.regular {
-    background-color: #19d719;
-  }
-  &.gachi {
-    background-color: #f54910;
-  }
-  &.league {
-    background-color: #f02d7d;
-  }
 }
 .schedule-card-title {
   display: flex;
@@ -150,13 +142,14 @@ export default class ScheduleCard extends wepy.component {
     height: 0;
   }
   text {
+    font-size: 38rpx;
     margin-left: 10px;
     line-height: 1em;
   }
 }
 .schedule-card-block {
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 5px 5px 10px;
   font-size: 24rpx;
   .schedule-card-block-title {
@@ -185,7 +178,7 @@ export default class ScheduleCard extends wepy.component {
       image {
         width: 100%;
         height: 0;
-        border-radius: 5px;
+        border-radius: 10px;
       }
       text {
         position: absolute;
@@ -193,7 +186,7 @@ export default class ScheduleCard extends wepy.component {
         bottom: 8px;
         right: 8px;
         background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 5px;
+        border-radius: 10px;
         line-height: 1em;
         padding: 5px 5px;
       }
@@ -213,7 +206,8 @@ export default class ScheduleCard extends wepy.component {
   display: flex;
   justify-content: center;
   margin-top: 8px;
-  button {
+  margin-bottom: 5px;
+  navigator {
     font-size: 32rpx;
     border-radius: 100px;
     padding-left: 18px;

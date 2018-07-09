@@ -1,0 +1,246 @@
+<template>
+  <view class="container salmonrun-container">
+    <view class="salmonrun-wrap circle-background">
+      <view class="salmonrun-title">
+        <image class="salmonrun-logo" mode="widthFix" src="../assets/img/salmon-run.png"></image>
+        <text class="splatoon2">Salmon Run</text>
+      </view>
+      <view class="salmonrun-block">
+        <view class="salmonrun-block-status splatoon2">{{firstStatus}}</view>
+        <view class="salmonrun-block-card">
+          <view class="salmonrun-block-title">
+            <image src="../assets/img/icon/salmon-run-selected.png"></image>
+            <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[0].start_time, listWithDetail[0].end_time)}}</text>
+          </view>
+          <view class="salmonrun-block-content">
+            <view class="salmonrun-block-content-image">
+              <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[0].stage.image)}}"></image>
+              <text class="splatoon2">{{listWithDetail[0].stage.name}}</text>
+            </view>
+            <view class="salmonrun-block-content-details">
+              <text class="splatoon2">Supplied Weapons</text>
+              <view class="salmonrun-weapons">
+                <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
+                  <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="salmonrun-block">
+        <view class="salmonrun-block-status splatoon2">Next!</view>
+        <view class="salmonrun-block-card">
+          <view wx:if="{{listWithDetail[1]}}">
+            <view class="salmonrun-block-title">
+              <image src="../assets/img/icon/salmon-run-selected.png"></image>
+              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[1].start_time, listWithDetail[1].end_time)}}</text>
+            </view>
+            <view class="salmonrun-block-content">
+              <view class="salmonrun-block-content-image">
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[1].stage.image)}}"></image>
+                <text class="splatoon2">{{listWithDetail[1].stage.name}}</text>
+              </view>
+              <view class="salmonrun-block-content-details">
+                <text class="splatoon2">Supplied Weapons</text>
+                <view class="salmonrun-weapons">
+                  <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
+                    <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="salmonrun-more">
+            <view class="salmonrun-block-title" wx:for="{{restList}}" wx:key="end_time">
+              <image src="../assets/img/icon/salmon-run-selected.png"></image>
+              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(item.start_time, item.end_time)}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { connect } from 'wepy-redux'
+
+import { updateSalmonRun } from '../store/actions'
+
+import timeWxs from '../wxs/time.wxs'
+import imageWxs from '../wxs/image.wxs'
+
+@connect(
+  {
+    salmonrun(state) {
+      return state.salmonrun
+    }
+  },
+  { updateSalmonRun }
+)
+export default class SalmonRun extends wepy.page {
+  config = {
+    navigationBarTitleText: '打工'
+  }
+
+  wxs = {
+    timeWxs,
+    imageWxs
+  }
+
+  computed = {
+    firstStatus() {
+      if (!this.listWithDetail[0]) {
+        return ''
+      }
+      const startTime = this.listWithDetail[0].start_time
+      const now = Date.now()
+      return parseInt(`${startTime}000`) <= now ? 'Open!' : 'Next!'
+    }
+  }
+
+  data = {
+    listWithDetail: [],
+    restList: []
+  }
+
+  watch = {
+    salmonrun() {
+      this.loadSalmonRun()
+    }
+  }
+
+  loadSalmonRun() {
+    const list = this.salmonrun.salmonRun.list
+    this.listWithDetail = list.filter((v) => v.has_detail)
+    this.restList = list.filter((v) => !v.has_detail)
+    this.$apply()
+  }
+
+  onLoad() {
+    this.methods.updateSalmonRun()
+    this.loadSalmonRun()
+  }
+
+  onShareAppMessage() {}
+}
+</script>
+<style lang="less">
+.salmonrun-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.salmonrun-wrap {
+  width: 90%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 15px;
+  position: relative;
+  color: white;
+  transform: rotate(0.2deg);
+}
+.salmonrun-title {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  .salmonrun-logo {
+    width: 40px;
+    height: 0;
+  }
+  text {
+    font-size: 48rpx;
+    margin-left: 10px;
+    line-height: 1em;
+  }
+}
+.salmonrun-block {
+  font-size: 24rpx;
+  margin-bottom: 10px;
+}
+.salmonrun-block-status {
+  color: #00dd55;
+  font-size: 2em;
+}
+.salmonrun-block-card {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 10px 5px;
+}
+.salmonrun-block-title {
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  border-bottom: 1px dashed #ffffff;
+  image {
+    width: 30px;
+    height: 30px;
+  }
+  text {
+    font-size: 1.3em;
+    margin-left: 10px;
+  }
+}
+.salmonrun-block-content {
+  display: flex;
+  .salmonrun-block-content-image {
+    width: 45%;
+    position: relative;
+    padding: 0 5px;
+    image {
+      width: 100%;
+      height: 0;
+      border-radius: 15px;
+    }
+    text {
+      position: absolute;
+      font-size: 1em;
+      bottom: 8px;
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      line-height: 1em;
+      padding: 5px 5px;
+    }
+  }
+  .salmonrun-block-content-details {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text {
+      font-size: 1.1em;
+      margin-bottom: 5px;
+    }
+    .salmonrun-weapons {
+      max-width: 200px;
+      width: 100%;
+      display: flex;
+      .salmonrun-weapon {
+        width: 25%;
+        padding-left: 2px;
+        padding-right: 2px;
+        image {
+          width: 100%;
+          height: 0;
+        }
+      }
+    }
+  }
+}
+.salmonrun-more {
+  margin-top: 15px;
+  .salmonrun-block-title {
+    padding-bottom: 0;
+    margin-bottom: 0;
+    line-height: 3em;
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+</style>

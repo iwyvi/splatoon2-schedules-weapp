@@ -3,11 +3,11 @@ import {
 } from 'redux-actions'
 import AV from 'leancloud-storage'
 import {
-  UPDATE_SCHEDULE
-} from '../types/schedule'
+  UPDATE_SALMONRUN
+} from '../types/salmonrun'
 
-export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
-  const query = new AV.Query('Schedule')
+export const updateSalmonRun = createAction(UPDATE_SALMONRUN, () => {
+  const query = new AV.Query('SalmonRunSchedules')
   query.greaterThan('end_time', parseInt(Date.now() / 1000))
   return query.find()
     .then((results) => {

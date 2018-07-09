@@ -21,15 +21,25 @@ module.exports = {
     var start = getDate(parseInt(startTime + '000'))
     var end = getDate(parseInt(endTime + '000'))
     var isStartTimeToday = start.getDate() === now.getDate()
-    var isEndTimeToday = end.getDate() === now.getDate()
     var string = ''
     if (!isStartTimeToday) {
       string += (start.getMonth() + 1) + '/' + start.getDate() + ' '
     }
     string += generateTimeString(start) + ' - '
-    // if (isStartTimeToday && !isEndTimeToday) {
-    //   string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
-    // }
+    string += generateTimeString(end)
+    return string
+  },
+  generateSalmonRunTimeString: function (startTime, endTime) {
+    if (!startTime || !endTime) {
+      return ''
+    }
+    var now = getDate()
+    var start = getDate(parseInt(startTime + '000'))
+    var end = getDate(parseInt(endTime + '000'))
+    var string = ''
+    string += (start.getMonth() + 1) + '/' + start.getDate() + ' '
+    string += generateTimeString(start) + ' - '
+    string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
     string += generateTimeString(end)
     return string
   }

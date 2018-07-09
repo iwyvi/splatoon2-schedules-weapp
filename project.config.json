@@ -41,6 +41,12 @@
 					"name": "设置",
 					"pathName": "pages/setting",
 					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "打工",
+					"pathName": "pages/salmonrun",
+					"query": ""
 				}
 			]
 		}

@@ -2,33 +2,30 @@ import {
   handleActions
 } from 'redux-actions'
 import {
-  UPDATE_SCHEDULE
-} from '../types/schedule'
+  UPDATE_SALMONRUN
+} from '../types/salmonrun'
 
 import {
-  updateSchedule
+  updateSalmonRun
 } from '../../utils/updateSchedule'
 
+/**
+ * reducer名为salmonrun
+ * state名为salmonRun
+ * 调用时需要state.salmonrun.salmonRun
+ */
 const defaultState = {
-  regular: {
-    lastEndTime: 0,
-    list: []
-  },
-  gachi: {
-    lastEndTime: 0,
-    list: []
-  },
-  league: {
+  salmonRun: {
     lastEndTime: 0,
     list: []
   }
 }
 
 export default handleActions({
-  [UPDATE_SCHEDULE](state, {
+  [UPDATE_SALMONRUN](state, {
     payload
   }) {
-    updateSchedule(['regular', 'gachi', 'league'], state, payload)
+    updateSalmonRun(state, payload)
     return {
       ...state
     }

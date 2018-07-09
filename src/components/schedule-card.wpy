@@ -21,6 +21,7 @@
       </view>
     </view>
     <view class="schedule-card-block-tiny-wrap">
+      <image class="nextstep" src="../assets/img/icon/nextstep.png"></image>
       <view class="schedule-card-block">
         <view class="schedule-card-block-title">
           <text class="schedule-card-block-title-mode splatoon2">{{battleNext.rule.name}}</text>
@@ -195,8 +196,16 @@ export default class ScheduleCard extends wepy.component {
 }
 .schedule-card-block-tiny-wrap {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
   margin-top: 10px;
+  position: relative;
+  .nextstep {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 2px;
+  }
   .schedule-card-block {
     width: 90%;
     font-size: 21rpx;

@@ -56,10 +56,10 @@ module.exports = {
     } else {
       hours = end.getHours() - now.getHours()
     }
-    if (hours < 0) {
+    if (hours <= 0) {
       return '結束'
-    } else if (hours === 0) {
-      minutes = end.getMinutes() - now.getMinutes()
+    } else if (hours <= 1) {
+      minutes = 60 - now.getMinutes()
       return minutes + '分'
     } else {
       return hours + '小時'

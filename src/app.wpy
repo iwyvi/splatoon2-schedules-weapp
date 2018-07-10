@@ -1,5 +1,5 @@
 <style lang="less">
-@import "./less/global.less";
+@import './less/global.less';
 </style>
 
 <script>
@@ -26,7 +26,8 @@ export default class extends wepy.app {
       'pages/index',
       'pages/schedule',
       'pages/setting',
-      'pages/salmonrun'
+      'pages/salmonrun',
+      'pages/shop'
     ],
     window: {
       backgroundTextStyle: 'dark',
@@ -51,6 +52,12 @@ export default class extends wepy.app {
           text: '打工',
           iconPath: './assets/img/icon/salmon-run.png',
           selectedIconPath: './assets/img/icon/salmon-run-selected.png'
+        },
+        {
+          pagePath: 'pages/shop',
+          text: '商店',
+          iconPath: './assets/img/icon/shop.png',
+          selectedIconPath: './assets/img/icon/shop-selected.png'
         },
         {
           pagePath: 'pages/setting',

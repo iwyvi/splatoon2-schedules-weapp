@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
@@ -46,6 +46,12 @@
 					"id": 2,
 					"name": "打工",
 					"pathName": "pages/salmonrun",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "商店",
+					"pathName": "pages/shop",
 					"query": ""
 				}
 			]

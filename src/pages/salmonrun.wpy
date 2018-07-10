@@ -96,7 +96,7 @@ export default class SalmonRun extends wepy.page {
       }
       const startTime = this.listWithDetail[0].start_time
       const now = Date.now()
-      return parseInt(`${startTime}000`) <= now ? 'Open!' : 'Next!'
+      return parseInt(`${startTime}000`) <= now ? 'Open!' : 'Soon!'
     }
   }
 

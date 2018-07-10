@@ -1,0 +1,12 @@
+module.exports = {
+  generateSubSkillImageArray: function (rarity) {
+    if (rarity < 0) {
+      return []
+    }
+    var arr = []
+    for (var i = 0; i < rarity + 1; i++) {
+      arr.push(i)
+    }
+    return arr
+  }
+}

@@ -1,0 +1,314 @@
+<template>
+  <view class="container shop-container">
+    <view class="shop-wrap card-wrap sports-background">
+      <view class="shop-title card-title">
+        <text class="splatoon">商店</text>
+      </view>
+      <view class="shop-hint">
+        <text>小程序只展示当前SplatNet中的装备</text>
+        <text>购买需要在APP里进行操作</text>
+      </view>
+      <view>
+        <view class="shop-item" wx:for="{{list}}" wx:key="end_time">
+          <view class="item-title">
+            <text class="splatoon">{{timeWxs.generateShopTimeString(item.end_time)}}</text>
+          </view>
+          <view class="item-content">
+            <view class="item-card-wrap item-gear">
+              <view class="item-card card-mask">
+                <view class="item-brand">
+                  <image src="{{imageWxs.getImageUrl(item.gear.brand.image)}}"></image>
+                </view>
+                <view class="item-skill">
+                  <view class="item-skill-main">
+                    <image src="{{imageWxs.getImageUrl(item.skill.image)}}"></image>
+                  </view>
+                  <view class="item-skill-sub">
+                    <image wx:for="{{shopWxs.generateSubSkillImageArray(item.gear.rarity)}}" wx:key="index" src="../assets/img/blank-skill-slot.png"></image>
+                  </view>
+                </view>
+                <view class="item-main">
+                  <image mode="widthFix" src="{{imageWxs.getImageUrl(item.gear.image)}}"></image>
+                  <text class="splatoon2">{{item.gear.name}}</text>
+                </view>
+                <view class="item-cash stripe-background {{item.kind}}">
+                  <image src="../assets/img/cash.png"></image>
+                  <text class="splatoon2">{{item.price}}</text>
+                </view>
+              </view>
+            </view>
+            <view class="item-card-wrap item-detail">
+              <view class="item-card card-mask">
+                <view class="item-detail-info item-skill">
+                  <text class="item-detail-info-title splatoon">品牌傾向</text>
+                  <view class="item-skill-main">
+                    <image src="{{imageWxs.getImageUrl(item.gear.brand.frequent_skill.image)}}"></image>
+                  </view>
+                </view>
+                <view class="item-detail-info item-detail-original">
+                  <text class="item-detail-info-title splatoon">原始属性</text>
+                  <view class="item-skill">
+                    <view class="item-skill-main">
+                      <image src="{{imageWxs.getImageUrl(item.original_gear.skill.image)}}"></image>
+                    </view>
+                    <view class="item-skill-sub">
+                      <image wx:for="{{shopWxs.generateSubSkillImageArray(item.original_gear.rarity)}}" wx:key="index" src="../assets/img/blank-skill-slot.png"></image>
+                    </view>
+                  </view>
+                  <view class="item-cash">
+                    <image src="../assets/img/cash.png"></image>
+                    <text class="splatoon2">{{item.original_gear.price}}</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { connect } from 'wepy-redux'
+
+import { updateShop } from '../store/actions'
+
+import timeWxs from '../wxs/time.wxs'
+import imageWxs from '../wxs/image.wxs'
+import shopWxs from '../wxs/shop.wxs'
+
+@connect(
+  {
+    shop(state) {
+      return state.shop
+    }
+  },
+  { updateShop }
+)
+export default class Shop extends wepy.page {
+  config = {
+    navigationBarTitleText: '商店'
+  }
+
+  wxs = {
+    timeWxs,
+    imageWxs,
+    shopWxs
+  }
+
+  data = {
+    list: []
+  }
+
+  watch = {
+    shop() {
+      this.loadShop()
+    }
+  }
+
+  loadShop() {
+    this.list = this.shop.shop.list
+    this.$apply()
+  }
+
+  onLoad() {
+    this.methods.updateShop()
+    this.loadShop()
+  }
+
+  onShareAppMessage() {}
+}
+</script>
+<style lang="less">
+.shop-container {
+  margin-top: 1px;
+  margin-bottom: 10px;
+}
+.shop-wrap {
+  color: #ffffff;
+  background-color: #fb746e;
+}
+.shop-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text {
+    font-size: 56rpx;
+    line-height: 1em;
+  }
+}
+.shop-hint {
+  margin-bottom: 10px;
+  font-size: 28rpx;
+  color: #f0f0f0;
+  text {
+    display: block;
+  }
+}
+.shop-item {
+  font-size: 32rpx;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  padding: 10px 10px 15px;
+  margin-bottom: 15px;
+  .item-title {
+    margin-left: 10px;
+    text {
+      line-height: 1em;
+    }
+  }
+  .item-content {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    .item-skill {
+      display: flex;
+      align-items: center;
+      .item-skill-main {
+        image {
+          padding: 3px;
+          width: 23px;
+          height: 23px;
+          background-color: #000000;
+          border-radius: 50%;
+        }
+      }
+      .item-skill-sub {
+        display: flex;
+        image {
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+    .item-cash {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      image {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+      text {
+        line-height: 1em;
+      }
+    }
+    .item-card-wrap {
+      width: 50%;
+      padding: 0 5px;
+      .item-card {
+        width: 100%;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        background-color: rgba(255, 255, 255, 0.9);
+        position: relative;
+        padding-top: 35px;
+        display: flex;
+        color: #000000;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: 500px 800px;
+        mask-size: 500px 800px;
+      }
+    }
+  }
+}
+.item-gear {
+  .item-card {
+    transform: rotate(-1deg);
+  }
+  .item-brand {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    image {
+      width: 29px;
+      height: 29px;
+    }
+  }
+  .item-skill {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    flex-direction: column;
+    .item-skill-sub {
+      margin-top: -1px;
+      flex-direction: column;
+      image {
+        margin-bottom: 3px;
+      }
+    }
+  }
+  .item-main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    image {
+      width: 100px;
+      height: 0;
+    }
+    text {
+      margin-top: 5px;
+      text-align: center;
+      text-shadow: none;
+      white-space: normal;
+      line-height: 1.2em;
+    }
+  }
+  .item-cash {
+    margin-top: 10px;
+    width: 100%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: #ffffff;
+    &.head {
+      background-color: #ee156e;
+    }
+    &.clothes {
+      background-color: #1dd6ad;
+    }
+    &.shoes {
+      background-color: #e66900;
+    }
+  }
+}
+.item-detail {
+  .item-card {
+    padding-bottom: 15px;
+    transform: rotate(0.3deg);
+  }
+  .item-detail-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .item-detail-info-title {
+      text-shadow: none;
+      line-height: 1em;
+      margin-bottom: 8px;
+    }
+  }
+  .item-detail-original {
+    .item-skill {
+      margin-bottom: 5px;
+      .item-skill-sub {
+        image {
+          margin-left: 5px;
+        }
+      }
+    }
+    .item-cash {
+      text {
+        text-shadow: none;
+      }
+    }
+  }
+}
+</style>

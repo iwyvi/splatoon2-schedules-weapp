@@ -1,7 +1,7 @@
 <template>
   <view class="container schedule-container">
-    <view class="schedule-wrap stripe-background {{mode}}">
-      <view class="schedule-title">
+    <view class="schedule-wrap card-wrap stripe-background {{mode}}">
+      <view class="schedule-title card-title">
         <view>
           <image class="schedule-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
           <text class="splatoon2">{{titleText}}</text>
@@ -35,18 +35,10 @@
   margin-bottom: 10px;
 }
 .schedule-wrap {
-  width: 90%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  border-radius: 15px;
-  position: relative;
   color: white;
-  transform: rotate(0.2deg);
 }
 
 .schedule-title {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
   margin-top: 15px;
   margin-bottom: 25px;

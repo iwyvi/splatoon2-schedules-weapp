@@ -1,7 +1,7 @@
 <template>
   <view class="container salmonrun-container">
-    <view class="salmonrun-wrap circle-background">
-      <view class="salmonrun-title">
+    <view class="salmonrun-wrap card-wrap card-mask circle-background">
+      <view class="salmonrun-title card-title">
         <image class="salmonrun-logo" mode="widthFix" src="../assets/img/salmon-run.png"></image>
         <text class="splatoon">Salmon Run</text>
       </view>
@@ -132,18 +132,10 @@ export default class SalmonRun extends wepy.page {
   margin-bottom: 10px;
 }
 .salmonrun-wrap {
-  width: 90%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  border-radius: 15px;
-  position: relative;
   color: white;
-  transform: rotate(0.2deg);
 }
 .salmonrun-title {
-  display: flex;
-  align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 5px;
   .salmonrun-logo {
     width: 40px;

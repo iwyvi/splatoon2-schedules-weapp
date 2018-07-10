@@ -1,6 +1,6 @@
 <template>
-  <view class="schedule-card stripe-background {{mode}}">
-    <view class="schedule-card-title">
+  <view class="schedule-card card-wrap stripe-background {{mode}}">
+    <view class="schedule-card-title card-title">
       <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
       <text class="splatoon2">{{titleText}}</text>
     </view>
@@ -126,16 +126,9 @@ export default class ScheduleCard extends wepy.component {
 .schedule-card {
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 90%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  border-radius: 15px;
-  position: relative;
   color: white;
 }
 .schedule-card-title {
-  display: flex;
-  align-items: center;
   margin-top: 5px;
   margin-bottom: 10px;
   .schedule-card-logo {

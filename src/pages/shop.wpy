@@ -55,7 +55,7 @@
                       <image wx:for="{{shopWxs.generateSubSkillImageArray(item.original_gear.rarity)}}" wx:key="index" src="../assets/img/blank-skill-slot.png"></image>
                     </view>
                   </view>
-                  <view class="item-cash">
+                  <view class="item-cash" wx:if="{{item.original_gear.price}}">
                     <image src="../assets/img/cash.png"></image>
                     <text class="splatoon2">{{item.original_gear.price}}</text>
                   </view>
@@ -122,8 +122,8 @@ export default class Shop extends wepy.page {
 </script>
 <style lang="less">
 .shop-container {
-  margin-top: 1px;
-  margin-bottom: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .shop-wrap {
   color: #ffffff;

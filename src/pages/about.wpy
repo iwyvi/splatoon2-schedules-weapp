@@ -1,0 +1,88 @@
+<template>
+  <view class="container about-container">
+    <view class="about-wrap card-wrap wave-background">
+      <view class="about-title card-title">
+        <text class="splatoon">ABOUT</text>
+      </view>
+      <view class="about-content">
+        <view>乌贼日历为
+          <text class="splatoon2 about-word">Splatoon2</text>玩家提供地图时刻表等信息的查询。</view>
+        <view>只是最近闲来无事写的一个小程序。</view>
+        <view class="hr"></view>
+        <view>小程序基于
+          <text class="splatoon2 about-word">wepy</text>构建，数据存储于
+          <text class="splatoon2 about-word">LeanCloud</text>。</view>
+        <view>小程序中日程、打工、商店和祭典等数据均来自：
+          <text selectable="true">https://splatoon2.ink/</text>
+        </view>
+        <view>小程序中的图片目前均为直接从任天堂服务器获取</view>
+        <view>小程序源码在
+          <text class="splatoon2 about-word">GitHub</text>以
+          <text class="splatoon2 about-word">MIT</text>协议开源：
+          <text selectable="true">https://github.com/IwYvI/splatoon2-schedules-weapp</text>
+        </view>
+        <view class="hr"></view>
+        <view>小纯洁
+          <text class="splatoon2 about-word">IwYvI</text>
+        </view>
+        <view>邮箱：
+          <text selectable="true">splatoon2-schedules@iwyvi.com</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class About extends wepy.page {
+  config = {
+    navigationBarTitleText: '关于乌贼日历'
+  }
+
+  onLoad() {}
+}
+</script>
+<style lang="less">
+.about-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.about-wrap {
+  background-color: #f8dc47;
+  color: #ffffff;
+}
+.about-title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text {
+    font-size: 56rpx;
+    line-height: 1em;
+  }
+}
+.about-content {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  font-size: 32rpx;
+  padding: 10px;
+  text {
+    line-height: 1.5em;
+  }
+  view {
+    margin-bottom: 10px;
+    &:last-child {
+      margin-bottom: 5px;
+    }
+  }
+  .hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 0;
+    border-bottom: 1px dashed #ffffff;
+  }
+  .about-word {
+    margin-left: 1px;
+    margin-right: 6px;
+  }
+}
+</style>

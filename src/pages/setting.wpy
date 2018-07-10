@@ -17,7 +17,7 @@
         </picker>
       </view> -->
       <view class="setting-item dot-background">
-        <text>关于</text>
+        <navigator url="about">关于</navigator>
       </view>
     </view>
   </view>
@@ -101,5 +101,8 @@ export default class Setting extends wepy.page {
   color: #ffffff;
   display: flex;
   justify-content: space-between;
+  navigator {
+    width: 100%;
+  }
 }
 </style>

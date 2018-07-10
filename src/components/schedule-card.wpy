@@ -40,7 +40,7 @@
       </view>
     </view>
     <view class="schedule-card-button">
-      <navigator url="schedule?mode={{mode}}" class="splatoon2">MORE</navigator>
+      <navigator url="schedule?mode={{mode}}" class="splatoon">MORE</navigator>
     </view>
   </view>
 </template>

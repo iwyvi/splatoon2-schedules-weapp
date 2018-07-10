@@ -3,10 +3,10 @@
     <view class="salmonrun-wrap circle-background">
       <view class="salmonrun-title">
         <image class="salmonrun-logo" mode="widthFix" src="../assets/img/salmon-run.png"></image>
-        <text class="splatoon2">Salmon Run</text>
+        <text class="splatoon">Salmon Run</text>
       </view>
       <view class="salmonrun-block">
-        <view class="salmonrun-block-status splatoon2">{{firstStatus}}</view>
+        <view class="salmonrun-block-status splatoon">{{firstStatus}}</view>
         <view class="salmonrun-block-card">
           <view class="salmonrun-block-title">
             <image src="../assets/img/icon/salmon-run-selected.png"></image>
@@ -18,7 +18,7 @@
               <text class="splatoon2">{{listWithDetail[0].stage.name}}</text>
             </view>
             <view class="salmonrun-block-content-details">
-              <text class="splatoon2">Supplied Weapons</text>
+              <text class="splatoon">提供的武器</text>
               <view class="salmonrun-weapons">
                 <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
                   <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
@@ -29,7 +29,7 @@
         </view>
       </view>
       <view class="salmonrun-block">
-        <view class="salmonrun-block-status splatoon2">Next!</view>
+        <view class="salmonrun-block-status splatoon">Next!</view>
         <view class="salmonrun-block-card">
           <view wx:if="{{listWithDetail[1]}}">
             <view class="salmonrun-block-title">
@@ -42,7 +42,7 @@
                 <text class="splatoon2">{{listWithDetail[1].stage.name}}</text>
               </view>
               <view class="salmonrun-block-content-details">
-                <text class="splatoon2">Supplied Weapons</text>
+                <text class="splatoon">提供的武器</text>
                 <view class="salmonrun-weapons">
                   <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
                     <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
@@ -150,7 +150,7 @@ export default class SalmonRun extends wepy.page {
     height: 0;
   }
   text {
-    font-size: 48rpx;
+    font-size: 56rpx;
     margin-left: 10px;
     line-height: 1em;
   }
@@ -161,7 +161,7 @@ export default class SalmonRun extends wepy.page {
 }
 .salmonrun-block-status {
   color: #00dd55;
-  font-size: 2em;
+  font-size: 1.5em;
 }
 .salmonrun-block-card {
   background-color: rgba(0, 0, 0, 0.6);
@@ -212,9 +212,10 @@ export default class SalmonRun extends wepy.page {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 0 5px;
     text {
       font-size: 1.1em;
-      margin-bottom: 5px;
+      line-height:2em;
     }
     .salmonrun-weapons {
       max-width: 200px;

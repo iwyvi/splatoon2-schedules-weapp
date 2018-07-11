@@ -91,7 +91,8 @@ import shopWxs from '../wxs/shop.wxs'
 )
 export default class Shop extends wepy.page {
   config = {
-    navigationBarTitleText: '商店'
+    navigationBarTitleText: '商店',
+    enablePullDownRefresh: true
   }
 
   components = {
@@ -117,14 +118,18 @@ export default class Shop extends wepy.page {
   loadShop() {
     this.list = this.shop.shop.list
     this.$apply()
+    wx.stopPullDownRefresh()
   }
 
   onLoad() {
     this.methods.updateShop()
-    this.loadShop()
   }
 
   onShareAppMessage() {}
+
+  onPullDownRefresh() {
+    this.methods.updateShop()
+  }
 }
 </script>
 <style lang="less">

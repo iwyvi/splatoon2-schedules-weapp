@@ -86,7 +86,8 @@ import imageWxs from '../wxs/image.wxs'
 )
 export default class SalmonRun extends wepy.page {
   config = {
-    navigationBarTitleText: '打工'
+    navigationBarTitleText: '打工',
+    enablePullDownRefresh: true
   }
 
   components = {
@@ -125,14 +126,18 @@ export default class SalmonRun extends wepy.page {
     this.listWithDetail = list.filter((v) => v.has_detail)
     this.restList = list.filter((v) => !v.has_detail)
     this.$apply()
+    wx.stopPullDownRefresh()
   }
 
   onLoad() {
     this.methods.updateSalmonRun()
-    this.loadSalmonRun()
   }
 
   onShareAppMessage() {}
+
+  onPullDownRefresh() {
+    this.methods.updateSalmonRun()
+  }
 }
 </script>
 <style lang="less">

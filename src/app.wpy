@@ -30,8 +30,9 @@ export default class extends wepy.app {
       'pages/about'
     ],
     window: {
-      backgroundTextStyle: 'dark',
+      backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#191919',
+      backgroundColor: '#191919',
       navigationBarTitleText: '乌贼日历',
       navigationBarTextStyle: 'white'
     },

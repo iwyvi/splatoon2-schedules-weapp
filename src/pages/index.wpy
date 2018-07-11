@@ -36,7 +36,8 @@ import scheduleCard from '@/components/schedule-card'
 )
 export default class Index extends wepy.page {
   config = {
-    navigationBarTitleText: '乌贼日历'
+    navigationBarTitleText: '乌贼日历',
+    enablePullDownRefresh: true
   }
 
   components = {
@@ -66,6 +67,7 @@ export default class Index extends wepy.page {
     this.gachiList = this.schedule.gachi.list
     this.leagueList = this.schedule.league.list
     this.$apply()
+    wx.stopPullDownRefresh()
   }
 
   onLoad() {
@@ -74,5 +76,9 @@ export default class Index extends wepy.page {
   }
 
   onShareAppMessage() {}
+
+  onPullDownRefresh() {
+    this.methods.updateSchedule()
+  }
 }
 </script>

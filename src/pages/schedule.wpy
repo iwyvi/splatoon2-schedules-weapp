@@ -128,7 +128,8 @@ import imageWxs from '../wxs/image.wxs'
 )
 export default class Schedule extends wepy.page {
   config = {
-    navigationBarTitleText: '日程'
+    navigationBarTitleText: '日程',
+    enablePullDownRefresh: true
   }
 
   components = {
@@ -189,6 +190,7 @@ export default class Schedule extends wepy.page {
   loadSchedule() {
     this.list = this.schedule[this.mode].list
     this.$apply()
+    wx.stopPullDownRefresh()
   }
 
   onLoad(options) {
@@ -197,9 +199,12 @@ export default class Schedule extends wepy.page {
       this.mode = mode
     }
     this.methods.updateSchedule()
-    this.loadSchedule()
   }
 
   onShareAppMessage() {}
+
+  onPullDownRefresh() {
+    this.methods.updateSchedule()
+  }
 }
 </script>

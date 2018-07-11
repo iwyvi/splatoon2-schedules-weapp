@@ -18,16 +18,26 @@ const defaultState = {
   salmonRun: {
     lastEndTime: 0,
     list: []
-  }
+  },
+  updatedAt: 0, // 记录上次加载时间
+  activedAt: 0,
+  isError: false,
+  reloadCount: 0
 }
 
 export default handleActions({
   [UPDATE_SALMONRUN](state, {
-    payload
+    payload,
+    error
   }) {
-    updateSalmonRun(state, payload)
+    if (error) {
+      state.isError = true
+    } else if (payload) {
+      updateSalmonRun(state, payload)
+    }
     return {
-      ...state
+      ...state,
+      activedAt: Date.now()
     }
   }
 }, defaultState)

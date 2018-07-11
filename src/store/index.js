@@ -5,7 +5,11 @@ import {
 import promiseMiddleware from 'redux-promise'
 import rootReducer from './reducers'
 
-export default function configStore() {
+function configStore() {
   const store = createStore(rootReducer, applyMiddleware(promiseMiddleware))
   return store
 }
+
+const store = configStore()
+
+export default store

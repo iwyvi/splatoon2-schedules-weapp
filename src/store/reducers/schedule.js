@@ -21,16 +21,26 @@ const defaultState = {
   league: {
     lastEndTime: 0,
     list: []
-  }
+  },
+  updatedAt: 0, // 记录上次加载时间
+  activedAt: 0, // 记录上次调用时间
+  isError: false,
+  reloadCount: 0
 }
 
 export default handleActions({
   [UPDATE_SCHEDULE](state, {
-    payload
+    payload,
+    error
   }) {
-    updateSchedule(['regular', 'gachi', 'league'], state, payload)
+    if (error) {
+      state.isError = true
+    } else if (payload) {
+      updateSchedule(['regular', 'gachi', 'league'], state, payload)
+    }
     return {
-      ...state
+      ...state,
+      activedAt: Date.now()
     }
   }
 }, defaultState)

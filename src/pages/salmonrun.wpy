@@ -5,56 +5,59 @@
         <image class="salmonrun-logo" mode="widthFix" src="../assets/img/salmon-run.png"></image>
         <text class="splatoon">Salmon Run</text>
       </view>
-      <view class="salmonrun-block">
-        <view class="salmonrun-block-status splatoon">{{firstStatus}}</view>
-        <view class="salmonrun-block-card">
-          <view class="salmonrun-block-title">
-            <image src="../assets/img/icon/salmon-run-selected.png"></image>
-            <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[0].start_time, listWithDetail[0].end_time)}}</text>
-          </view>
-          <view class="salmonrun-block-content">
-            <view class="salmonrun-block-content-image">
-              <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[0].stage.image)}}"></image>
-              <text class="splatoon2">{{listWithDetail[0].stage.name}}</text>
-            </view>
-            <view class="salmonrun-block-content-details">
-              <text class="splatoon">提供的武器</text>
-              <view class="salmonrun-weapons">
-                <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
-                  <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="salmonrun-block">
-        <view class="salmonrun-block-status splatoon">Next!</view>
-        <view class="salmonrun-block-card">
-          <view wx:if="{{listWithDetail[1]}}">
+      <loader wx:if="{{listWithDetail.length===0}}"></loader>
+      <view wx:else>
+        <view class="salmonrun-block">
+          <view class="salmonrun-block-status splatoon">{{firstStatus}}</view>
+          <view class="salmonrun-block-card">
             <view class="salmonrun-block-title">
               <image src="../assets/img/icon/salmon-run-selected.png"></image>
-              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[1].start_time, listWithDetail[1].end_time)}}</text>
+              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[0].start_time, listWithDetail[0].end_time)}}</text>
             </view>
             <view class="salmonrun-block-content">
               <view class="salmonrun-block-content-image">
-                <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[1].stage.image)}}"></image>
-                <text class="splatoon2">{{listWithDetail[1].stage.name}}</text>
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[0].stage.image)}}"></image>
+                <text class="splatoon2">{{listWithDetail[0].stage.name}}</text>
               </view>
               <view class="salmonrun-block-content-details">
                 <text class="splatoon">提供的武器</text>
                 <view class="salmonrun-weapons">
-                  <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
+                  <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
                     <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
                   </view>
                 </view>
               </view>
             </view>
           </view>
-          <view class="salmonrun-more">
-            <view class="salmonrun-block-title" wx:for="{{restList}}" wx:key="end_time">
-              <image src="../assets/img/icon/salmon-run-selected.png"></image>
-              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(item.start_time, item.end_time)}}</text>
+        </view>
+        <view class="salmonrun-block">
+          <view class="salmonrun-block-status splatoon">Next!</view>
+          <view class="salmonrun-block-card">
+            <view wx:if="{{listWithDetail[1]}}">
+              <view class="salmonrun-block-title">
+                <image src="../assets/img/icon/salmon-run-selected.png"></image>
+                <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[1].start_time, listWithDetail[1].end_time)}}</text>
+              </view>
+              <view class="salmonrun-block-content">
+                <view class="salmonrun-block-content-image">
+                  <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[1].stage.image)}}"></image>
+                  <text class="splatoon2">{{listWithDetail[1].stage.name}}</text>
+                </view>
+                <view class="salmonrun-block-content-details">
+                  <text class="splatoon">提供的武器</text>
+                  <view class="salmonrun-weapons">
+                    <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
+                      <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <view class="salmonrun-more">
+              <view class="salmonrun-block-title" wx:for="{{restList}}" wx:key="end_time">
+                <image src="../assets/img/icon/salmon-run-selected.png"></image>
+                <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(item.start_time, item.end_time)}}</text>
+              </view>
             </view>
           </view>
         </view>
@@ -67,6 +70,8 @@ import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
 import { updateSalmonRun } from '../store/actions'
+
+import loader from '@/components/loader'
 
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
@@ -82,6 +87,10 @@ import imageWxs from '../wxs/image.wxs'
 export default class SalmonRun extends wepy.page {
   config = {
     navigationBarTitleText: '打工'
+  }
+
+  components = {
+    loader
   }
 
   wxs = {
@@ -207,7 +216,7 @@ export default class SalmonRun extends wepy.page {
     padding: 0 5px;
     text {
       font-size: 1.1em;
-      line-height:2em;
+      line-height: 2em;
     }
     .salmonrun-weapons {
       max-width: 200px;

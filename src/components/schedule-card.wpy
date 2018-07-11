@@ -4,43 +4,46 @@
       <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
       <text class="splatoon2">{{titleText}}</text>
     </view>
-    <view class="schedule-card-block">
-      <view class="schedule-card-block-title">
-        <text class="schedule-card-block-title-mode splatoon2">{{battleNow.rule.name}}</text>
-        <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNow.start_time, battleNow.end_time)}}</text>
-      </view>
-      <view class="schedule-card-block-images">
-        <view>
-          <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_a.image)}}"></image>
-          <text class="splatoon2">{{battleNow.stage_a.name}}</text>
-        </view>
-        <view>
-          <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_b.image)}}"></image>
-          <text class="splatoon2">{{battleNow.stage_b.name}}</text>
-        </view>
-      </view>
-    </view>
-    <view class="schedule-card-block-tiny-wrap">
-      <image class="nextstep" src="../assets/img/icon/nextstep.png"></image>
+    <loader wx:if="{{list.length===0}}"></loader>
+    <view wx:else>
       <view class="schedule-card-block">
         <view class="schedule-card-block-title">
-          <text class="schedule-card-block-title-mode splatoon2">{{battleNext.rule.name}}</text>
-          <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNext.start_time, battleNext.end_time)}}</text>
+          <text class="schedule-card-block-title-mode splatoon2">{{battleNow.rule.name}}</text>
+          <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNow.start_time, battleNow.end_time)}}</text>
         </view>
         <view class="schedule-card-block-images">
           <view>
-            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_a.image)}}"></image>
-            <text class="splatoon2">{{battleNext.stage_a.name}}</text>
+            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_a.image)}}"></image>
+            <text class="splatoon2">{{battleNow.stage_a.name}}</text>
           </view>
           <view>
-            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_b.image)}}"></image>
-            <text class="splatoon2">{{battleNext.stage_b.name}}</text>
+            <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_b.image)}}"></image>
+            <text class="splatoon2">{{battleNow.stage_b.name}}</text>
           </view>
         </view>
       </view>
-    </view>
-    <view class="schedule-card-button">
-      <navigator url="schedule?mode={{mode}}" class="splatoon">MORE</navigator>
+      <view class="schedule-card-block-tiny-wrap">
+        <image class="nextstep" src="../assets/img/icon/nextstep.png"></image>
+        <view class="schedule-card-block">
+          <view class="schedule-card-block-title">
+            <text class="schedule-card-block-title-mode splatoon2">{{battleNext.rule.name}}</text>
+            <text class="splatoon2">{{timeWxs.generateScheduleTimeString(battleNext.start_time, battleNext.end_time)}}</text>
+          </view>
+          <view class="schedule-card-block-images">
+            <view>
+              <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_a.image)}}"></image>
+              <text class="splatoon2">{{battleNext.stage_a.name}}</text>
+            </view>
+            <view>
+              <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_b.image)}}"></image>
+              <text class="splatoon2">{{battleNext.stage_b.name}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="schedule-card-button">
+        <navigator url="schedule?mode={{mode}}" class="splatoon">MORE</navigator>
+      </view>
     </view>
   </view>
 </template>
@@ -48,6 +51,8 @@
 import wepy from 'wepy'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
+
+import loader from '@/components/loader'
 
 export default class ScheduleCard extends wepy.component {
   props = {
@@ -59,6 +64,10 @@ export default class ScheduleCard extends wepy.component {
       type: [Object],
       default: []
     }
+  }
+
+  components = {
+    loader
   }
 
   wxs = {

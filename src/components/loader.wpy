@@ -1,0 +1,131 @@
+<template>
+  <view class="loader {{inline ? '' : 'block-loader'}}">
+    <view class="la-ball-spin-rotate la-2x">
+      <view></view>
+      <view></view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Loader extends wepy.component {
+  props = {
+    inline: {
+      type: Boolean,
+      default: false
+    }
+  }
+
+  onLoad() {}
+}
+</script>
+<style>
+.block-loader {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.la-ball-spin-rotate,
+.la-ball-spin-rotate > view {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.la-ball-spin-rotate {
+  display: block;
+  font-size: 0;
+  color: #fff;
+}
+.la-ball-spin-rotate.la-dark {
+  color: #333;
+}
+.la-ball-spin-rotate > view {
+  display: inline-block;
+  float: none;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+}
+.la-ball-spin-rotate {
+  width: 32px;
+  height: 32px;
+  -webkit-animation: ball-spin-rotate 2s infinite linear;
+  -moz-animation: ball-spin-rotate 2s infinite linear;
+  -o-animation: ball-spin-rotate 2s infinite linear;
+  animation: ball-spin-rotate 2s infinite linear;
+}
+.la-ball-spin-rotate > view {
+  position: absolute;
+  top: 0;
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
+  -webkit-animation: ball-spin-bounce 2s infinite ease-in-out;
+  -moz-animation: ball-spin-bounce 2s infinite ease-in-out;
+  -o-animation: ball-spin-bounce 2s infinite ease-in-out;
+  animation: ball-spin-bounce 2s infinite ease-in-out;
+}
+.la-ball-spin-rotate > view:last-child {
+  top: auto;
+  bottom: 0;
+  -webkit-animation-delay: -1s;
+  -moz-animation-delay: -1s;
+  -o-animation-delay: -1s;
+  animation-delay: -1s;
+}
+.la-ball-spin-rotate.la-sm {
+  width: 16px;
+  height: 16px;
+}
+.la-ball-spin-rotate.la-2x {
+  width: 64px;
+  height: 64px;
+}
+.la-ball-spin-rotate.la-3x {
+  width: 96px;
+  height: 96px;
+}
+@-webkit-keyframes ball-spin-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes ball-spin-rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes ball-spin-bounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+@keyframes ball-spin-bounce {
+  0%,
+  100% {
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    -o-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+  }
+}
+</style>

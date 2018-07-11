@@ -8,7 +8,8 @@
         <text>小程序只展示当前SplatNet中的装备</text>
         <text>购买需要在APP里进行操作</text>
       </view>
-      <view>
+      <loader wx:if="{{list.length===0}}"></loader>
+      <view wx:else>
         <view class="shop-item" wx:for="{{list}}" wx:key="end_time">
           <view class="item-title">
             <text class="splatoon">{{timeWxs.generateShopTimeString(item.end_time)}}</text>
@@ -74,6 +75,8 @@ import { connect } from 'wepy-redux'
 
 import { updateShop } from '../store/actions'
 
+import loader from '@/components/loader'
+
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 import shopWxs from '../wxs/shop.wxs'
@@ -89,6 +92,10 @@ import shopWxs from '../wxs/shop.wxs'
 export default class Shop extends wepy.page {
   config = {
     navigationBarTitleText: '商店'
+  }
+
+  components = {
+    loader
   }
 
   wxs = {

@@ -8,7 +8,8 @@
         </view>
         <icon class="schedule-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
-      <view class="schedule-lists">
+      <loader wx:if="{{list.length===0}}"></loader>
+      <view wx:else class="schedule-lists">
         <view class="schedule-list" wx:for="{{list}}" wx:key="end_time">
           <view class="schedule-list-title">
             <text class="schedule-list-title-mode splatoon2">{{item.rule.name}}</text>
@@ -58,7 +59,7 @@
   .schedule-close-icon {
     display: block;
     border-radius: 50%;
-    box-shadow: 1px 1px 0 rgba(0, 0, 0, .5);
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
   }
 }
 .schedule-list {
@@ -112,6 +113,8 @@ import { connect } from 'wepy-redux'
 
 import { updateSchedule } from '../store/actions'
 
+import loader from '@/components/loader'
+
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 
@@ -126,6 +129,10 @@ import imageWxs from '../wxs/image.wxs'
 export default class Schedule extends wepy.page {
   config = {
     navigationBarTitleText: '日程'
+  }
+
+  components = {
+    loader
   }
 
   wxs = {

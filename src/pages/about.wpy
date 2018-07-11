@@ -19,7 +19,7 @@
         <view>小程序源码在
           <text class="splatoon2 about-word">GitHub</text>以
           <text class="splatoon2 about-word">MIT</text>协议开源：
-          <text selectable="true">https://github.com/IwYvI/splatoon2-schedules-weapp</text>
+          <text selectable="true">https://github.com/iwyvi/splatoon2-schedules-weapp</text>
         </view>
         <view class="hr"></view>
         <view>小纯洁

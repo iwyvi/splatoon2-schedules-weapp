@@ -15,6 +15,7 @@
     <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
     <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
     <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
+    <timer @timer-update.user="timerUpdate"></timer>
   </view>
 </template>
 
@@ -25,6 +26,7 @@ import { connect } from 'wepy-redux'
 import { updateSchedule } from '../store/actions'
 
 import scheduleCard from '@/components/schedule-card'
+import timer from '@/components/timer'
 
 @connect(
   {
@@ -43,7 +45,8 @@ export default class Index extends wepy.page {
   components = {
     'regular-card': scheduleCard,
     'gachi-card': scheduleCard,
-    'league-card': scheduleCard
+    'league-card': scheduleCard,
+    timer
   }
 
   data = {
@@ -60,7 +63,11 @@ export default class Index extends wepy.page {
 
   computed = {}
 
-  methods = {}
+  methods = {
+    timerUpdate() {
+      this.startUpdateSchedule()
+    }
+  }
 
   loadSchedule() {
     this.regularList = this.schedule.regular.list
@@ -70,15 +77,26 @@ export default class Index extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
-  onLoad() {
+  startUpdateSchedule() {
     this.methods.updateSchedule()
-    this.loadSchedule()
+  }
+
+  onLoad() {
+    this.startUpdateSchedule()
+  }
+
+  onShow() {
+    this.$broadcast('start-timer')
+  }
+
+  onHide() {
+    this.$broadcast('stop-timer')
   }
 
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.methods.updateSchedule()
+    this.startUpdateSchedule()
   }
 }
 </script>

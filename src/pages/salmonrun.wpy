@@ -22,7 +22,7 @@
               <view class="salmonrun-block-content-details">
                 <text class="splatoon">提供的武器</text>
                 <view class="salmonrun-weapons">
-                  <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
+                  <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="index">
                     <image wx:if="{{item.weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
                     <image wx:elseif="{{item.coop_special_weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.coop_special_weapon.image)}}"></image>
                   </view>
@@ -47,9 +47,9 @@
                 <view class="salmonrun-block-content-details">
                   <text class="splatoon">提供的武器</text>
                   <view class="salmonrun-weapons">
-                    <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
+                    <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="index">
                       <image wx:if="{{item.weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
-                    <image wx:elseif="{{item.coop_special_weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.coop_special_weapon.image)}}"></image>
+                      <image wx:elseif="{{item.coop_special_weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.coop_special_weapon.image)}}"></image>
                     </view>
                   </view>
                 </view>
@@ -65,6 +65,7 @@
         </view>
       </view>
     </view>
+    <timer @timer-update.user="timerUpdate"></timer>
   </view>
 </template>
 <script>
@@ -74,6 +75,7 @@ import { connect } from 'wepy-redux'
 import { updateSalmonRun } from '../store/actions'
 
 import loader from '@/components/loader'
+import timer from '@/components/timer'
 
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
@@ -93,7 +95,8 @@ export default class SalmonRun extends wepy.page {
   }
 
   components = {
-    loader
+    loader,
+    timer
   }
 
   wxs = {
@@ -123,6 +126,12 @@ export default class SalmonRun extends wepy.page {
     }
   }
 
+  methods = {
+    timerUpdate() {
+      this.startUpdateSalmonRun()
+    }
+  }
+
   loadSalmonRun() {
     const list = this.salmonrun.salmonRun.list
     this.listWithDetail = list.filter((v) => v.has_detail)
@@ -131,14 +140,26 @@ export default class SalmonRun extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
-  onLoad() {
+  startUpdateSalmonRun() {
     this.methods.updateSalmonRun()
+  }
+
+  onLoad() {
+    this.startUpdateSalmonRun()
+  }
+
+  onShow() {
+    this.$broadcast('start-timer')
+  }
+
+  onHide() {
+    this.$broadcast('stop-timer')
   }
 
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.methods.updateSalmonRun()
+    this.startUpdateSalmonRun()
   }
 }
 </script>

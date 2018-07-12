@@ -28,6 +28,7 @@
         </view>
       </view>
     </view>
+    <timer @timer-update.user="timerUpdate"></timer>
   </view>
 </template>
 <style lang="less">
@@ -114,6 +115,7 @@ import { connect } from 'wepy-redux'
 import { updateSchedule } from '../store/actions'
 
 import loader from '@/components/loader'
+import timer from '@/components/timer'
 
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
@@ -133,7 +135,8 @@ export default class Schedule extends wepy.page {
   }
 
   components = {
-    loader
+    loader,
+    timer
   }
 
   wxs = {
@@ -184,6 +187,9 @@ export default class Schedule extends wepy.page {
       wx.switchTab({
         url: '/pages/index'
       })
+    },
+    timerUpdate() {
+      this.startUpdateSchedule()
     }
   }
 
@@ -193,18 +199,22 @@ export default class Schedule extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
+  startUpdateSchedule() {
+    this.methods.updateSchedule()
+  }
+
   onLoad(options) {
     const mode = options.mode
     if (mode) {
       this.mode = mode
     }
-    this.methods.updateSchedule()
+    this.startUpdateSchedule()
   }
 
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.methods.updateSchedule()
+    this.startUpdateSchedule()
   }
 }
 </script>

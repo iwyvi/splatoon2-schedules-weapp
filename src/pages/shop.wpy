@@ -10,9 +10,9 @@
       </view>
       <loader wx:if="{{list.length===0}}"></loader>
       <view wx:else>
-        <view class="shop-item" wx:for="{{list}}" wx:key="end_time">
+        <view class="shop-item" wx:for="{{listWithComputedTime}}" wx:key="end_time">
           <view class="item-title">
-            <text class="splatoon">{{timeWxs.generateShopTimeString(item.end_time)}}</text>
+            <text class="splatoon">{{item.timeString}}</text>
           </view>
           <view class="item-content">
             <view class="item-card-wrap item-gear">
@@ -67,6 +67,7 @@
         </view>
       </view>
     </view>
+    <timer @timer-update.user="timerUpdate"></timer>
   </view>
 </template>
 <script>
@@ -76,6 +77,7 @@ import { connect } from 'wepy-redux'
 import { updateShop } from '../store/actions'
 
 import loader from '@/components/loader'
+import timer from '@/components/timer'
 
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
@@ -96,7 +98,8 @@ export default class Shop extends wepy.page {
   }
 
   components = {
-    loader
+    loader,
+    timer
   }
 
   wxs = {
@@ -106,7 +109,8 @@ export default class Shop extends wepy.page {
   }
 
   data = {
-    list: []
+    list: [],
+    listWithComputedTime: []
   }
 
   watch = {
@@ -115,20 +119,72 @@ export default class Shop extends wepy.page {
     }
   }
 
+  methods = {
+    timerUpdate() {
+      this.startUpdateShop()
+    }
+  }
+
   loadShop() {
     this.list = this.shop.shop.list
+    this.updateListTimeString()
     this.$apply()
     wx.stopPullDownRefresh()
   }
 
-  onLoad() {
+  generateShopTimeString(endTime) {
+    if (!endTime) {
+      return ''
+    }
+    const now = new Date()
+    const end = new Date(parseInt(endTime + '000'))
+    let hours = 0
+    let minutes = 0
+    if (end.getDate() !== now.getDate()) {
+      hours = 24 - now.getHours() + end.getHours()
+    } else {
+      hours = end.getHours() - now.getHours()
+    }
+    if (hours <= 0) {
+      return '結束'
+    } else if (hours <= 1) {
+      minutes = 60 - now.getMinutes()
+      return minutes + '分'
+    } else {
+      return hours + '小時'
+    }
+  }
+
+  /** 更新listWithComputedTime列表中的时间 */
+  updateListTimeString() {
+    this.listWithComputedTime = this.list.map((v) => {
+      return {
+        ...v,
+        timeString: this.generateShopTimeString(v.end_time)
+      }
+    })
+  }
+
+  startUpdateShop() {
     this.methods.updateShop()
+  }
+
+  onLoad() {
+    this.startUpdateShop()
+  }
+
+  onShow() {
+    this.$broadcast('start-timer')
+  }
+
+  onHide() {
+    this.$broadcast('stop-timer')
   }
 
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.methods.updateShop()
+    this.startUpdateShop()
   }
 }
 </script>

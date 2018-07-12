@@ -1,0 +1,44 @@
+<template>
+  <view></view>
+</template>
+<script>
+import wepy from 'wepy'
+
+export default class Timer extends wepy.component {
+  data = {
+    timer: null
+  }
+
+  events = {
+    'start-timer': () => {
+      this.startTimer()
+    },
+    'stop-timer': () => {
+      this.stopTimer()
+    }
+  }
+
+  startTimer() {
+    if (!this.timer) {
+      this.timer = setInterval(() => {
+        this.$emit('timer-update')
+      }, 1000 * 60)
+    }
+  }
+
+  stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer)
+      this.timer = null
+    }
+  }
+
+  onLoad() {
+    this.startTimer()
+  }
+
+  onUnload() {
+    this.stopTimer()
+  }
+}
+</script>

@@ -42,27 +42,5 @@ module.exports = {
     string += (end.getMonth() + 1) + '/' + end.getDate() + ' '
     string += generateTimeString(end)
     return string
-  },
-  generateShopTimeString: function (endTime) {
-    if (!endTime) {
-      return '';
-    }
-    var now = getDate()
-    var end = getDate(parseInt(endTime + '000'))
-    var hours = 0
-    var minutes = 0
-    if (end.getDate() !== now.getDate()) {
-      hours = (24 - now.getHours()) + end.getHours()
-    } else {
-      hours = end.getHours() - now.getHours()
-    }
-    if (hours <= 0) {
-      return '結束'
-    } else if (hours <= 1) {
-      minutes = 60 - now.getMinutes()
-      return minutes + '分'
-    } else {
-      return hours + '小時'
-    }
   }
 }

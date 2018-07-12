@@ -1,0 +1,73 @@
+<template>
+  <view>
+    <picker @change="changeRegion" value="{{regionIndex}}" range-key="name" range="{{regionList}}">
+      <view class="picker">
+        {{regionList[regionIndex].name}}
+      </view>
+    </picker>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { connect } from 'wepy-redux'
+
+import { updateRegion } from '../store/actions'
+
+@connect(
+  {
+    region(state) {
+      return state.region
+    }
+  },
+  { updateRegion }
+)
+export default class RegionPicker extends wepy.component {
+  data = {
+    regionIndex: 0,
+    regionList: [
+      {
+        id: 'none',
+        name: '无'
+      },
+      {
+        id: 'na',
+        name: '美洲'
+      },
+      {
+        id: 'eu',
+        name: '欧洲'
+      },
+      {
+        id: 'jp',
+        name: '日本'
+      }
+    ]
+  }
+
+  watch = {
+    region() {
+      this.setRegion()
+    }
+  }
+
+  methods = {
+    changeRegion(e) {
+      this.methods.updateRegion(this.regionList[e.detail.value].id)
+    }
+  }
+
+  setRegion() {
+    const index = this.regionList.findIndex((v) => {
+      return this.region.region === v.id
+    })
+    this.regionIndex = index === -1 ? 'none' : index
+    this.$apply()
+  }
+
+  onLoad() {
+    this.setRegion()
+  }
+}
+</script>
+<style lang="less">
+</style>

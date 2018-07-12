@@ -17,6 +17,10 @@
         </picker>
       </view> -->
       <view class="setting-item dot-background">
+        <text>祭典区域选择</text>
+        <region-picker></region-picker>
+      </view>
+      <view class="setting-item dot-background">
         <navigator url="about">关于</navigator>
       </view>
     </view>
@@ -25,9 +29,15 @@
 <script>
 import wepy from 'wepy'
 
+import regionPicker from '@/components/region-picker'
+
 export default class Setting extends wepy.page {
   config = {
     navigationBarTitleText: '设置'
+  }
+
+  components = {
+    'region-picker': regionPicker
   }
 
   data = {

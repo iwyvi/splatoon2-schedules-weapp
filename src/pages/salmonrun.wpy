@@ -23,7 +23,8 @@
                 <text class="splatoon">提供的武器</text>
                 <view class="salmonrun-weapons">
                   <view class="salmonrun-weapon" wx:for="{{listWithDetail[0].weapons}}" wx:key="id">
-                    <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                    <image wx:if="{{item.weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                    <image wx:elseif="{{item.coop_special_weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.coop_special_weapon.image)}}"></image>
                   </view>
                 </view>
               </view>
@@ -47,7 +48,8 @@
                   <text class="splatoon">提供的武器</text>
                   <view class="salmonrun-weapons">
                     <view class="salmonrun-weapon" wx:for="{{listWithDetail[1].weapons}}" wx:key="id">
-                      <image mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                      <image wx:if="{{item.weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.weapon.thumbnail)}}"></image>
+                    <image wx:elseif="{{item.coop_special_weapon}}" mode="widthFix" src="{{imageWxs.getImageUrl(item.coop_special_weapon.image)}}"></image>
                     </view>
                   </view>
                 </view>

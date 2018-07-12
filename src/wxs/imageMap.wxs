@@ -98,5 +98,9 @@ module.exports = {
   '/images/coop_stage/e9f7c7b35e6d46778cd3cbc0d89bd7e1bc3be493.png': {
     name: 'Salmonid Smokeyard',
     src: 'https://i.loli.net/2018/07/11/5b45b64652a8e.jpg'
+  },
+  '/images/coop_weapons/7076c8181ab5c49d2ac91e43a2d945a46a99c17d.png': {
+    name: 'Random',
+    src: '../assets/img/salmon-run-random-weapon-alias.png'
   }
 }

@@ -9,13 +9,25 @@
     transform: rotate(-0.5deg);
   }
 }
+.index-salmonrun-banner {
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  font-size: 32rpx;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
 </style>
 <template>
-  <view class="container index-container">
-    <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
-    <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
-    <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
-    <timer @timer-update.user="timerUpdate"></timer>
+  <view>
+    <view wx:if="{{latestSalmonRunOpen}}" class="index-salmonrun-banner circle-background">
+      <navigator url="salmonrun" open-type="switchTab" class="splatoon">海産招募中...</navigator>
+    </view>
+    <view class="container index-container">
+      <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
+      <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
+      <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
+      <timer @timer-update.user="timerUpdate"></timer>
+    </view>
   </view>
 </template>
 
@@ -23,7 +35,7 @@
 import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
-import { updateSchedule } from '../store/actions'
+import { updateSchedule, updateSalmonRun } from '../store/actions'
 
 import scheduleCard from '@/components/schedule-card'
 import timer from '@/components/timer'
@@ -32,9 +44,12 @@ import timer from '@/components/timer'
   {
     schedule(state) {
       return state.schedule
+    },
+    salmonrun(state) {
+      return state.salmonrun
     }
   },
-  { updateSchedule }
+  { updateSchedule, updateSalmonRun }
 )
 export default class Index extends wepy.page {
   config = {
@@ -52,12 +67,16 @@ export default class Index extends wepy.page {
   data = {
     regularList: [],
     gachiList: [],
-    leagueList: []
+    leagueList: [],
+    latestSalmonRunOpen: false
   }
 
   watch = {
-    schedule(newValue) {
+    schedule() {
       this.loadSchedule()
+    },
+    salmonrun() {
+      this.loadSalmonRun()
     }
   }
 
@@ -65,7 +84,7 @@ export default class Index extends wepy.page {
 
   methods = {
     timerUpdate() {
-      this.startUpdateSchedule()
+      this.startUpdate()
     }
   }
 
@@ -77,12 +96,22 @@ export default class Index extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
-  startUpdateSchedule() {
+  loadSalmonRun() {
+    const latest = this.salmonrun.salmonRun.list[0]
+    if (Number(`${latest.start_time}000` < Date.now())) {
+      this.latestSalmonRunOpen = true
+    } else {
+      this.latestSalmonRunOpen = false
+    }
+  }
+
+  startUpdate() {
     this.methods.updateSchedule()
+    this.methods.updateSalmonRun()
   }
 
   onLoad() {
-    this.startUpdateSchedule()
+    this.startUpdate()
   }
 
   onShow() {
@@ -96,7 +125,7 @@ export default class Index extends wepy.page {
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.startUpdateSchedule()
+    this.startUpdate()
   }
 }
 </script>

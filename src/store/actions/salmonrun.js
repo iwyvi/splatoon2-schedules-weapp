@@ -12,7 +12,7 @@ import {
   judgeUpdateStatus
 } from '../../utils/updateSchedule'
 
-export const updateSalmonRun = createAction(UPDATE_SALMONRUN, () => {
+export const updateSalmonrun = createAction(UPDATE_SALMONRUN, () => {
   const updatedAt = store.getState().salmonrun.updatedAt
 
   if (!judgeUpdateStatus(updatedAt)) {

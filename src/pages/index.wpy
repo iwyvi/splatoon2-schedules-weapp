@@ -35,7 +35,7 @@
 </style>
 <template>
   <view>
-    <view wx:if="{{latestSalmonRunOpen}}" class="index-salmonrun-banner circle-background">
+    <view wx:if="{{latestSalmonrunOpen}}" class="index-salmonrun-banner circle-background">
       <navigator url="salmonrun" open-type="switchTab">
         <image src="../assets/img/salmon-run.png"></image>
         <text class="splatoon">海産招募中...</text>
@@ -54,7 +54,7 @@
 import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
-import { updateSchedule, updateSalmonRun } from '../store/actions'
+import { updateSchedule, updateSalmonrun } from '../store/actions'
 
 import scheduleCard from '@/components/schedule-card'
 import timer from '@/components/timer'
@@ -68,7 +68,7 @@ import timer from '@/components/timer'
       return state.salmonrun
     }
   },
-  { updateSchedule, updateSalmonRun }
+  { updateSchedule, updateSalmonrun }
 )
 export default class Index extends wepy.page {
   config = {
@@ -87,7 +87,7 @@ export default class Index extends wepy.page {
     regularList: [],
     gachiList: [],
     leagueList: [],
-    latestSalmonRunOpen: false
+    latestSalmonrunOpen: false
   }
 
   watch = {
@@ -95,7 +95,7 @@ export default class Index extends wepy.page {
       this.loadSchedule()
     },
     salmonrun() {
-      this.loadSalmonRun()
+      this.loadSalmonrun()
     }
   }
 
@@ -115,18 +115,18 @@ export default class Index extends wepy.page {
     wx.stopPullDownRefresh()
   }
 
-  loadSalmonRun() {
-    const latest = this.salmonrun.salmonRun.list[0]
+  loadSalmonrun() {
+    const latest = this.salmonrun.salmonrun.list[0]
     if (Number(`${latest.start_time}000` < Date.now())) {
-      this.latestSalmonRunOpen = true
+      this.latestSalmonrunOpen = true
     } else {
-      this.latestSalmonRunOpen = false
+      this.latestSalmonrunOpen = false
     }
   }
 
   startUpdate() {
     this.methods.updateSchedule()
-    this.methods.updateSalmonRun()
+    this.methods.updateSalmonrun()
   }
 
   onLoad() {

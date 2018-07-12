@@ -12,7 +12,7 @@
           <view class="salmonrun-block-card">
             <view class="salmonrun-block-title">
               <image src="../assets/img/icon/salmon-run-selected.png"></image>
-              <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[0].start_time, listWithDetail[0].end_time)}}</text>
+              <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(listWithDetail[0].start_time, listWithDetail[0].end_time)}}</text>
             </view>
             <view class="salmonrun-block-content">
               <view class="salmonrun-block-content-image">
@@ -37,7 +37,7 @@
             <view wx:if="{{listWithDetail[1]}}">
               <view class="salmonrun-block-title">
                 <image src="../assets/img/icon/salmon-run-selected.png"></image>
-                <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(listWithDetail[1].start_time, listWithDetail[1].end_time)}}</text>
+                <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(listWithDetail[1].start_time, listWithDetail[1].end_time)}}</text>
               </view>
               <view class="salmonrun-block-content">
                 <view class="salmonrun-block-content-image">
@@ -58,7 +58,7 @@
             <view class="salmonrun-more">
               <view class="salmonrun-block-title" wx:for="{{restList}}" wx:key="end_time">
                 <image src="../assets/img/icon/salmon-run-selected.png"></image>
-                <text class="splatoon2">{{timeWxs.generateSalmonRunTimeString(item.start_time, item.end_time)}}</text>
+                <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(item.start_time, item.end_time)}}</text>
               </view>
             </view>
           </view>
@@ -72,7 +72,7 @@
 import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
-import { updateSalmonRun } from '../store/actions'
+import { updateSalmonrun } from '../store/actions'
 
 import loader from '@/components/loader'
 import timer from '@/components/timer'
@@ -86,9 +86,9 @@ import imageWxs from '../wxs/image.wxs'
       return state.salmonrun
     }
   },
-  { updateSalmonRun }
+  { updateSalmonrun }
 )
-export default class SalmonRun extends wepy.page {
+export default class Salmonrun extends wepy.page {
   config = {
     navigationBarTitleText: '打工',
     enablePullDownRefresh: true
@@ -122,30 +122,30 @@ export default class SalmonRun extends wepy.page {
 
   watch = {
     salmonrun() {
-      this.loadSalmonRun()
+      this.loadSalmonrun()
     }
   }
 
   methods = {
     timerUpdate() {
-      this.startUpdateSalmonRun()
+      this.startUpdateSalmonrun()
     }
   }
 
-  loadSalmonRun() {
-    const list = this.salmonrun.salmonRun.list
+  loadSalmonrun() {
+    const list = this.salmonrun.salmonrun.list
     this.listWithDetail = list.filter((v) => v.has_detail)
     this.restList = list.filter((v) => !v.has_detail)
     this.$apply()
     wx.stopPullDownRefresh()
   }
 
-  startUpdateSalmonRun() {
-    this.methods.updateSalmonRun()
+  startUpdateSalmonrun() {
+    this.methods.updateSalmonrun()
   }
 
   onLoad() {
-    this.startUpdateSalmonRun()
+    this.startUpdateSalmonrun()
   }
 
   onShow() {
@@ -159,7 +159,7 @@ export default class SalmonRun extends wepy.page {
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.startUpdateSalmonRun()
+    this.startUpdateSalmonrun()
   }
 }
 </script>

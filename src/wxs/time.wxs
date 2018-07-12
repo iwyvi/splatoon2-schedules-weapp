@@ -29,7 +29,7 @@ module.exports = {
     string += generateTimeString(end)
     return string
   },
-  generateSalmonRunTimeString: function (startTime, endTime) {
+  generateSalmonrunTimeString: function (startTime, endTime) {
     if (!startTime || !endTime) {
       return ''
     }

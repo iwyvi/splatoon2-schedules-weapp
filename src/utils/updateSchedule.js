@@ -28,12 +28,12 @@ export function updateSchedule(modeList, state, list) {
   state.updatedAt = now
 }
 
-export function updateSalmonRun(state, list) {
+export function updateSalmonrun(state, list) {
   const now = Date.now()
-  state.salmonRun.list.push(...list.filter((v) => v.end_time > state.salmonRun.lastEndTime))
-  state.salmonRun.list = state.salmonRun.list.filter((v) => parseInt(`${v.end_time}000`) > now)
-  state.salmonRun.list.sort((v1, v2) => v1.start_time < v2.start_time ? -1 : 1)
-  state.salmonRun.lastEndTime = state.salmonRun.list[state.salmonRun.list.length - 1].end_time
+  state.salmonrun.list.push(...list.filter((v) => v.end_time > state.salmonrun.lastEndTime))
+  state.salmonrun.list = state.salmonrun.list.filter((v) => parseInt(`${v.end_time}000`) > now)
+  state.salmonrun.list.sort((v1, v2) => v1.start_time < v2.start_time ? -1 : 1)
+  state.salmonrun.lastEndTime = state.salmonrun.list[state.salmonrun.list.length - 1].end_time
   state.updatedAt = now
 }
 

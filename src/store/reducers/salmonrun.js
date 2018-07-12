@@ -6,16 +6,16 @@ import {
 } from '../types/salmonrun'
 
 import {
-  updateSalmonRun
+  updateSalmonrun
 } from '../../utils/updateSchedule'
 
 /**
  * reducer名为salmonrun
- * state名为salmonRun
- * 调用时需要state.salmonrun.salmonRun
+ * state名为salmonrun
+ * 调用时需要state.salmonrun.salmonrun
  */
 const defaultState = {
-  salmonRun: {
+  salmonrun: {
     lastEndTime: 0,
     list: []
   },
@@ -33,7 +33,7 @@ export default handleActions({
     if (error) {
       state.isError = true
     } else if (payload) {
-      updateSalmonRun(state, payload)
+      updateSalmonrun(state, payload)
     }
     return {
       ...state,

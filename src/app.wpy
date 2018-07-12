@@ -77,6 +77,24 @@ export default class extends wepy.app {
     this.use('requestfix')
   }
 
-  onLaunch() {}
+  checkUpdate() {
+    const updateManager = wx.getUpdateManager()
+
+    updateManager.onUpdateReady(() => {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本乌贼日历已经准备好了，是否重启应用？',
+        success: (res) => {
+          if (res.confirm) {
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+  }
+
+  onLaunch() {
+    this.checkUpdate()
+  }
 }
 </script>

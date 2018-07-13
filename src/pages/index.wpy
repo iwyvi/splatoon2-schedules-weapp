@@ -122,6 +122,7 @@ export default class Index extends wepy.page {
     } else {
       this.latestSalmonrunOpen = false
     }
+    this.$apply()
   }
 
   startUpdate() {

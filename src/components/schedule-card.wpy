@@ -2,7 +2,7 @@
   <view class="schedule-card card-wrap stripe-background {{mode}}">
     <view class="schedule-card-title card-title">
       <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
-      <text class="splatoon2">{{titleText}}</text>
+      <text class="splatoon">{{titleText}}</text>
     </view>
     <loader wx:if="{{list.length===0}}"></loader>
     <view wx:else>
@@ -145,7 +145,7 @@ export default class ScheduleCard extends wepy.component {
     height: 0;
   }
   text {
-    font-size: 38rpx;
+    font-size: 44rpx;
     margin-left: 10px;
     line-height: 1em;
   }

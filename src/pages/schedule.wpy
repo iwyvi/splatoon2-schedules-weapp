@@ -4,7 +4,7 @@
       <view class="schedule-title card-title">
         <view>
           <image class="schedule-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
-          <text class="splatoon2">{{titleText}}</text>
+          <text class="splatoon">{{titleText}}</text>
         </view>
         <icon class="schedule-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
@@ -52,7 +52,7 @@
       height: 0;
     }
     text {
-      font-size: 48rpx;
+      font-size: 56rpx;
       margin-left: 10px;
       line-height: 1em;
     }

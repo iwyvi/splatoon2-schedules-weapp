@@ -117,7 +117,7 @@ export default class Index extends wepy.page {
 
   loadSalmonrun() {
     const latest = this.salmonrun.salmonrun.list[0]
-    if (Number(`${latest.start_time}000` < Date.now())) {
+    if (latest && Number(`${latest.start_time}000` < Date.now())) {
       this.latestSalmonrunOpen = true
     } else {
       this.latestSalmonrunOpen = false

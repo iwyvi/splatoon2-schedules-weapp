@@ -6,8 +6,7 @@ import {
 } from '../types/region'
 
 const defaultState = {
-  region: wx.getStorageSync('region') || 'none',
-  lastRegion: ''
+  region: wx.getStorageSync('region') || 'none'
 }
 
 export default handleActions({
@@ -16,7 +15,6 @@ export default handleActions({
   }) {
     if (payload) {
       wx.setStorageSync('region', payload)
-      state.lastRegion = state.region
       state.region = payload
     }
     return {

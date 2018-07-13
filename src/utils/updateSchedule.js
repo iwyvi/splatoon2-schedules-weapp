@@ -50,9 +50,10 @@ export function updateShop(state, list) {
  * 更新祭典信息
  * @param {*} state state
  * @param {*} list list
+ * @param {string} region region
  * @param {*} isForce 是否强制更新
  */
-export function updateSplatfest(state, list, isForce = false) {
+export function updateSplatfest(state, list, region, isForce = false) {
   const now = Date.now()
   if (isForce) {
     state.splatfest.list = list
@@ -61,6 +62,7 @@ export function updateSplatfest(state, list, isForce = false) {
   }
   state.splatfest.list.sort((v1, v2) => v1.times.end < v2.times.end ? 1 : -1)
   state.splatfest.lastEndTime = state.splatfest.list[0].times.end
+  state.splatfest.region = region
   // TODO: 祭典信息可以缓存起来
   state.updatedAt = now
 }

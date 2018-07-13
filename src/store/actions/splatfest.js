@@ -16,16 +16,16 @@ export const updateSplatfest = createAction(UPDATE_SPLATFEST, () => {
   const updatedAt = store.getState().splatfest.updatedAt
 
   const region = store.getState().region.region
-  const isRegionChanged = region !== store.getState().region.lastRegion
+  const isRegionChanged = region !== store.getState().splatfest.splatfest.region
 
   if (!isRegionChanged && !judgeUpdateStatus(updatedAt)) {
-    console.log(isRegionChanged)
     return
   }
 
   if (region === 'none') {
     return {
       list: [],
+      region: 'none',
       isForce: true
     }
   }
@@ -36,7 +36,8 @@ export const updateSplatfest = createAction(UPDATE_SPLATFEST, () => {
     .then((results) => {
       return {
         list: results.map((v) => v.attributes),
-        isForce: isRegionChanged
+        isForce: isRegionChanged,
+        region
       }
     })
 })

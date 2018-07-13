@@ -12,6 +12,7 @@ import {
 const defaultState = {
   splatfest: {
     lastEndTime: 0,
+    region: 'none',
     list: []
   },
   updatedAt: 0,
@@ -28,7 +29,7 @@ export default handleActions({
     if (error) {
       state.isError = true
     } else if (payload) {
-      updateSplatfest(state, payload.list, payload.isForce)
+      updateSplatfest(state, payload.list, payload.region, payload.isForce)
     }
     return {
       ...state,

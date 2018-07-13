@@ -16,10 +16,10 @@
           </view>
         </picker>
       </view> -->
-      <view class="setting-item dot-background">
+      <!-- <view class="setting-item dot-background">
         <text>祭典区域选择</text>
         <region-picker></region-picker>
-      </view>
+      </view> -->
       <view class="setting-item dot-background">
         <navigator url="splatfest">祭典</navigator>
       </view>

@@ -9,8 +9,10 @@
         <icon class="splatfest-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
       <view class="splatfest-hint">
-        <text>祭典区域在设置页设置，默认为美区</text>
-        <text>点击卡片查看祭典详情</text>
+        <view class="splatfest-region-picker">
+          <text>祭典区域：</text>
+          <region-picker></region-picker>
+        </view>
       </view>
       <loader wx:if="{{list.length===0}}"></loader>
       <view wx:else class="splatfest-lists">
@@ -32,11 +34,15 @@ import loader from '@/components/loader'
 import timer from '@/components/timer'
 import splatfestCard from '@/components/splatfest-card'
 import splatfestLogo from '@/components/splatfest-logo'
+import regionPicker from '@/components/region-picker'
 
 @connect(
   {
     splatfest(state) {
       return state.splatfest
+    },
+    region(state) {
+      return state.region
     }
   },
   { updateSplatfest }
@@ -51,12 +57,17 @@ export default class Splatfest extends wepy.page {
     loader,
     timer,
     'splatfest-card': splatfestCard,
-    'splatfest-logo': splatfestLogo
+    'splatfest-logo': splatfestLogo,
+    'region-picker': regionPicker
   }
 
   watch = {
     splatfest() {
       this.loadSplatfest()
+    },
+    region() {
+      this.list = []
+      this.methods.updateSplatfest()
     }
   }
 
@@ -122,7 +133,7 @@ export default class Splatfest extends wepy.page {
 .splatfest-title {
   justify-content: space-between;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   view {
     display: flex;
     align-items: center;
@@ -141,9 +152,6 @@ export default class Splatfest extends wepy.page {
 .splatfest-hint {
   font-size: 28rpx;
   color: #f0f0f0;
-  text {
-    display: block;
-  }
 }
 .splatfest-lists {
   margin-top: -5px;
@@ -153,5 +161,8 @@ export default class Splatfest extends wepy.page {
   &:nth-child(even) {
     transform: rotate(-0.8deg);
   }
+}
+.splatfest-region-picker {
+  display: flex;
 }
 </style>

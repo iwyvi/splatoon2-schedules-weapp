@@ -26,12 +26,8 @@ export default class RegionPicker extends wepy.component {
     regionIndex: 0,
     regionList: [
       {
-        id: 'none',
-        name: '无'
-      },
-      {
         id: 'na',
-        name: '美洲'
+        name: '北美'
       },
       {
         id: 'eu',
@@ -60,7 +56,7 @@ export default class RegionPicker extends wepy.component {
     const index = this.regionList.findIndex((v) => {
       return this.region.region === v.id
     })
-    this.regionIndex = index === -1 ? 'none' : index
+    this.regionIndex = index === -1 ? 'na' : index
     this.$apply()
   }
 

@@ -6,7 +6,7 @@ import {
 } from '../types/region'
 
 export const updateRegion = createAction(UPDATE_REGION, (region) => {
-  const regionMap = ['none', 'na', 'eu', 'jp']
+  const regionMap = ['na', 'eu', 'jp']
   if (regionMap.indexOf(region) === -1) {
     return
   }

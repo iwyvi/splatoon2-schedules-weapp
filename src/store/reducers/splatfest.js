@@ -12,7 +12,7 @@ import {
 const defaultState = {
   splatfest: {
     lastEndTime: 0,
-    region: 'none',
+    region: 'na',
     list: []
   },
   updatedAt: 0,

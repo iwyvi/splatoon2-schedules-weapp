@@ -22,14 +22,6 @@ export const updateSplatfest = createAction(UPDATE_SPLATFEST, () => {
     return
   }
 
-  if (region === 'none') {
-    return {
-      list: [],
-      region: 'none',
-      isForce: true
-    }
-  }
-
   const query = new AV.Query('Festival')
   query.equalTo('region', region)
   return query.find()

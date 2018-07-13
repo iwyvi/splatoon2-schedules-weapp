@@ -6,7 +6,7 @@ import {
 } from '../types/region'
 
 const defaultState = {
-  region: wx.getStorageSync('region') || 'none'
+  region: wx.getStorageSync('region') || 'na'
 }
 
 export default handleActions({

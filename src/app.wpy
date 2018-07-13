@@ -27,7 +27,8 @@ export default class extends wepy.app {
       'pages/setting',
       'pages/salmonrun',
       'pages/shop',
-      'pages/about'
+      'pages/about',
+      'pages/splatfest'
     ],
     window: {
       backgroundTextStyle: 'light',

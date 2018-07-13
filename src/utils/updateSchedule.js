@@ -45,3 +45,22 @@ export function updateShop(state, list) {
   state.shop.lastEndTime = state.shop.list[state.shop.list.length - 1].end_time
   state.updatedAt = now
 }
+
+/**
+ * 更新祭典信息
+ * @param {*} state state
+ * @param {*} list list
+ * @param {*} isForce 是否强制更新
+ */
+export function updateSplatfest(state, list, isForce = false) {
+  const now = Date.now()
+  if (isForce) {
+    state.splatfest.list = list
+  } else {
+    state.splatfest.list.push(...list.filter((v) => v.times.end > state.splatfest.lastEndTime))
+  }
+  state.splatfest.list.sort((v1, v2) => v1.times.end < v2.times.end ? 1 : -1)
+  state.splatfest.lastEndTime = state.splatfest.list[0].times.end
+  // TODO: 祭典信息可以缓存起来
+  state.updatedAt = now
+}

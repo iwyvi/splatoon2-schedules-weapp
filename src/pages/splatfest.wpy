@@ -1,0 +1,144 @@
+<template>
+  <view class="container splatfest-container">
+    <view class="splatfest-wrap card-wrap stripe-background">
+      <view class="card-title splatfest-title">
+        <view>
+          <image class="splatfest-logo" mode="widthFix" src="../assets/img/splatfest.png"></image>
+          <text class="splatoon">Splatfest</text>
+        </view>
+        <icon class="splatfest-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
+      </view>
+      <view class="splatfest-hint">
+        <text>祭典区域在设置页设置，默认为美区</text>
+        <text>点击卡片查看祭典详情</text>
+      </view>
+      <loader wx:if="{{list.length===0}}"></loader>
+      <view wx:else class="splatfest-lists">
+        <repeat for="{{list}}" key="index">
+          <splatfest-card :detail="item"></splatfest-card>
+        </repeat>
+      </view>
+    </view>
+    <timer @timer-update.user="timerUpdate"></timer>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { connect } from 'wepy-redux'
+
+import { updateSplatfest } from '../store/actions'
+
+import loader from '@/components/loader'
+import timer from '@/components/timer'
+import splatfestCard from '@/components/splatfest-card'
+
+@connect(
+  {
+    splatfest(state) {
+      return state.splatfest
+    }
+  },
+  { updateSplatfest }
+)
+export default class Splatfest extends wepy.page {
+  config = {
+    navigationBarTitleText: '祭典',
+    enablePullDownRefresh: true
+  }
+
+  components = {
+    loader,
+    timer,
+    'splatfest-card': splatfestCard
+  }
+
+  watch = {
+    splatfest() {
+      this.loadSplatfest()
+    }
+  }
+
+  data = {
+    list: []
+  }
+
+  methods = {
+    backToIndex() {
+      wx.switchTab({
+        url: '/pages/index'
+      })
+    },
+    timerUpdate() {
+      this.startUpdate()
+    }
+  }
+
+  loadSplatfest() {
+    this.list = this.splatfest.splatfest.list
+    this.$apply()
+    wx.stopPullDownRefresh()
+  }
+
+  startUpdate() {
+    this.methods.updateSplatfest()
+  }
+
+  onLoad() {
+    this.startUpdate()
+  }
+
+  onShareAppMessage() {}
+
+  onPullDownRefresh() {
+    this.startUpdate()
+  }
+}
+</script>
+<style lang="less">
+.splatfest-container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.splatfest-wrap {
+  color: white;
+  background-color: #aaaaaa;
+  transform: none;
+  padding-bottom: 30px;
+}
+.splatfest-title {
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  view {
+    display: flex;
+    align-items: center;
+    .splatfest-logo {
+      width: 40px;
+      height: 0;
+    }
+    text {
+      font-size: 56rpx;
+      margin-left: 10px;
+      line-height: 1em;
+    }
+  }
+  .splatfest-close-icon {
+    display: block;
+    border-radius: 50%;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  }
+}
+.splatfest-hint {
+  font-size: 28rpx;
+  color: #f0f0f0;
+  text {
+    display: block;
+  }
+}
+.splatfest-card {
+  transform: rotate(.8deg);
+  &:nth-child(even) {
+    transform: rotate(-.8deg);
+  }
+}
+</style>

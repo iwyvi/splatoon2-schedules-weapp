@@ -1,0 +1,110 @@
+<template>
+  <view class="splatfest-card card-wrap stripe-background card-hook">
+    <view class="splatfest-card-title card-title">
+      <text class="splatoon">{{detail.names.alpha_short}} vs. {{detail.names.bravo_short}}</text>
+    </view>
+    <loader wx:if="{{detail === undefined}}"></loader>
+    <view wx:else class="splatfest-card-content">
+      <view class="splatfest-panel">
+        <image mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}"></image>
+        <text class="splatfest-panel-names splatoon splatfest-panel-alpha-name">{{detail.names.alpha_long}}</text>
+        <text class="splatfest-panel-names splatoon splatfest-panel-bravo-name">{{detail.names.alpha_long}}</text>
+      </view>
+      <view class="splatfest-time stripe-background" style="background-color: {{detail.colors.middle.css_rgb}}">
+        <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(detail.times.start, detail.times.end)}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import timeWxs from '../wxs/time.wxs'
+import imageWxs from '../wxs/image.wxs'
+
+import loader from '@/components/loader'
+
+export default class SplatfestCard extends wepy.component {
+  props = {
+    detail: {
+      type: Object,
+      required: true
+    }
+  }
+
+  data = {
+    showModel: false
+  }
+
+  components = {
+    loader
+  }
+
+  wxs = {
+    timeWxs,
+    imageWxs
+  }
+
+  onLoad() {}
+}
+</script>
+<style lang="less">
+.splatfest-card {
+  margin-top: 35px;
+  width: 100%;
+  background-color: #444444;
+  font-size: 32rpx;
+  padding: 0;
+  &:before {
+    background-color: #444444;
+  }
+}
+.splatfest-card-title {
+  line-height: 1em;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+}
+.splatfest-card-content {
+  padding-bottom: 37px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splatfest-panel {
+  width: 100%;
+  position: relative;
+  image {
+    width: 100%;
+    height: 0;
+    vertical-align: top;
+  }
+  .splatfest-panel-names {
+    position: absolute;
+    bottom: 8px;
+    line-height: 1.4em;
+    font-size: 0.8em;
+    &.splatfest-panel-alpha-name {
+      left: 6px;
+    }
+    &.splatfest-panel-bravo-name {
+      text-align: right;
+      right: 6px;
+    }
+  }
+}
+.splatfest-time {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  bottom: 10px;
+  text {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+</style>

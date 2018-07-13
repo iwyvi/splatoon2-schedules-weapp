@@ -3,8 +3,7 @@
     <view class="splatfest-card-title card-title">
       <text class="splatoon">{{detail.names.alpha_short}} vs. {{detail.names.bravo_short}}</text>
     </view>
-    <loader wx:if="{{detail === undefined}}"></loader>
-    <view wx:else class="splatfest-card-content">
+    <view class="splatfest-card-content">
       <view class="splatfest-panel">
         <image mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}"></image>
         <text class="splatfest-panel-names splatoon splatfest-panel-alpha-name">{{detail.names.alpha_long}}</text>
@@ -21,8 +20,6 @@ import wepy from 'wepy'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 
-import loader from '@/components/loader'
-
 export default class SplatfestCard extends wepy.component {
   props = {
     detail: {
@@ -31,13 +28,7 @@ export default class SplatfestCard extends wepy.component {
     }
   }
 
-  data = {
-    showModel: false
-  }
-
-  components = {
-    loader
-  }
+  data = {}
 
   wxs = {
     timeWxs,

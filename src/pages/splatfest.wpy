@@ -3,7 +3,7 @@
     <view class="splatfest-wrap card-wrap stripe-background">
       <view class="card-title splatfest-title">
         <view>
-          <image class="splatfest-logo" mode="widthFix" src="../assets/img/splatfest.png"></image>
+          <splatfest-logo :alpha="list[0].colors.alpha.css_rgb" :bravo="list[0].colors.bravo.css_rgb"></splatfest-logo>
           <text class="splatoon">Splatfest</text>
         </view>
         <icon class="splatfest-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
@@ -31,6 +31,7 @@ import { updateSplatfest } from '../store/actions'
 import loader from '@/components/loader'
 import timer from '@/components/timer'
 import splatfestCard from '@/components/splatfest-card'
+import splatfestLogo from '@/components/splatfest-logo'
 
 @connect(
   {
@@ -49,7 +50,8 @@ export default class Splatfest extends wepy.page {
   components = {
     loader,
     timer,
-    'splatfest-card': splatfestCard
+    'splatfest-card': splatfestCard,
+    'splatfest-logo': splatfestLogo
   }
 
   watch = {
@@ -76,7 +78,19 @@ export default class Splatfest extends wepy.page {
   loadSplatfest() {
     this.list = this.splatfest.splatfest.list
     this.$apply()
+    this.updateLogo()
     wx.stopPullDownRefresh()
+  }
+
+  updateLogo() {
+    if (this.list.length) {
+      const alpha = this.list[0].colors.alpha.css_rgb
+      const bravo = this.list[0].colors.bravo.css_rgb
+      this.$broadcast('update-logo', {
+        alpha,
+        bravo
+      })
+    }
   }
 
   startUpdate() {
@@ -112,10 +126,6 @@ export default class Splatfest extends wepy.page {
   view {
     display: flex;
     align-items: center;
-    .splatfest-logo {
-      width: 40px;
-      height: 0;
-    }
     text {
       font-size: 56rpx;
       margin-left: 10px;
@@ -135,10 +145,13 @@ export default class Splatfest extends wepy.page {
     display: block;
   }
 }
+.splatfest-lists {
+  margin-top: -5px;
+}
 .splatfest-card {
-  transform: rotate(.8deg);
+  transform: rotate(0.8deg);
   &:nth-child(even) {
-    transform: rotate(-.8deg);
+    transform: rotate(-0.8deg);
   }
 }
 </style>

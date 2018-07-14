@@ -1,5 +1,5 @@
 <template>
-  <view class="schedule-card card-wrap stripe-background card-hook {{mode}} {{splatfest ? 'splatfest' : ''}}">
+  <view class="schedule-card card-wrap stripe-background card-hook {{mode}}">
     <view class="schedule-card-title card-title">
       <splatfest-logo wx:if="{{splatfest}}" class="schedule-card-splatfest-logo" :alpha="splatfest.colors.alpha.css_rgb" :bravo="splatfest.colors.bravo.css_rgb"></splatfest-logo>
       <image wx:else class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
@@ -109,9 +109,6 @@ export default class ScheduleCard extends wepy.component {
       }
     },
     titleText() {
-      if (this.splatfest) {
-        return 'Splatfest Battle'
-      }
       switch (this.mode) {
         case 'regular':
           return 'Regular Battle'
@@ -119,6 +116,8 @@ export default class ScheduleCard extends wepy.component {
           return 'Ranked Battle'
         case 'league':
           return 'League Battle'
+        case 'splatfest':
+          return 'Splatfest Battle'
         default:
           return ''
       }
@@ -145,11 +144,7 @@ export default class ScheduleCard extends wepy.component {
 
   data = {}
 
-  methods = {
-    tapMore() {
-      wx.navigateTo('pages/schedule?mode=regular')
-    }
-  }
+  methods = {}
 
   onLoad() {}
 }
@@ -276,7 +271,7 @@ export default class ScheduleCard extends wepy.component {
       flex-direction: column;
       align-items: center;
       line-height: 2.2em;
-      padding: 2px 30px 0;
+      padding: 2px 35px 0;
       .splatfest-name {
         font-size: 1.4em;
       }

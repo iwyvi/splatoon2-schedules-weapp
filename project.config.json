@@ -65,6 +65,12 @@
 					"name": "祭典",
 					"pathName": "pages/splatfest",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "日程祭典",
+					"pathName": "pages/schedule",
+					"query": "mode=splatfest"
 				}
 			]
 		}

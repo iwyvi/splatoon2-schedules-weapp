@@ -1,28 +1,47 @@
 <template>
   <view class="container schedule-container">
-    <view class="schedule-wrap card-wrap stripe-background {{mode}}">
+    <view class="schedule-wrap card-wrap stripe-background {{computedMode}}">
       <view class="schedule-title card-title">
         <view>
-          <image class="schedule-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
+          <splatfest-logo wx:if="{{computedMode==='splatfest' && isSplatfestLoaded}}" class="schedule-card-splatfest-logo" :alpha="splatfest.colors.alpha.css_rgb" :bravo="splatfest.colors.bravo.css_rgb"></splatfest-logo>
+          <image wx:else class="schedule-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
           <text class="splatoon">{{titleText}}</text>
         </view>
         <icon class="schedule-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
-      <loader wx:if="{{list.length===0}}"></loader>
-      <view wx:else class="schedule-lists">
-        <view class="schedule-list" wx:for="{{list}}" wx:key="end_time">
-          <view class="schedule-list-title">
-            <text class="schedule-list-title-mode splatoon2">{{item.rule.name}}</text>
-            <text class="splatoon2">{{timeWxs.generateScheduleTimeString(item.start_time, item.end_time)}}</text>
-          </view>
-          <view class="schedule-list-images">
+      <loader wx:if="{{list.length===0 || !isSplatfestLoaded}}"></loader>
+      <view wx:else>
+        <view wx:if="{{computedMode==='splatfest' && latestSplatfest}}" class="schedule-card-block schedule-card-splatfest-block">
+          <view class="schedule-card-block-images schedule-card-splatfest-block-images">
             <view>
-              <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_a.image)}}"></image>
-              <text class="splatoon2">{{item.stage_a.name}}</text>
+              <image mode="widthFix" src="{{imageWxs.getImageUrl(latestSplatfest.special_stage.image)}}"></image>
+              <text class="splatoon2">{{latestSplatfest.special_stage.name}}</text>
             </view>
-            <view>
-              <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_b.image)}}"></image>
-              <text class="splatoon2">{{item.stage_b.name}}</text>
+          </view>
+          <view class="schedule-card-splatfest-block-title">
+            <view class="block-banner stripe-background" style="background-color: {{latestSplatfest.colors.middle.css_rgb}}">
+              <text class="splatfest-name splatoon2">{{latestSplatfest.names.alpha_short}} vs. {{latestSplatfest.names.bravo_short}}</text>
+              <text class="splatfest-time splatoon2">{{timeWxs.generateSalmonrunTimeString(latestSplatfest.times.start, latestSplatfest.times.end)}}</text>
+            </view>
+            <image class="splatfest-badge splatfest-badge-alpha" src="{{imageWxs.getImageUrl(latestSplatfest.images.alpha)}}"></image>
+            <image class="splatfest-badge splatfest-badge-bravo" src="{{imageWxs.getImageUrl(latestSplatfest.images.bravo)}}"></image>
+          </view>
+        </view>
+        <view class="schedule-lists">
+          <view class="schedule-list" wx:for="{{list}}" wx:key="end_time">
+            <view class="schedule-list-title">
+              <text class="schedule-list-title-mode splatoon2">{{item.rule.name}}</text>
+              <text class="splatoon2">{{timeWxs.generateScheduleTimeString(item.start_time, item.end_time)}}</text>
+            </view>
+            <view class="schedule-list-images">
+              <view>
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_a.image)}}"></image>
+                <text class="splatoon2">{{item.stage_a.name}}</text>
+              </view>
+              <view>
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_b.image)}}"></image>
+                <text class="splatoon2">{{item.stage_b.name}}</text>
+              </view>
             </view>
           </view>
         </view>
@@ -38,6 +57,12 @@
 }
 .schedule-wrap {
   color: white;
+}
+
+.splatfest {
+  .schedule-title {
+    margin-bottom: 20px;
+  }
 }
 
 .schedule-title {
@@ -107,15 +132,84 @@
     }
   }
 }
+.schedule-card-splatfest-block {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  padding: 0 5px 10px;
+  font-size: 24rpx;
+  .schedule-card-splatfest-block-title {
+    margin-top: 5px;
+    position: relative;
+    .block-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 2.2em;
+      padding: 2px 35px 0;
+      .splatfest-name {
+        font-size: 1.4em;
+      }
+      .splatfest-time {
+        font-size: 1.1em;
+      }
+    }
+    .splatfest-badge {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      &.splatfest-badge-alpha {
+        left: -10px;
+        top: -15px;
+        transform: rotate(-10deg);
+      }
+      &.splatfest-badge-bravo {
+        right: -12px;
+        bottom: -10px;
+        transform: rotate(10deg);
+      }
+    }
+  }
+  .schedule-card-splatfest-block-images {
+    display: block;
+    max-width: 180px;
+    width: 100%;
+    display: flex;
+    & > view {
+      position: relative;
+      width: 100%;
+      padding: 0;
+      image {
+        width: 100%;
+        height: 0;
+        border-radius: 15px;
+      }
+      text {
+        position: absolute;
+        font-size: 1em;
+        bottom: 8px;
+        right: 8px;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        line-height: 1em;
+        padding: 5px 5px;
+      }
+    }
+  }
+}
 </style>
 <script>
 import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
-import { updateSchedule } from '../store/actions'
+import { updateSchedule, updateSplatfest } from '../store/actions'
 
 import loader from '@/components/loader'
 import timer from '@/components/timer'
+import splatfestLogo from '@/components/splatfest-logo'
 
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
@@ -124,9 +218,12 @@ import imageWxs from '../wxs/image.wxs'
   {
     schedule(state) {
       return state.schedule
+    },
+    splatfest(state) {
+      return state.splatfest
     }
   },
-  { updateSchedule }
+  { updateSchedule, updateSplatfest }
 )
 export default class Schedule extends wepy.page {
   config = {
@@ -136,7 +233,8 @@ export default class Schedule extends wepy.page {
 
   components = {
     loader,
-    timer
+    timer,
+    'splatfest-logo': splatfestLogo
   }
 
   wxs = {
@@ -146,18 +244,33 @@ export default class Schedule extends wepy.page {
 
   data = {
     mode: '',
-    list: []
+    list: [],
+    isSplatfestLoaded: false,
+    latestSplatfest: {},
+    isLatestSplatfestEnd: true, // 最近的祭典是否已经结束
+    isLatestSplatfestStart: false // 最近的祭典是否开始
   }
 
   watch = {
     schedule() {
       this.loadSchedule()
+    },
+    splatfest() {
+      this.loadSplatfest()
     }
   }
 
   computed = {
+    computedMode() {
+      if (this.isLatestSplatfestStart && !this.isLatestSplatfestEnd) {
+        return 'splatfest'
+      } else if (this.mode === 'splatfest' && this.isSplatfestLoaded) {
+        return 'regular'
+      }
+      return this.mode
+    },
     logoImageSrc() {
-      switch (this.mode) {
+      switch (this.computedMode) {
         case 'regular':
           return '../assets/img/battle-regular.png'
         case 'gachi':
@@ -169,13 +282,15 @@ export default class Schedule extends wepy.page {
       }
     },
     titleText() {
-      switch (this.mode) {
+      switch (this.computedMode) {
         case 'regular':
           return 'Regular Battle'
         case 'gachi':
           return 'Ranked Battle'
         case 'league':
           return 'League Battle'
+        case 'splatfest':
+          return 'Splatfest Battle'
         default:
           return 'Loading'
       }
@@ -189,18 +304,39 @@ export default class Schedule extends wepy.page {
       })
     },
     timerUpdate() {
-      this.startUpdateSchedule()
+      this.startUpdate()
     }
   }
 
   loadSchedule() {
-    this.list = this.schedule[this.mode].list
+    const mode = this.computedMode === 'splatfest' ? 'regular' : this.computedMode
+    this.list = this.schedule[mode].list
     this.$apply()
     wx.stopPullDownRefresh()
   }
 
-  startUpdateSchedule() {
+  loadSplatfest() {
+    this.latestSplatfest = this.splatfest.splatfest.list[0]
+    if (this.latestSplatfest) {
+      const now = Date.now()
+      if (Number(`${this.latestSplatfest.times.end}000` > now)) {
+        this.isLatestSplatfestEnd = false
+      } else {
+        this.isLatestSplatfestEnd = true
+      }
+      if (Number(`${this.latestSplatfest.times.start}000` < now)) {
+        this.isLatestSplatfestStart = true
+      } else {
+        this.isLatestSplatfestStart = false
+      }
+    }
+    this.isSplatfestLoaded = true
+    this.$apply()
+  }
+
+  startUpdate() {
     this.methods.updateSchedule()
+    this.methods.updateSplatfest()
   }
 
   onLoad(options) {
@@ -208,7 +344,7 @@ export default class Schedule extends wepy.page {
     if (mode) {
       this.mode = mode
     }
-    this.startUpdateSchedule()
+    this.startUpdate()
   }
 
   onShareAppMessage() {}

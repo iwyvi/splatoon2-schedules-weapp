@@ -50,7 +50,7 @@
     <loader wx:if="{{!isSplatfestLoaded}}"></loader>
     <view wx:else>
       <view wx:if="{{isLatestSplatfestStart && !isLatestSplatfestEnd}}" class="container index-container">
-        <splatfest-card class="index-schedule-card" mode="regular" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
+        <splatfest-card class="index-schedule-card" mode="splatfest" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
         <view class="index-schedule-hint">
           <view>祭典区域默认为北美</view>
           <view>可以在「更多」-「祭典」中修改</view>

@@ -63,9 +63,9 @@ export default class extends wepy.app {
         },
         {
           pagePath: 'pages/setting',
-          text: '设置',
-          iconPath: './assets/img/icon/setting.png',
-          selectedIconPath: './assets/img/icon/setting-selected.png'
+          text: '更多',
+          iconPath: './assets/img/icon/more.png',
+          selectedIconPath: './assets/img/icon/more-selected.png'
         }
       ]
     }

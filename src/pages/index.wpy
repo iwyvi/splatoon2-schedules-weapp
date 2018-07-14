@@ -8,6 +8,13 @@
     transform: rotate(-0.5deg);
   }
 }
+.index-schedule-hint {
+  color: #888888;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 1.4em;
+  margin-top: 15px;
+}
 .index-salmonrun-banner {
   width: 100%;
   text-align: center;
@@ -44,6 +51,10 @@
     <view wx:else>
       <view wx:if="{{isLatestSplatfestStart && !isLatestSplatfestEnd}}" class="container index-container">
         <splatfest-card class="index-schedule-card" mode="regular" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
+        <view class="index-schedule-hint">
+          <view>祭典区域默认为北美</view>
+          <view>可以在「更多」-「祭典」中修改</view>
+        </view>
       </view>
       <view wx:else class="container index-container">
         <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />

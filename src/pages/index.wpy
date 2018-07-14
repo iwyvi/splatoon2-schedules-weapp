@@ -1,7 +1,6 @@
 <style lang="less">
 .index-container {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .index-schedule-card {
   transform: rotate(0.5deg);
@@ -35,18 +34,24 @@
 </style>
 <template>
   <view>
-    <view wx:if="{{latestSalmonrunOpen}}" class="index-salmonrun-banner circle-background">
+    <view wx:if="{{isLatestSalmonrunOpen}}" class="index-salmonrun-banner circle-background">
       <navigator url="salmonrun" open-type="switchTab">
         <image src="../assets/img/salmon-run.png"></image>
         <text class="splatoon">海産招募中...</text>
       </navigator>
     </view>
-    <view class="container index-container">
-      <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
-      <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
-      <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
-      <timer @timer-update.user="timerUpdate"></timer>
+    <loader wx:if="{{!isSplatfestLoaded}}"></loader>
+    <view wx:else>
+      <view wx:if="{{isLatestSplatfestStart && !isLatestSplatfestEnd}}" class="container index-container">
+        <splatfest-card class="index-schedule-card" mode="regular" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
+      </view>
+      <view wx:else class="container index-container">
+        <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
+        <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
+        <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
+      </view>
     </view>
+    <timer @timer-update.user="timerUpdate"></timer>
   </view>
 </template>
 
@@ -54,10 +59,15 @@
 import wepy from 'wepy'
 import { connect } from 'wepy-redux'
 
-import { updateSchedule, updateSalmonrun } from '../store/actions'
+import {
+  updateSchedule,
+  updateSalmonrun,
+  updateSplatfest
+} from '../store/actions'
 
 import scheduleCard from '@/components/schedule-card'
 import timer from '@/components/timer'
+import loader from '@/components/loader'
 
 @connect(
   {
@@ -66,9 +76,12 @@ import timer from '@/components/timer'
     },
     salmonrun(state) {
       return state.salmonrun
+    },
+    splatfest(state) {
+      return state.splatfest
     }
   },
-  { updateSchedule, updateSalmonrun }
+  { updateSchedule, updateSalmonrun, updateSplatfest }
 )
 export default class Index extends wepy.page {
   config = {
@@ -80,14 +93,20 @@ export default class Index extends wepy.page {
     'regular-card': scheduleCard,
     'gachi-card': scheduleCard,
     'league-card': scheduleCard,
-    timer
+    'splatfest-card': scheduleCard,
+    timer,
+    loader
   }
 
   data = {
     regularList: [],
     gachiList: [],
     leagueList: [],
-    latestSalmonrunOpen: false
+    isLatestSalmonrunOpen: false,
+    isSplatfestLoaded: false,
+    latestSplatfest: {},
+    isLatestSplatfestEnd: true, // 最近的祭典是否已经结束
+    isLatestSplatfestStart: false // 最近的祭典是否开始
   }
 
   watch = {
@@ -96,6 +115,9 @@ export default class Index extends wepy.page {
     },
     salmonrun() {
       this.loadSalmonrun()
+    },
+    splatfest() {
+      this.loadSplatfest()
     }
   }
 
@@ -118,16 +140,36 @@ export default class Index extends wepy.page {
   loadSalmonrun() {
     const latest = this.salmonrun.salmonrun.list[0]
     if (latest && Number(`${latest.start_time}000` < Date.now())) {
-      this.latestSalmonrunOpen = true
+      this.isLatestSalmonrunOpen = true
     } else {
-      this.latestSalmonrunOpen = false
+      this.isLatestSalmonrunOpen = false
     }
+    this.$apply()
+  }
+
+  loadSplatfest() {
+    this.latestSplatfest = this.splatfest.splatfest.list[0]
+    if (this.latestSplatfest) {
+      const now = Date.now()
+      if (Number(`${this.latestSplatfest.times.end}000` > now)) {
+        this.isLatestSplatfestEnd = false
+      } else {
+        this.isLatestSplatfestEnd = true
+      }
+      if (Number(`${this.latestSplatfest.times.start}000` < now)) {
+        this.isLatestSplatfestStart = true
+      } else {
+        this.isLatestSplatfestStart = false
+      }
+    }
+    this.isSplatfestLoaded = true
     this.$apply()
   }
 
   startUpdate() {
     this.methods.updateSchedule()
     this.methods.updateSalmonrun()
+    this.methods.updateSplatfest()
   }
 
   onLoad() {

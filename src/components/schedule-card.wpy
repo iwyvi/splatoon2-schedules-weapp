@@ -1,11 +1,28 @@
 <template>
-  <view class="schedule-card card-wrap stripe-background {{mode}}">
+  <view class="schedule-card card-wrap stripe-background card-hook {{mode}} {{splatfest ? 'splatfest' : ''}}">
     <view class="schedule-card-title card-title">
-      <image class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
+      <splatfest-logo wx:if="{{splatfest}}" class="schedule-card-splatfest-logo" :alpha="splatfest.colors.alpha.css_rgb" :bravo="splatfest.colors.bravo.css_rgb"></splatfest-logo>
+      <image wx:else class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
       <text class="splatoon">{{titleText}}</text>
     </view>
     <loader wx:if="{{list.length===0}}"></loader>
     <view wx:else>
+      <view wx:if="{{splatfest}}" class="schedule-card-block schedule-card-splatfest-block">
+        <view class="schedule-card-block-images schedule-card-splatfest-block-images">
+          <view>
+            <image mode="widthFix" src="{{imageWxs.getImageUrl(splatfest.special_stage.image)}}"></image>
+            <text class="splatoon2">{{splatfest.special_stage.name}}</text>
+          </view>
+        </view>
+        <view class="schedule-card-splatfest-block-title">
+          <view class="block-banner stripe-background" style="background-color: {{splatfest.colors.middle.css_rgb}}">
+            <text class="splatfest-name splatoon2">{{splatfest.names.alpha_short}} vs. {{splatfest.names.bravo_short}}</text>
+            <text class="splatfest-time splatoon2">{{timeWxs.generateSalmonrunTimeString(splatfest.times.start, splatfest.times.end)}}</text>
+          </view>
+          <image class="splatfest-badge splatfest-badge-alpha" src="{{imageWxs.getImageUrl(splatfest.images.alpha)}}"></image>
+          <image class="splatfest-badge splatfest-badge-bravo" src="{{imageWxs.getImageUrl(splatfest.images.bravo)}}"></image>
+        </view>
+      </view>
       <view class="schedule-card-block">
         <view class="schedule-card-block-title">
           <text class="schedule-card-block-title-mode splatoon2">{{battleNow.rule.name}}</text>
@@ -53,6 +70,7 @@ import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 
 import loader from '@/components/loader'
+import splatfestLogo from '@/components/splatfest-logo'
 
 export default class ScheduleCard extends wepy.component {
   props = {
@@ -63,11 +81,13 @@ export default class ScheduleCard extends wepy.component {
     list: {
       type: [Object],
       default: []
-    }
+    },
+    splatfest: {} // 如果当前在祭典，则传入这个参数，为当前正在开始的祭典
   }
 
   components = {
-    loader
+    loader,
+    'splatfest-logo': splatfestLogo
   }
 
   wxs = {
@@ -89,6 +109,9 @@ export default class ScheduleCard extends wepy.component {
       }
     },
     titleText() {
+      if (this.splatfest) {
+        return 'Splatfest Battle'
+      }
       switch (this.mode) {
         case 'regular':
           return 'Regular Battle'
@@ -133,16 +156,19 @@ export default class ScheduleCard extends wepy.component {
 </script>
 <style lang="less">
 .schedule-card {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 35px;
   color: white;
 }
 .schedule-card-title {
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 13px;
   .schedule-card-logo {
     width: 30px;
     height: 0;
+  }
+  .schedule-card-splatfest-logo {
+    width: 30px;
+    height: 30px;
   }
   text {
     font-size: 44rpx;
@@ -231,6 +257,56 @@ export default class ScheduleCard extends wepy.component {
       background: hsla(0, 0%, 100%, 0.5);
       border: #fff;
       color: #fff;
+    }
+  }
+}
+.schedule-card-splatfest-block {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  padding-top: 0;
+  .schedule-card-splatfest-block-title {
+    margin-top: 5px;
+    position: relative;
+    .block-banner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 2.2em;
+      padding: 2px 30px 0;
+      .splatfest-name {
+        font-size: 1.4em;
+      }
+      .splatfest-time {
+        font-size: 1.1em;
+      }
+    }
+    .splatfest-badge {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      &.splatfest-badge-alpha {
+        left: -10px;
+        top: -15px;
+        transform: rotate(-10deg);
+      }
+      &.splatfest-badge-bravo {
+        right: -12px;
+        bottom: -10px;
+        transform: rotate(10deg);
+      }
+    }
+  }
+  .schedule-card-splatfest-block-images {
+    display: block;
+    max-width: 180px;
+    width: 100%;
+    & > view {
+      width: 100%;
+      padding: 0;
     }
   }
 }

@@ -317,7 +317,7 @@ export default class Shop extends wepy.page {
     align-items: center;
     image {
       width: 100px;
-      height: 0;
+      height: 60px;
     }
     text {
       margin-top: 5px;

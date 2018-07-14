@@ -201,7 +201,7 @@ export default class ScheduleCard extends wepy.component {
       padding: 0 5px;
       image {
         width: 100%;
-        height: 0;
+        height: 40px;
         border-radius: 15px;
       }
       text {

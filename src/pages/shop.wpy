@@ -209,6 +209,7 @@ export default class Shop extends wepy.page {
   margin-bottom: 10px;
   font-size: 28rpx;
   color: #f0f0f0;
+  text-shadow: 1px 1px 0 #000;
   text {
     display: block;
   }

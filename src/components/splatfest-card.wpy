@@ -9,7 +9,7 @@
         <text class="splatfest-panel-names splatoon splatfest-panel-alpha-name">{{detail.names.alpha_long}}</text>
         <text class="splatfest-panel-names splatoon splatfest-panel-bravo-name">{{detail.names.alpha_long}}</text>
       </view>
-      <view class="splatfest-time stripe-background" style="background-color: {{detail.colors.middle.css_rgb}}">
+      <view class="splatfest-time stripe-background block-banner" style="background-color: {{detail.colors.middle.css_rgb}}">
         <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(detail.times.start, detail.times.end)}}</text>
       </view>
     </view>
@@ -68,14 +68,19 @@ export default class SplatfestCard extends wepy.component {
   position: relative;
   image {
     width: 100%;
-    height: 0;
+    height: 150px;
     vertical-align: top;
+    background-color: #444444;
   }
   .splatfest-panel-names {
     position: absolute;
     bottom: 8px;
     line-height: 1.4em;
     font-size: 0.8em;
+    max-width: 50%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
     &.splatfest-panel-alpha-name {
       left: 6px;
     }

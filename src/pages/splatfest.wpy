@@ -67,6 +67,7 @@ export default class Splatfest extends wepy.page {
     },
     region() {
       this.list = []
+      this.$apply()
       this.methods.updateSplatfest()
     }
   }
@@ -151,6 +152,7 @@ export default class Splatfest extends wepy.page {
 }
 .splatfest-hint {
   font-size: 28rpx;
+  text-shadow: 1px 1px 0 #000;
   color: #f0f0f0;
 }
 .splatfest-lists {

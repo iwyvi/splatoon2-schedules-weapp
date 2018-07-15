@@ -1,0 +1,10 @@
+module.exports = {
+  getRateInteger: function (rate) {
+    return parseInt(rate / 100)
+  },
+  getRateDecimal: function (rate) {
+    var result = parseInt(rate % 100)
+    var resultString = '0' + result
+    return resultString.slice(-2)
+  }
+}

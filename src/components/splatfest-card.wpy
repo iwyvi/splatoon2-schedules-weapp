@@ -5,9 +5,13 @@
     </view>
     <view class="splatfest-card-content">
       <view class="splatfest-panel">
-        <image mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}"></image>
+        <view wx-if="{{detail.has_result}}" class="splatfest-panel-win {{detail.summary.total?'right':'left'}}">
+          <view class="splatfest-panel-win-mask ink-mask"></view>
+          <text class="splatoon">VICTORY</text>
+        </view>
+        <image class="splatfest-panel-image" mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}"></image>
         <text class="splatfest-panel-names splatoon splatfest-panel-alpha-name">{{detail.names.alpha_long}}</text>
-        <text class="splatfest-panel-names splatoon splatfest-panel-bravo-name">{{detail.names.alpha_long}}</text>
+        <text class="splatfest-panel-names splatoon splatfest-panel-bravo-name">{{detail.names.bravo_long}}</text>
       </view>
       <view class="splatfest-time stripe-background block-banner" style="background-color: {{detail.colors.middle.css_rgb}}">
         <text class="splatoon2">{{timeWxs.generateSalmonrunTimeString(detail.times.start, detail.times.end)}}</text>
@@ -66,9 +70,35 @@ export default class SplatfestCard extends wepy.component {
 .splatfest-panel {
   width: 100%;
   position: relative;
-  image {
+  .splatfest-panel-win {
+    position: absolute;
+    width: 80px;
+    height: 70px;
+    top: -50px;
+    right: -18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+    color: #fb746e;
+    font-size: .8em;
+    &.left {
+      right: auto;
+      left: -18px;
+    }
+    .splatfest-panel-win-mask {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background-color: #222222;
+    }
+  }
+  .splatfest-panel-image {
     width: 100%;
-    height: 150px;
+    height: 220px;
     vertical-align: top;
     background-color: #444444;
   }

@@ -1,0 +1,170 @@
+<template>
+  <view class="splatfest-result-card stripe-background card-wrap card-mask">
+    <view class="splatfest-result-badges">
+      <view class="splatfest-result-badge">
+        <image class="splatfest-result-badge-alpha" src="{{imageWxs.getImageUrl(detail.images.alpha)}}"></image>
+      </view>
+      <view class="splatfest-result-badge">
+        <image class="splatfest-result-badge-bravo" src="{{imageWxs.getImageUrl(detail.images.bravo)}}"></image>
+      </view>
+    </view>
+    <view class="splatfest-result-content">
+      <view class="splatfest-result-item">
+        <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.vote.alpha)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.vote.alpha)}}%</text>
+          </view>
+          <view wx-if="{{!detail.summary.vote}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
+        </view>
+        <view class="splatfest-result-mode splatoon2">Votes</view>
+        <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.vote.bravo)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.vote.bravo)}}%</text>
+          </view>
+          <view wx-if="{{detail.summary.vote}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+        </view>
+      </view>
+      <view class="splatfest-result-item">
+        <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.solo.alpha)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.alpha)}}%</text>
+          </view>
+          <view wx-if="{{!detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
+        </view>
+        <view class="splatfest-result-mode splatoon2">Solo</view>
+        <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.solo.bravo)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.bravo)}}%</text>
+          </view>
+          <view wx-if="{{detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+        </view>
+      </view>
+      <view class="splatfest-result-item">
+        <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.team.alpha)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.team.alpha)}}%</text>
+          </view>
+          <view wx-if="{{!detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
+        </view>
+        <view class="splatfest-result-mode splatoon2">Team</view>
+        <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+          <view class="splatfest-result-rate-number">
+            {{splatfestWxs.getRateInteger(detail.rates.team.bravo)}}.
+            <text>{{splatfestWxs.getRateDecimal(detail.rates.team.bravo)}}%</text>
+          </view>
+          <view wx-if="{{detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+        </view>
+      </view>
+    </view>
+    <view class="splatfest-result-summary stripe-background block-banner splatoon2">
+      <text>Team</text>
+      <text wx-if="{{!detail.summary.total}}" style="color: {{detail.colors.alpha.css_rgb}}">{{detail.names.alpha_short}}</text>
+      <text wx-if="{{detail.summary.total}}" style="color: {{detail.colors.bravo.css_rgb}}">{{detail.names.bravo_short}}</text>
+      <text>wins!</text>
+    </view>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+
+import imageWxs from '../wxs/image.wxs'
+import splatfestWxs from '../wxs/splatfest.wxs'
+
+export default class SplatfestResultCard extends wepy.component {
+  props = {
+    detail: {
+      type: Object,
+      required: true
+    }
+  }
+
+  wxs = {
+    imageWxs,
+    splatfestWxs
+  }
+}
+</script>
+<style lang="less">
+.splatfest-result-card {
+  background-color: #f0f0f0;
+  transform: rotate(1deg);
+  width: 80%;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+}
+.splatfest-result-badges {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  width: 100%;
+  .splatfest-result-badge {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    image {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+.splatfest-result-content {
+  padding: 0 5px;
+  width: 100%;
+  .splatfest-result-item {
+    color: #ffffff;
+    border-radius: 100px;
+    background-color: rgba(0, 0, 0, 0.6);
+    line-height: 1em;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    .splatfest-result-rate {
+      width: 40%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 0;
+      text {
+        font-size: 26rpx;
+        margin-left: -4px;
+      }
+      .splatfest-result-win {
+        position: absolute;
+        width: 56px;
+        height: 50px;
+        z-index: -1;
+      }
+    }
+    .splatfest-result-mode {
+      width: 20%;
+    }
+  }
+}
+.splatfest-result-summary {
+  background-color: #444444;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  text {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+</style>

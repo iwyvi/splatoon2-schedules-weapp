@@ -17,9 +17,14 @@
       <loader wx:if="{{list.length===0}}"></loader>
       <view wx:else class="splatfest-lists">
         <repeat for="{{list}}" key="index">
-          <splatfest-card :detail="item"></splatfest-card>
+          <view @tap="showModal" data-item="{{item}}">
+            <splatfest-card :detail="item"></splatfest-card>
+          </view>
         </repeat>
       </view>
+    </view>
+    <view wx:if="{{isModalShow}}" class="splatfest-modal" @touchmove.stop="disablePageScroll" @tap.stop="closeModal">
+      <splatfest-result-card :detail.sync="modalItem"></splatfest-result-card>
     </view>
     <timer @timer-update.user="timerUpdate"></timer>
   </view>
@@ -35,6 +40,7 @@ import timer from '@/components/timer'
 import splatfestCard from '@/components/splatfest-card'
 import splatfestLogo from '@/components/splatfest-logo'
 import regionPicker from '@/components/region-picker'
+import splatfestResultCard from '@/components/splatfest-result-card'
 
 @connect(
   {
@@ -58,7 +64,8 @@ export default class Splatfest extends wepy.page {
     timer,
     'splatfest-card': splatfestCard,
     'splatfest-logo': splatfestLogo,
-    'region-picker': regionPicker
+    'region-picker': regionPicker,
+    'splatfest-result-card': splatfestResultCard
   }
 
   watch = {
@@ -73,7 +80,9 @@ export default class Splatfest extends wepy.page {
   }
 
   data = {
-    list: []
+    list: [],
+    isModalShow: false,
+    modalItem: {}
   }
 
   methods = {
@@ -84,6 +93,19 @@ export default class Splatfest extends wepy.page {
     },
     timerUpdate() {
       this.startUpdate()
+    },
+    disablePageScroll() {},
+    showModal($event) {
+      if (!this.isModalShow) {
+        const targetItem = $event.currentTarget.dataset.item
+        if (targetItem.has_result) {
+          this.modalItem = targetItem
+          this.isModalShow = true
+        }
+      }
+    },
+    closeModal($event) {
+      this.isModalShow = false
     }
   }
 
@@ -166,5 +188,26 @@ export default class Splatfest extends wepy.page {
 }
 .splatfest-region-picker {
   display: flex;
+}
+.splatfest-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: show;
+  animation-duration: 0.3s;
+}
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>

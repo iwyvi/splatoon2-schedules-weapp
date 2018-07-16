@@ -2,7 +2,7 @@
   <view>
     <picker @change="changeRegion" value="{{regionIndex}}" range-key="name" range="{{regionList}}" disabled="{{readonly}}">
       <view class="picker">
-        {{regionList[regionIndex].name}}
+        {{regionName}}
       </view>
     </picker>
   </view>
@@ -27,7 +27,7 @@ export default class RegionPicker extends wepy.component {
   }
 
   data = {
-    regionIndex: 0,
+    regionIndex: -1,
     regionList: [
       {
         id: 'na',
@@ -47,6 +47,16 @@ export default class RegionPicker extends wepy.component {
   watch = {
     region() {
       this.setRegion()
+    }
+  }
+
+  computed = {
+    regionName() {
+      const region = this.regionList[this.regionIndex]
+      if (!region) {
+        return ''
+      }
+      return region.name
     }
   }
 

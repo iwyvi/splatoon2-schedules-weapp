@@ -46,6 +46,7 @@ export default class SplatfestCard extends wepy.component {
 .splatfest-card {
   margin-top: 35px;
   width: 100%;
+  color: #ffffff;
   background-color: #444444;
   font-size: 32rpx;
   padding: 0;
@@ -66,6 +67,19 @@ export default class SplatfestCard extends wepy.component {
   display: flex;
   flex-direction: column;
   align-items: center;
+  .splatfest-time {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    line-height: 1em;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    bottom: 10px;
+    text {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
 }
 .splatfest-panel {
   width: 100%;
@@ -81,7 +95,7 @@ export default class SplatfestCard extends wepy.component {
     justify-content: center;
     z-index: 0;
     color: #fb746e;
-    font-size: .8em;
+    font-size: 0.8em;
     &.left {
       right: auto;
       left: -18px;
@@ -118,19 +132,6 @@ export default class SplatfestCard extends wepy.component {
       text-align: right;
       right: 6px;
     }
-  }
-}
-.splatfest-time {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  line-height: 1em;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  bottom: 10px;
-  text {
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <view>
-    <picker @change="changeRegion" value="{{regionIndex}}" range-key="name" range="{{regionList}}">
+    <picker @change="changeRegion" value="{{regionIndex}}" range-key="name" range="{{regionList}}" disabled="{{readonly}}">
       <view class="picker">
         {{regionList[regionIndex].name}}
       </view>
@@ -22,6 +22,10 @@ import { updateRegion } from '../store/actions'
   { updateRegion }
 )
 export default class RegionPicker extends wepy.component {
+  props = {
+    readonly: String
+  }
+
   data = {
     regionIndex: 0,
     regionList: [

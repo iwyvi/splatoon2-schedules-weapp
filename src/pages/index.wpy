@@ -1,5 +1,5 @@
 <style lang="less">
-.index-container {
+.index-wrap {
   margin-bottom: 20px;
 }
 .index-schedule-card {
@@ -8,12 +8,24 @@
     transform: rotate(-0.5deg);
   }
 }
+.index-splatfest-card {
+  width: 90%;
+  background-color: #aaaaaa;
+  transform: rotate(-0.8deg);
+  &:before {
+    background-color: #aaaaaa;
+  }
+}
 .index-schedule-hint {
   color: #888888;
   font-size: 24rpx;
   text-align: center;
   line-height: 1.4em;
   margin-top: 15px;
+}
+.index-region-picker {
+  display: flex;
+  justify-content: center;
 }
 .index-salmonrun-banner {
   width: 100%;
@@ -48,11 +60,14 @@
       </navigator>
     </view>
     <loader wx:if="{{!isSplatfestLoaded}}"></loader>
-    <view wx:else>
+    <view wx:else class="index-wrap">
       <view wx:if="{{isLatestSplatfestStart && !isLatestSplatfestEnd}}" class="container index-container">
-        <splatfest-card class="index-schedule-card" mode="splatfest" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
+        <splatfest-schedule-card class="index-schedule-card" mode="splatfest" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
         <view class="index-schedule-hint">
-          <view>祭典区域默认为北美</view>
+          <view class="index-region-picker">
+            <text>当前祭典区域：</text>
+            <region-picker readonly="true"></region-picker>
+          </view>
           <view>可以在「更多」-「祭典」中修改</view>
         </view>
       </view>
@@ -60,6 +75,18 @@
         <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
         <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
         <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
+      </view>
+      <view wx:if="{{!isLatestSplatfestStart && !isLatestSplatfestEnd}}">
+        <navigator url="splatfest" class="container index-container">
+          <splatfest-card class="index-splatfest-card" :detail.sync="latestSplatfest"></splatfest-card>
+        </navigator>
+        <view class="index-schedule-hint">
+          <view class="index-region-picker">
+            <text>当前祭典区域：</text>
+            <region-picker readonly="true"></region-picker>
+          </view>
+          <view>可以在「更多」-「祭典」中修改</view>
+        </view>
       </view>
     </view>
     <timer @timer-update.user="timerUpdate"></timer>
@@ -79,6 +106,8 @@ import {
 import scheduleCard from '@/components/schedule-card'
 import timer from '@/components/timer'
 import loader from '@/components/loader'
+import splatfestCard from '@/components/splatfest-card'
+import regionPicker from '@/components/region-picker'
 
 @connect(
   {
@@ -90,6 +119,9 @@ import loader from '@/components/loader'
     },
     splatfest(state) {
       return state.splatfest
+    },
+    region(state) {
+      return state.region
     }
   },
   { updateSchedule, updateSalmonrun, updateSplatfest }
@@ -104,7 +136,9 @@ export default class Index extends wepy.page {
     'regular-card': scheduleCard,
     'gachi-card': scheduleCard,
     'league-card': scheduleCard,
-    'splatfest-card': scheduleCard,
+    'splatfest-schedule-card': scheduleCard,
+    'splatfest-card': splatfestCard,
+    'region-picker': regionPicker,
     timer,
     loader
   }

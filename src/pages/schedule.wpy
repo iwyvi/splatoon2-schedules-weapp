@@ -350,7 +350,7 @@ export default class Schedule extends wepy.page {
   onShareAppMessage() {}
 
   onPullDownRefresh() {
-    this.startUpdateSchedule()
+    this.startUpdate()
   }
 }
 </script>

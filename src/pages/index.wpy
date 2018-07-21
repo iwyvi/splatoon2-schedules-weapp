@@ -63,20 +63,20 @@
     <view wx:else class="index-wrap">
       <view wx:if="{{isLatestSplatfestStart && !isLatestSplatfestEnd}}" class="container index-container">
         <splatfest-schedule-card class="index-schedule-card" mode="splatfest" :list.sync="regularList" :splatfest.sync="latestSplatfest" />
-        <view class="index-schedule-hint">
+        <!-- <view class="index-schedule-hint">
           <view class="index-region-picker">
             <text>当前祭典区域：</text>
             <region-picker readonly="true"></region-picker>
           </view>
           <view>可以在「更多」-「祭典」中修改</view>
-        </view>
+        </view> -->
       </view>
       <view wx:else class="container index-container">
         <regular-card class="index-schedule-card" mode="regular" :list.sync="regularList" />
         <gachi-card class="index-schedule-card" mode="gachi" :list.sync="gachiList" />
         <league-card class="index-schedule-card" mode="league" :list.sync="leagueList" />
       </view>
-      <view wx:if="{{!isLatestSplatfestStart && !isLatestSplatfestEnd}}">
+      <view wx:if="{{!isLatestSplatfestEnd}}">
         <navigator url="splatfest" class="container index-container">
           <splatfest-card class="index-splatfest-card" :detail.sync="latestSplatfest"></splatfest-card>
         </navigator>
@@ -209,6 +209,18 @@ export default class Index extends wepy.page {
     }
     this.isSplatfestLoaded = true
     this.$apply()
+    this.updateLogo()
+  }
+
+  updateLogo() {
+    if (this.latestSplatfest) {
+      const alpha = this.latestSplatfest.colors.alpha.css_rgb
+      const bravo = this.latestSplatfest.colors.bravo.css_rgb
+      this.$broadcast('update-logo', {
+        alpha,
+        bravo
+      })
+    }
   }
 
   startUpdate() {

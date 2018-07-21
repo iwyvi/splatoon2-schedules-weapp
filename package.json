@@ -1,6 +1,6 @@
 {
   "name": "splatoon2-schedules-weapp",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "乌贼日历",
   "main": "dist/app.js",
   "scripts": {

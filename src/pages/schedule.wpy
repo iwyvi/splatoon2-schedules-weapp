@@ -332,6 +332,18 @@ export default class Schedule extends wepy.page {
     }
     this.isSplatfestLoaded = true
     this.$apply()
+    this.updateLogo()
+  }
+
+  updateLogo() {
+    if (this.latestSplatfest) {
+      const alpha = this.latestSplatfest.colors.alpha.css_rgb
+      const bravo = this.latestSplatfest.colors.bravo.css_rgb
+      this.$broadcast('update-logo', {
+        alpha,
+        bravo
+      })
+    }
   }
 
   startUpdate() {

@@ -3,7 +3,7 @@
     <view class="splatfest-wrap card-wrap stripe-background">
       <view class="card-title splatfest-title">
         <view>
-          <splatfest-logo :alpha="list[0].colors.alpha.css_rgb" :bravo="list[0].colors.bravo.css_rgb"></splatfest-logo>
+          <splatfest-logo></splatfest-logo>
           <text class="splatoon">Splatfest</text>
         </view>
         <icon class="splatfest-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />

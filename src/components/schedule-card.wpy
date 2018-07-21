@@ -1,7 +1,7 @@
 <template>
   <view class="schedule-card card-wrap stripe-background card-hook {{mode}}">
     <view class="schedule-card-title card-title">
-      <splatfest-logo wx:if="{{splatfest}}" class="schedule-card-splatfest-logo" :alpha="splatfest.colors.alpha.css_rgb" :bravo="splatfest.colors.bravo.css_rgb"></splatfest-logo>
+      <splatfest-logo wx:if="{{splatfest}}" class="schedule-card-splatfest-logo"></splatfest-logo>
       <image wx:else class="schedule-card-logo" mode="widthFix" src="{{logoImageSrc}}"></image>
       <text class="splatoon">{{titleText}}</text>
     </view>

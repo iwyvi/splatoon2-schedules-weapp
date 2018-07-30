@@ -43,7 +43,8 @@
                 <view class="item-detail-info item-skill">
                   <text class="item-detail-info-title splatoon">品牌傾向</text>
                   <view class="item-skill-main">
-                    <image src="{{imageWxs.getImageUrl(item.gear.brand.frequent_skill.image)}}"></image>
+                    <image wx:if="{{item.gear.brand.frequent_skill}}" src="{{imageWxs.getImageUrl(item.gear.brand.frequent_skill.image)}}"></image>
+                    <text wx:else class="splatoon">-</text>
                   </view>
                 </view>
                 <view class="item-detail-info item-detail-original">

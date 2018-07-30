@@ -24,3 +24,7 @@ npm run dev
 # 新项目直接打包可能会报错，可以先执行dev，之后再build
 npm run build
 ```
+
+# 数据来源 (Data Source)
+
+小程序所有数据（日程、打工、祭典、商店等）均来自[Splatoon2.ink](https://splatoon2.ink/)。

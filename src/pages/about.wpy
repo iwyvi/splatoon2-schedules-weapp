@@ -15,7 +15,7 @@
         <view>小程序中日程、打工、商店和祭典等数据均来自：
           <text selectable="true">https://splatoon2.ink/</text>
         </view>
-        <view>小程序中的图片目前均为直接从任天堂服务器获取</view>
+        <view>小程序中的图片部分存于 SM.MS图床，其他直接从任天堂服务器获取。</view>
         <view>小程序源码在
           <text class="splatoon2 about-word">GitHub</text>以
           <text class="splatoon2 about-word">MIT</text>协议开源：

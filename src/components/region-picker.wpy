@@ -1,7 +1,7 @@
 <template>
   <view>
     <picker @change="changeRegion" value="{{regionIndex}}" range-key="name" range="{{regionList}}" disabled="{{readonly}}">
-      <view class="picker">
+      <view class="picker {{showCaret?'caret':''}}">
         {{regionName}}
       </view>
     </picker>
@@ -54,9 +54,12 @@ export default class RegionPicker extends wepy.component {
     regionName() {
       const region = this.regionList[this.regionIndex]
       if (!region) {
-        return ''
+        return '...'
       }
       return region.name
+    },
+    showCaret() {
+      return !this.readonly
     }
   }
 
@@ -80,4 +83,38 @@ export default class RegionPicker extends wepy.component {
 }
 </script>
 <style lang="less">
+.picker {
+  position: relative;
+  &.caret {
+    &:before {
+      position: absolute;
+      top: 50%;
+      right: -11px;
+      transform: translate(.5px, .5px);
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      border-top: 4px solid #000000;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+
+    &:after {
+      position: absolute;
+      top: 50%;
+      right: -11px;
+      // transform: translateY(1.5px);
+      content: '';
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      border-top: 4px solid #ffffff;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+    }
+  }
+}
 </style>

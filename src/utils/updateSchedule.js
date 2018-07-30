@@ -5,12 +5,6 @@
 export function judgeUpdateStatus(updatedAt) {
   const now = Date.now()
   const updatedDate = new Date(updatedAt)
-  if (updatedDate.getHours % 2 === 0) {
-    if (now - ((60 * 2 - updatedDate.getMinutes()) * 60 * 1000) > updatedAt) {
-      return true
-    }
-    return false
-  }
   if (now - ((60 - updatedDate.getMinutes()) * 60 * 1000) > updatedAt) {
     return true
   }

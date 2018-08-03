@@ -102,5 +102,9 @@ module.exports = {
   '/images/coop_weapons/7076c8181ab5c49d2ac91e43a2d945a46a99c17d.png': {
     name: 'Random',
     src: '../assets/img/salmon-run-random-weapon-alias.png'
+  },
+  '/images/stage/1430e5ac7ae9396a126078eeab824a186b490b5a.png': {
+    name: 'Ancho-V Games',
+    src: 'https://i.loli.net/2018/08/03/5b63e66733678.jpg'
   }
 }

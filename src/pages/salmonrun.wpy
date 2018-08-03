@@ -215,6 +215,8 @@ export default class Salmonrun extends wepy.page {
 }
 .salmonrun-block-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
   .salmonrun-block-content-image {
     width: 45%;
     position: relative;
@@ -223,11 +225,12 @@ export default class Salmonrun extends wepy.page {
       width: 100%;
       height: 80px;
       border-radius: 15px;
+      vertical-align: top;
     }
     text {
       position: absolute;
       font-size: 1em;
-      bottom: 8px;
+      bottom: 5px;
       right: 8px;
       background-color: rgba(0, 0, 0, 0.6);
       border-radius: 10px;

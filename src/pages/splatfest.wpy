@@ -17,7 +17,7 @@
       <loader wx:if="{{list.length===0}}"></loader>
       <view wx:else class="splatfest-lists">
         <repeat for="{{list}}" key="index">
-          <view @tap="showModal" data-item="{{item}}">
+          <view class="splatfest-card-wrap" @tap="showModal" data-item="{{item}}">
             <splatfest-card :detail="item"></splatfest-card>
           </view>
         </repeat>
@@ -180,10 +180,14 @@ export default class Splatfest extends wepy.page {
 .splatfest-lists {
   margin-top: -10rpx;
 }
-.splatfest-card {
-  transform: rotate(0.8deg);
+.splatfest-card-wrap {
+  .splatfest-card {
+    transform: rotate(0.8deg);
+  }
   &:nth-child(even) {
-    transform: rotate(-0.8deg);
+    .splatfest-card {
+      transform: rotate(-0.8deg);
+    }
   }
 }
 .splatfest-region-picker {

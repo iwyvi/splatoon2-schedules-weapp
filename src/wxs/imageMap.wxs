@@ -1,110 +1,406 @@
 module.exports = {
   '/images/stage/555c356487ac3edb0088c416e8045576c6b37fcc.png': {
-    name: 'Wahoo World',
+    name: 'stage:Wahoo World',
     src: 'https://i.loli.net/2018/07/11/5b458dc2cb732.jpg'
   },
   '/images/stage/d9f0f6c330aaa3b975e572637b00c4c0b6b89f7d.png': {
-    name: 'MakoMart',
+    name: 'stage:MakoMart',
     src: 'https://i.loli.net/2018/07/11/5b458f32edca0.jpg'
   },
   '/images/stage/fc23fedca2dfbbd8707a14606d719a4004403d13.png': {
-    name: 'Humpback Pump Track',
+    name: 'stage:Humpback Pump Track',
     src: 'https://i.loli.net/2018/07/11/5b45908cd34b0.jpg'
   },
   '/images/stage/a12e4bf9f871677a5f3735d421317fbbf09e1a78.png': {
-    name: 'Kelp Dome',
+    name: 'stage:Kelp Dome',
     src: 'https://i.loli.net/2018/07/11/5b458f32ea020.jpg'
   },
   '/images/stage/187987856bf575c4155d021cb511034931d06d24.png': {
-    name: 'Starfish Mainstage',
+    name: 'stage:Starfish Mainstage',
     src: 'https://i.loli.net/2018/07/11/5b458f32e46ff.jpg'
   },
   '/images/stage/96fd8c0492331a30e60a217c94fd1d4c73a966cc.png': {
-    name: 'Moray Towers',
+    name: 'stage:Moray Towers',
     src: 'https://i.loli.net/2018/07/11/5b458dc2c5c94.jpg'
   },
   '/images/stage/98baf21c0366ce6e03299e2326fe6d27a7582dce.png': {
-    name: 'The Reef',
+    name: 'stage:The Reef',
     src: 'https://i.loli.net/2018/07/11/5b458dc30b1ca.jpg'
   },
   '/images/stage/83acec875a5bb19418d7b87d5df4ba1e38ceac66.png': {
-    name: 'Musselforge Fitness',
+    name: 'stage:Musselforge Fitness',
     src: 'https://i.loli.net/2018/07/11/5b458dc30d8a5.jpg'
   },
   '/images/stage/828e49a8414a4bbc0a5da3e61454ab148a9f4063.png': {
-    name: 'Piranha Pit',
+    name: 'stage:Piranha Pit',
     src: 'https://i.loli.net/2018/07/11/5b458f328591d.jpg'
   },
   '/images/stage/e4c4800be9fff23112334b193abb0fdf36e05933.png': {
-    name: 'Camp Triggerfish',
+    name: 'stage:Camp Triggerfish',
     src: 'https://i.loli.net/2018/07/11/5b458f32b3c8d.jpg'
   },
   '/images/stage/8cab733d543efc9dd561bfcc9edac52594e62522.png': {
-    name: 'Goby Arena',
+    name: 'stage:Goby Arena',
     src: 'https://i.loli.net/2018/07/11/5b458dc2cbcc3.jpg'
   },
   '/images/stage/23259c80272f45cea2d5c9e60bc0cedb6ce29e46.png': {
-    name: 'Shellendorf Institute',
+    name: 'stage:Shellendorf Institute',
     src: 'https://i.loli.net/2018/07/11/5b458f3284cdc.jpg'
   },
   '/images/stage/65c99da154295109d6fe067005f194f681762f8c.png': {
-    name: 'Walleye Warehouse',
+    name: 'stage:Walleye Warehouse',
     src: 'https://i.loli.net/2018/07/11/5b458dc30b338.jpg'
   },
   '/images/stage/dcf332bdcc80f566f3ae59c1c3a29bc6312d0ba8.png': {
-    name: 'Arowana Mall',
+    name: 'stage:Arowana Mall',
     src: 'https://i.loli.net/2018/07/11/5b458f32e2cbf.jpg'
   },
   '/images/stage/758338859615898a59e93b84f7e1ca670f75e865.png': {
-    name: 'Blackbelly Skatepark',
+    name: 'stage:Blackbelly Skatepark',
     src: 'https://i.loli.net/2018/07/11/5b458f32e82d5.jpg'
   },
   '/images/stage/5c030a505ee57c889d3e5268a4b10c1f1f37880a.png': {
-    name: 'Inkblot Art Academy',
+    name: 'stage:Inkblot Art Academy',
     src: 'https://i.loli.net/2018/07/11/5b458dc30b1b7.jpg'
   },
   '/images/stage/0907fc7dc325836a94d385919fe01dc13848612a.png': {
-    name: 'Port Mackerel',
+    name: 'stage:Port Mackerel',
     src: 'https://i.loli.net/2018/07/11/5b458f32ec02f.jpg'
   },
   '/images/stage/98a7d7a4009fae9fb7479554535425a5a604e88e.png': {
-    name: 'New Albacore Hotel',
+    name: 'stage:New Albacore Hotel',
     src: 'https://i.loli.net/2018/07/11/5b458dc2ca6a9.jpg'
   },
   '/images/stage/8c95053b3043e163cbfaaf1ec1e5f3eb770e5e07.png': {
-    name: 'Snapper Canal',
+    name: 'stage:Snapper Canal',
     src: 'https://i.loli.net/2018/07/11/5b458dc30b40f.jpg'
   },
   '/images/stage/070d7ee287fdf3c5df02411950c2a1ce5b238746.png': {
-    name: 'Manta Maria',
+    name: 'stage:Manta Maria',
     src: 'https://i.loli.net/2018/07/11/5b458dc2cb029.jpg'
   },
   '/images/stage/bc794e337900afd763f8a88359f83df5679ddf12.png': {
-    name: 'Sturgeon Shipyard',
+    name: 'stage:Sturgeon Shipyard',
     src: 'https://i.loli.net/2018/07/11/5b458f32e64f9.jpg'
   },
   '/images/coop_stage/6d68f5baa75f3a94e5e9bfb89b82e7377e3ecd2c.png': {
-    name: 'Lost Outpost',
+    name: 'coop_stage:Lost Outpost',
     src: 'https://i.loli.net/2018/07/11/5b45b64689f34.jpg'
   },
   '/images/coop_stage/e07d73b7d9f0c64e552b34a2e6c29b8564c63388.png': {
-    name: 'Marooner\'s Bay',
+    name: 'coop_stage:Marooner\'s Bay',
     src: 'https://i.loli.net/2018/07/11/5b45b64654938.jpg'
   },
   '/images/coop_stage/65c68c6f0641cc5654434b78a6f10b0ad32ccdee.png': {
-    name: 'Spawning Grounds',
+    name: 'coop_stage:Spawning Grounds',
     src: 'https://i.loli.net/2018/07/11/5b45b64680a11.jpg'
   },
   '/images/coop_stage/e9f7c7b35e6d46778cd3cbc0d89bd7e1bc3be493.png': {
-    name: 'Salmonid Smokeyard',
+    name: 'coop_stage:Salmonid Smokeyard',
     src: 'https://i.loli.net/2018/07/11/5b45b64652a8e.jpg'
   },
   '/images/coop_weapons/7076c8181ab5c49d2ac91e43a2d945a46a99c17d.png': {
-    name: 'Random',
+    name: 'coop_weapons:Random',
     src: '../assets/img/salmon-run-random-weapon-alias.png'
   },
   '/images/stage/1430e5ac7ae9396a126078eeab824a186b490b5a.png': {
-    name: 'Ancho-V Games',
+    name: 'stage:Ancho-V Games',
     src: 'https://i.loli.net/2018/08/03/5b63e66733678.jpg'
+  },
+  '/images/weapon/6abb5804369429bf96bb32c14d899c4b9da3e431.png': {
+    name: 'weapon:Goo Tuber',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa18440.png'
+  },
+  '/images/weapon/2ec8112dc3b29c82869810743473655f4427e65a.png': {
+    name: 'weapon:Jet Squelcher',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa2a27c.png'
+  },
+  '/images/weapon/3a92a1fa8320222ca300d3c3ac25474c5077c304.png': {
+    name: 'weapon:Hydra Splatling',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa2a79e.png'
+  },
+  '/images/weapon/01b9c027ce23361582f6fd4c5ade502e5e5211b2.png': {
+    name: 'weapon:Range Blaster',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa2aa5c.png'
+  },
+  '/images/weapon/5f565ede7ae220d5b1d453b3ef55b8d20d7b9a2a.png': {
+    name: 'weapon:Octobrush',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa3c724.png'
+  },
+  '/images/weapon/05d735502f00fe9cbcaca8714f7102653da888fd.png': {
+    name: 'weapon:Splattershot Pro',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa3c704.png'
+  },
+  '/images/weapon/3abcd1e1152e6d819bee363311edcf4737d14a45.png': {
+    name: 'weapon:Dualie Squelchers',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa3d4a4.png'
+  },
+  '/images/weapon/3e69eaa1b1463689ddbe4fe23661f007dc216b08.png': {
+    name: 'weapon:.52 Gal',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa3d5f7.png'
+  },
+  '/images/weapon/5e26f6a8217836c25ac0c75f05b13e6051bdc644.png': {
+    name: 'weapon:Blaster',
+    src: 'https://i.loli.net/2018/08/13/5b7145fa3d722.png'
+  },
+  '/images/weapon/0a362970b38864f80cca68fed6deb43354333703.png': {
+    name: 'weapon:Rapid Blaster',
+    src: 'https://i.loli.net/2018/08/13/5b7148c753e48.png'
+  },
+  '/images/weapon/78f0df8c7b0f625d91f5b4ea953b10872109c77b.png': {
+    name: 'weapon:Dark Tetra Dualies',
+    src: 'https://i.loli.net/2018/08/13/5b714904458df.png'
+  },
+  '/images/weapon/7fa3c37a222e3acd2e41cd8c7554a94b27a9f46b.png': {
+    name: 'weapon:Glooga Dualies',
+    src: 'https://i.loli.net/2018/08/13/5b714904470d3.png'
+  },
+  '/images/weapon/8f342949acc700b1603425071620dbae8536dbed.png': {
+    name: 'weapon:H-3 Nozzlenose',
+    src: 'https://i.loli.net/2018/08/13/5b7149044889e.png'
+  },
+  '/images/weapon/029c670a12106e979c7b775979f86e5759784e3c.png': {
+    name: 'weapon:E-liter 4K',
+    src: 'https://i.loli.net/2018/08/13/5b71490456d3b.png'
+  },
+  '/images/weapon/9a1adf1c38c1a017bad0be0cac13255ae0f8d25b.png': {
+    name: 'weapon:Splat Brella',
+    src: 'https://i.loli.net/2018/08/13/5b714904583e8.png'
+  },
+  '/images/weapon/42e1e9d865f3c0f23d49d05a99783d25d023b89f.png': {
+    name: 'weapon:E-liter 4K Scope',
+    src: 'https://i.loli.net/2018/08/13/5b71490459c77.png'
+  },
+  '/images/weapon/33b212a5ed9d0ab13bc06efa634ce52e8560b68b.png': {
+    name: 'weapon:Aerospray MG',
+    src: 'https://i.loli.net/2018/08/13/5b7149045b21a.png'
+  },
+  '/images/weapon/38fd7f743bd9db2e2dfb2b8cd81576028ee7ab89.png': {
+    name: 'weapon:Squeezer',
+    src: 'https://i.loli.net/2018/08/13/5b7149045c630.png'
+  },
+  '/images/weapon/60cff5009fde2559f7a4106aafcfd1a3c724971f.png': {
+    name: 'weapon:Sploosh-o-matic',
+    src: 'https://i.loli.net/2018/08/13/5b7149045ddac.png'
+  },
+  '/images/weapon/34f78531f33c2952f9522eeb550838070ecde432.png': {
+    name: 'weapon:Clash Blaster',
+    src: 'https://i.loli.net/2018/08/13/5b7149045f5da.png'
+  },
+  '/images/weapon/2385e4a32df2857b67e1b9b4f622089e9da36bbc.png': {
+    name: 'weapon:Undercover Brella',
+    src: 'https://i.loli.net/2018/08/13/5b714ad0cf262.png'
+  },
+  '/images/weapon/41001d5ba8ce0f05aaa00f9a0d6368b1fa109c73.png': {
+    name: 'weapon:L-3 Nozzlenose',
+    src: 'https://i.loli.net/2018/08/13/5b714ad0d0864.png'
+  },
+  '/images/weapon/91208c6fe9fc4e62e81412d6e772fc696b1a7317.png': {
+    name: 'weapon:Rapid Blaster Pro',
+    src: 'https://i.loli.net/2018/08/13/5b714ad0e1c93.png'
+  },
+  '/images/weapon/193d0700fdbd08d58c72b7ac0e282984e77a7ffc.png': {
+    name: 'weapon:Carbon Roller',
+    src: 'https://i.loli.net/2018/08/13/5b714ad0e355f.png'
+  },
+  '/images/weapon/928d52eca6c3f907f7c6f9132236cbf92e658466.png': {
+    name: 'weapon:Splatterscope',
+    src: 'https://i.loli.net/2018/08/13/5b714ad0f32de.png'
+  },
+  '/images/weapon/739b0f54bae840643b470c054808a3740c230a74.png': {
+    name: 'weapon:Slosher',
+    src: 'https://i.loli.net/2018/08/13/5b714ad100ab0.png'
+  },
+  '/images/weapon/377fede68e69d13c1790fc90c3cb8c912a2a89db.png': {
+    name: 'weapon:Dapple Dualies',
+    src: 'https://i.loli.net/2018/08/13/5b714ad102500.png'
+  },
+  '/images/weapon/331b77152310658a25ab934b91cf44e0c4912968.png': {
+    name: 'weapon:Tenta Brella',
+    src: 'https://i.loli.net/2018/08/13/5b714ad103c88.png'
+  },
+  '/images/weapon/585e0e72053689bbab848d97ec07bac4ea769e68.png': {
+    name: 'weapon:Mini Splatling',
+    src: 'https://i.loli.net/2018/08/13/5b714ad105323.png'
+  },
+  '/images/weapon/695cedb1ff72589173c85ce61ad4dbc9e025249a.png': {
+    name: 'weapon:Nautilus 47',
+    src: 'https://i.loli.net/2018/08/13/5b714ad106b95.png'
+  },
+  '/images/weapon/c1befd17d09a527b66f9d2c8a70849a4969642e4.png': {
+    name: 'weapon:Tri-Slosher',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a275ec.png'
+  },
+  '/images/weapon/98282e995fc07e2f2ba6157bcfdc997c5161f309.png': {
+    name: 'weapon:Splattershot',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a28e63.png'
+  },
+  '/images/weapon/a0730bdef035d247bcc5d2361abb561aa4a4d6ed.png': {
+    name: 'weapon:Classic Squiffer',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a39578.png'
+  },
+  '/images/weapon/a696c21270a22fdb9babb63512031f5283be7c31.png': {
+    name: 'weapon:.96 Gal',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a3ac0e.png'
+  },
+  '/images/weapon/626210255f99cb22bee1eded39457c51aa9622aa.png': {
+    name: 'weapon:Splat Roller',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a3c108.png'
+  },
+  '/images/weapon/2764365e99414ebb3f8b62548beb4dd5f65b70b2.png': {
+    name: 'weapon:Luna Blaster',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a3d7ac.png'
+  },
+  '/images/weapon/bbabdf1a9ad9fc2217c21cc35993c04ee9bc58b5.png': {
+    name: 'weapon:Bamboozler 14 Mk I',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a4b61e.png'
+  },
+  '/images/weapon/be61eacdea2c695d28ec5d60e1a04fafbc384736.png': {
+    name: 'weapon:Splash-o-matic',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a4ced9.png'
+  },
+  '/images/weapon/bf0d4b5ddc35a533fc5080d025707f386b2a5daa.png': {
+    name: 'weapon:Explosher',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a4e70a.png'
+  },
+  '/images/weapon/b3ae201685123edb72b1fb2686eebd3b1b58437f.png': {
+    name: 'weapon:Dynamo Roller',
+    src: 'https://i.loli.net/2018/08/13/5b714c4a4fcd3.png'
+  },
+  '/images/weapon/e5be617760b68c9a1e3fc778275a6f4a1aedc1e6.png': {
+    name: 'weapon:Inkbrush',
+    src: 'https://i.loli.net/2018/08/13/5b714daa1b26d.png'
+  },
+  '/images/weapon/e8d17d8b73fc1eaa3e3672c54e8800163d909ede.png': {
+    name: 'weapon:Bloblobber',
+    src: 'https://i.loli.net/2018/08/13/5b714daa2e3f3.png'
+  },
+  '/images/weapon/f1419d88f30dfacdb94a8122ccdd8c14bbadc7c4.png': {
+    name: 'weapon:Splattershot Jr.',
+    src: 'https://i.loli.net/2018/08/13/5b714daa40fed.png'
+  },
+  '/images/weapon/fdcd7cbe806eb84df374ea8f7e074ac9637d4762.png': {
+    name: 'weapon:N-ZAP \'85',
+    src: 'https://i.loli.net/2018/08/13/5b714daa415d9.png'
+  },
+  '/images/weapon/c8d18b0264f1acd1e7d374a8b2c3b6fc526c790a.png': {
+    name: 'weapon:Heavy Splatling',
+    src: 'https://i.loli.net/2018/08/13/5b714daa41a42.png'
+  },
+  '/images/weapon/d359c8312037a0c98db73cb0a4122cf2c5665f77.png': {
+    name: 'weapon:Splat Charger',
+    src: 'https://i.loli.net/2018/08/13/5b714daa52a0b.png'
+  },
+  '/images/weapon/c60760efc43e3a509187a1b714be477f7fb6c514.png': {
+    name: 'weapon:Splat Dualies',
+    src: 'https://i.loli.net/2018/08/13/5b714daa53757.png'
+  },
+  '/images/weapon/d0145bac97eabd1046263c8856f3e14c68547a90.png': {
+    name: 'weapon:Flingza Roller',
+    src: 'https://i.loli.net/2018/08/13/5b714daa5321f.png'
+  },
+  '/images/weapon/e3a38f4e457c8d8d7e5629d7f8508487c6c12746.png': {
+    name: 'weapon:Sloshing Machine',
+    src: 'https://i.loli.net/2018/08/13/5b714daa53b6f.png'
+  },
+  '/images/weapon/dee7a86b925710935d1ac9d3039d4867bc9ea5db.png': {
+    name: 'weapon:Ballpoint Splatling',
+    src: 'https://i.loli.net/2018/08/13/5b714daa53fae.png'
+  },
+  '/images/festival/64cb995153229865fb6897708b3d54eb.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cc7bb08.png'
+  },
+  '/images/festival/9f1730d002628e22c74f52f6dbd8622a.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150ceccd54.png'
+  },
+  '/images/festival/16d799e667b6a984ed1597e9e909c9d3.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cf0fda7.png'
+  },
+  '/images/festival/2d775938af4c25ccca0782dcdd2603ef.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cf2227e.png'
+  },
+  '/images/festival/1e80fa852bb8a4409005c92a3e767f51.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cf6cc39.png'
+  },
+  '/images/festival/4b6bb72e3ed978f5be802fc40a67db3e.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cf6c57b.png'
+  },
+  '/images/festival/027fc01e0ec475872977753664e7cebc.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cf7ea18.png'
+  },
+  '/images/festival/3aa4fbf7562d762c1d336c4fdbce8dfa.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150cfa5330.png'
+  },
+  '/images/festival/2c761e189928313b8fd7edb9f8e60248.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150d069d1b.png'
+  },
+  '/images/festival/3c0c84f2a612f654cf4f3712530c8cbb.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7150d16634a.png'
+  },
+  '/images/festival/903196d5d5ac66363d18101e92d06883.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71525650ade.png'
+  },
+  '/images/festival/96f092aaa42e8d64ac3d45245766d6b4.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715257531e6.png'
+  },
+  '/images/festival/89c066bffb96ed72f7ff129acb7b7e92.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715258148be.png'
+  },
+  '/images/festival/816e592b8b504c8a9a3abbcb295a7d98.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71525826d2b.png'
+  },
+  '/images/festival/75652feea7076d4c57eeffc2ccc787e7.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7152583ab01.png'
+  },
+  '/images/festival/941d35ffa3742692c62965cc87876a30.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715259115b9.png'
+  },
+  '/images/festival/6136a99b7ef384e951f1b5c8c1032c4a.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71525935486.png'
+  },
+  '/images/festival/640c5aa1d2f83c3b9b7a0a06fd3585a8.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7152593753a.png'
+  },
+  '/images/festival/65c910fd101580b1ff6d2b19d31e2178.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71525a53233.png'
+  },
+  '/images/festival/69caeed2847f9b2a0d3f7b014a8d3a8e.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71525a55d49.png'
+  },
+  '/images/festival/a6573a7f5f6b3df41784fd3a5de57e57.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71535238346.png'
+  },
+  '/images/festival/e47c7ad16f4733b28db31301543a23c7.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715352d8141.png'
+  },
+  '/images/festival/f9ee1526ac5c37cd3d87da5107b2aa9a.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715352da18e.png'
+  },
+  '/images/festival/ee7fcbeb958bfffbb17afb54c4de2d25.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7153532bfa6.png'
+  },
+  '/images/festival/d72170698dc7f9d93eca1d783f69111e.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7153533d5b0.png'
+  },
+  '/images/festival/cd7322e6ee0545d354b525178ff7512b.png': {
+    src: 'https://i.loli.net/2018/08/13/5b7153533f08e.png'
+  },
+  '/images/festival/c8e8fde799fd509053aa694e0673f27a.png': {
+    src: 'https://i.loli.net/2018/08/13/5b715355b6285.png'
+  },
+  '/images/festival/c191f55f6f7eaa1224c3ffc2238e5e2d.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71535b39b54.png'
+  },
+  '/images/festival/ac4461bcca1750bba6ff0187c226936a.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71535b40268.png'
+  },
+  '/images/festival/d850d9c3bcc9511cfbfb268d424758f0.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71535c0fcc0.png'
+  },
+  '/images/festival/f47349bfcac4633dd22bdae79affd0d8.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71543b440aa.png'
+  },
+  '/images/festival/f58424b54825c0bfd0aebfeb09dff036.png': {
+    src: 'https://i.loli.net/2018/08/13/5b71543b4603d.png'
   }
 }

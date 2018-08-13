@@ -144,41 +144,41 @@ export default class Splatfest extends wepy.page {
 </script>
 <style lang="less">
 .splatfest-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 .splatfest-wrap {
   color: white;
   background-color: #aaaaaa;
   transform: none;
-  padding-bottom: 30px;
+  padding-bottom: 60rpx;
 }
 .splatfest-title {
   justify-content: space-between;
-  margin-top: 10px;
-  margin-bottom: 15px;
+  margin-top: 20rpx;
+  margin-bottom: 30rpx;
   view {
     display: flex;
     align-items: center;
     text {
       font-size: 56rpx;
-      margin-left: 10px;
+      margin-left: 20rpx;
       line-height: 1em;
     }
   }
   .splatfest-close-icon {
     display: block;
     border-radius: 50%;
-    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 2rpx 2rpx 0 rgba(0, 0, 0, 0.5);
   }
 }
 .splatfest-hint {
   font-size: 28rpx;
-  text-shadow: 1px 1px 0 #000;
+  text-shadow: 2rpx 2rpx 0 #000;
   color: #f0f0f0;
 }
 .splatfest-lists {
-  margin-top: -5px;
+  margin-top: -10rpx;
 }
 .splatfest-card {
   transform: rotate(0.8deg);

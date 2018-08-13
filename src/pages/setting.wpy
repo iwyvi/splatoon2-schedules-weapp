@@ -58,16 +58,16 @@ export default class Setting extends wepy.page {
 .setting-header {
   display: flex;
   flex-direction: column;
-  height: 200px;
+  height: 400rpx;
   width: 100%;
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
   .setting-header-background {
-    width: 250px;
-    height: 200px;
+    width: 500rpx;
+    height: 400rpx;
     position: absolute;
     z-index: -1;
     top: 0;
@@ -78,11 +78,11 @@ export default class Setting extends wepy.page {
     justify-content: center;
     align-items: center;
     .setting-logo {
-      margin: 5px 0 10px;
-      width: 60px;
-      height: 60px;
+      margin: 10rpx 0 20rpx;
+      width: 120rpx;
+      height: 120rpx;
       border-radius: 50%;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
     }
     text {
       line-height: 1em;
@@ -94,10 +94,10 @@ export default class Setting extends wepy.page {
   width: 90%;
 }
 .setting-item {
-  margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  border-radius: 15px;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+  padding: 20rpx;
+  border-radius: 30rpx;
   position: relative;
   transform: rotate(0.2deg);
   background-color: #808080;

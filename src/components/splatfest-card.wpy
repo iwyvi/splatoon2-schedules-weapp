@@ -44,7 +44,7 @@ export default class SplatfestCard extends wepy.component {
 </script>
 <style lang="less">
 .splatfest-card {
-  margin-top: 35px;
+  margin-top: 70rpx;
   width: 100%;
   color: #ffffff;
   background-color: #444444;
@@ -56,13 +56,13 @@ export default class SplatfestCard extends wepy.component {
 }
 .splatfest-card-title {
   line-height: 1em;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
   display: flex;
   justify-content: center;
 }
 .splatfest-card-content {
-  padding-bottom: 37px;
+  padding-bottom: 74rpx;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -72,12 +72,12 @@ export default class SplatfestCard extends wepy.component {
     display: flex;
     justify-content: center;
     line-height: 1em;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    bottom: 10px;
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
+    bottom: 20rpx;
     text {
-      padding-left: 30px;
-      padding-right: 30px;
+      padding-left: 60rpx;
+      padding-right: 60rpx;
     }
   }
 }
@@ -86,10 +86,10 @@ export default class SplatfestCard extends wepy.component {
   position: relative;
   .splatfest-panel-win {
     position: absolute;
-    width: 80px;
-    height: 70px;
-    top: -50px;
-    right: -18px;
+    width: 160rpx;
+    height: 140rpx;
+    top: -100rpx;
+    right: -36rpx;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +98,7 @@ export default class SplatfestCard extends wepy.component {
     font-size: 0.8em;
     &.left {
       right: auto;
-      left: -18px;
+      left: -36rpx;
     }
     .splatfest-panel-win-mask {
       position: absolute;
@@ -112,13 +112,13 @@ export default class SplatfestCard extends wepy.component {
   }
   .splatfest-panel-image {
     width: 100%;
-    height: 220px;
+    height: 440rpx;
     vertical-align: top;
     background-color: #444444;
   }
   .splatfest-panel-names {
     position: absolute;
-    bottom: 8px;
+    bottom: 16rpx;
     line-height: 1.4em;
     font-size: 0.8em;
     max-width: 50%;
@@ -126,11 +126,11 @@ export default class SplatfestCard extends wepy.component {
     overflow: hidden;
     white-space: nowrap;
     &.splatfest-panel-alpha-name {
-      left: 6px;
+      left: 12rpx;
     }
     &.splatfest-panel-bravo-name {
       text-align: right;
-      right: 6px;
+      right: 12rpx;
     }
   }
 }

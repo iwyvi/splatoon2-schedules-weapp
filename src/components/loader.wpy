@@ -25,8 +25,8 @@ export default class Loader extends wepy.component {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
 }
 .la-ball-spin-rotate,
 .la-ball-spin-rotate > view {
@@ -50,8 +50,8 @@ export default class Loader extends wepy.component {
   border: 0 solid currentColor;
 }
 .la-ball-spin-rotate {
-  width: 32px;
-  height: 32px;
+  width: 64rpx;
+  height: 64rpx;
   -webkit-animation: ball-spin-rotate 2s infinite linear;
   -moz-animation: ball-spin-rotate 2s infinite linear;
   -o-animation: ball-spin-rotate 2s infinite linear;
@@ -77,16 +77,16 @@ export default class Loader extends wepy.component {
   animation-delay: -1s;
 }
 .la-ball-spin-rotate.la-sm {
-  width: 16px;
-  height: 16px;
+  width: 32rpx;
+  height: 32rpx;
 }
 .la-ball-spin-rotate.la-2x {
-  width: 64px;
-  height: 64px;
+  width: 128rpx;
+  height: 128rpx;
 }
 .la-ball-spin-rotate.la-3x {
-  width: 96px;
-  height: 96px;
+  width: 192rpx;
+  height: 192rpx;
 }
 @-webkit-keyframes ball-spin-rotate {
   100% {

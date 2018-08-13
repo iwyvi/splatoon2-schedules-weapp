@@ -89,31 +89,30 @@ export default class RegionPicker extends wepy.component {
     &:before {
       position: absolute;
       top: 50%;
-      right: -11px;
-      transform: translate(.5px, .5px);
+      right: -22rpx;
+      transform: translate(1rpx, 1rpx);
       content: '';
       display: inline-block;
       width: 0;
       height: 0;
       vertical-align: middle;
-      border-top: 4px solid #000000;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
+      border-top: 8rpx solid #000000;
+      border-right: 8rpx solid transparent;
+      border-left: 8rx solid transparent;
     }
 
     &:after {
       position: absolute;
       top: 50%;
-      right: -11px;
-      // transform: translateY(1.5px);
+      right: -22rpx;
       content: '';
       display: inline-block;
       width: 0;
       height: 0;
       vertical-align: middle;
-      border-top: 4px solid #ffffff;
-      border-right: 4px solid transparent;
-      border-left: 4px solid transparent;
+      border-top: 8rpx solid #ffffff;
+      border-right: 8rpx solid transparent;
+      border-left: 8rpx solid transparent;
     }
   }
 }

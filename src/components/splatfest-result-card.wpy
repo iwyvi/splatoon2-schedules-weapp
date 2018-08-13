@@ -94,16 +94,16 @@ export default class SplatfestResultCard extends wepy.component {
   background-color: #f0f0f0;
   transform: rotate(1deg);
   width: 80%;
-  min-height: 200px;
+  min-height: 400rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 15px;
+  padding-bottom: 30rpx;
 }
 .splatfest-result-badges {
   display: flex;
   justify-content: space-between;
-  margin-top: 5px;
+  margin-top: 10rpx;
   width: 100%;
   .splatfest-result-badge {
     width: 40%;
@@ -111,25 +111,25 @@ export default class SplatfestResultCard extends wepy.component {
     justify-content: center;
     align-items: center;
     image {
-      width: 40px;
-      height: 40px;
+      width: 80rpx;
+      height: 80rpx;
     }
   }
 }
 .splatfest-result-content {
-  padding: 0 5px;
+  padding: 0 10rpx;
   width: 100%;
   .splatfest-result-item {
     color: #ffffff;
-    border-radius: 100px;
+    border-radius: 200rpx;
     background-color: rgba(0, 0, 0, 0.6);
     line-height: 1em;
     display: flex;
     justify-content: space-between;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    margin-top: 30rpx;
+    margin-bottom: 30rpx;
     text-align: center;
     .splatfest-result-rate {
       width: 40%;
@@ -140,12 +140,12 @@ export default class SplatfestResultCard extends wepy.component {
       z-index: 0;
       text {
         font-size: 26rpx;
-        margin-left: -4px;
+        margin-left: -8rpx;
       }
       .splatfest-result-win {
         position: absolute;
-        width: 56px;
-        height: 50px;
+        width: 112rpx;
+        height: 100rpx;
         z-index: -1;
       }
     }
@@ -160,11 +160,11 @@ export default class SplatfestResultCard extends wepy.component {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 60rpx;
+  padding-right: 60rpx;
   text {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 10rpx;
+    padding-right: 10rpx;
   }
 }
 </style>

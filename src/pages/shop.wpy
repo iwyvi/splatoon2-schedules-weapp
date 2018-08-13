@@ -191,26 +191,26 @@ export default class Shop extends wepy.page {
 </script>
 <style lang="less">
 .shop-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 .shop-wrap {
   color: #ffffff;
   background-color: #fb746e;
 }
 .shop-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
   text {
     font-size: 56rpx;
     line-height: 1em;
   }
 }
 .shop-hint {
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
   font-size: 28rpx;
   color: #f0f0f0;
-  text-shadow: 1px 1px 0 #000;
+  text-shadow: 2rpx 2rpx 0 #000;
   text {
     display: block;
   }
@@ -218,11 +218,11 @@ export default class Shop extends wepy.page {
 .shop-item {
   font-size: 32rpx;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 10px 10px 15px;
-  margin-bottom: 15px;
+  border-radius: 30rpx;
+  padding: 20rpx 20rpx 30rpx;
+  margin-bottom: 30rpx;
   .item-title {
-    margin-left: 10px;
+    margin-left: 20rpx;
     text {
       line-height: 1em;
     }
@@ -230,15 +230,15 @@ export default class Shop extends wepy.page {
   .item-content {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 20rpx;
     .item-skill {
       display: flex;
       align-items: center;
       .item-skill-main {
         image {
-          padding: 3px;
-          width: 23px;
-          height: 23px;
+          padding: 5rpx;
+          width: 46rpx;
+          height: 46rpx;
           background-color: #000000;
           border-radius: 50%;
         }
@@ -246,8 +246,8 @@ export default class Shop extends wepy.page {
       .item-skill-sub {
         display: flex;
         image {
-          width: 18px;
-          height: 18px;
+          width: 36rpx;
+          height: 36rpx;
         }
       }
     }
@@ -256,9 +256,9 @@ export default class Shop extends wepy.page {
       align-items: center;
       justify-content: center;
       image {
-        width: 20px;
-        height: 20px;
-        margin-right: 10px;
+        width: 40rpx;
+        height: 40rpx;
+        margin-right: 20rpx;
       }
       text {
         line-height: 1em;
@@ -266,21 +266,21 @@ export default class Shop extends wepy.page {
     }
     .item-card-wrap {
       width: 50%;
-      padding: 0 5px;
+      padding: 0 10rpx;
       .item-card {
         width: 100%;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        border-radius: 15px;
+        box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
+        border-radius: 30rpx;
         background-color: rgba(255, 255, 255, 0.9);
         position: relative;
-        padding-top: 35px;
+        padding-top: 70rpx;
         display: flex;
         color: #000000;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        -webkit-mask-size: 500px 800px;
-        mask-size: 500px 800px;
+        -webkit-mask-size: 1000rpx 1600rpx;
+        mask-size: 1000rpx 1600rpx;
       }
     }
   }
@@ -291,23 +291,23 @@ export default class Shop extends wepy.page {
   }
   .item-brand {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 14rpx;
+    left: 14rpx;
     image {
-      width: 29px;
-      height: 29px;
+      width: 58rpx;
+      height: 58rpx;
     }
   }
   .item-skill {
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 14rpx;
+    right: 14rpx;
     flex-direction: column;
     .item-skill-sub {
-      margin-top: -1px;
+      margin-top: -2rpx;
       flex-direction: column;
       image {
-        margin-bottom: 3px;
+        margin-bottom: 6rpx;
       }
     }
   }
@@ -317,11 +317,11 @@ export default class Shop extends wepy.page {
     flex-direction: column;
     align-items: center;
     image {
-      width: 100px;
-      height: 60px;
+      width: 180rpx;
+      height: 180rpx;
     }
     text {
-      margin-top: 5px;
+      margin-top: 10rpx;
       text-align: center;
       text-shadow: none;
       white-space: normal;
@@ -329,10 +329,10 @@ export default class Shop extends wepy.page {
     }
   }
   .item-cash {
-    margin-top: 10px;
+    margin-top: 20rpx;
     width: 100%;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
     color: #ffffff;
     &.head {
       background-color: #ee156e;
@@ -347,7 +347,7 @@ export default class Shop extends wepy.page {
 }
 .item-detail {
   .item-card {
-    padding-bottom: 15px;
+    padding-bottom: 30rpx;
     transform: rotate(0.3deg);
   }
   .item-detail-info {
@@ -355,22 +355,22 @@ export default class Shop extends wepy.page {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 15px;
+    margin-bottom: 20rpx;
     &:last-child {
       margin-bottom: 0;
     }
     .item-detail-info-title {
       text-shadow: none;
       line-height: 1em;
-      margin-bottom: 8px;
+      margin-bottom: 16rpx;
     }
   }
   .item-detail-original {
     .item-skill {
-      margin-bottom: 5px;
+      margin-bottom: 10rpx;
       .item-skill-sub {
         image {
-          margin-left: 5px;
+          margin-left: 10rpx;
         }
       }
     }

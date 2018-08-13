@@ -45,16 +45,16 @@ export default class About extends wepy.page {
 </script>
 <style lang="less">
 .about-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 .about-wrap {
   background-color: #f8dc47;
   color: #ffffff;
 }
 .about-title {
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
   text {
     font-size: 56rpx;
     line-height: 1em;
@@ -62,27 +62,27 @@ export default class About extends wepy.page {
 }
 .about-content {
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
+  border-radius: 30rpx;
   font-size: 32rpx;
-  padding: 10px;
+  padding: 20rpx;
   text {
     line-height: 1.5em;
   }
   view {
-    margin-bottom: 10px;
+    margin-bottom: 20rpx;
     &:last-child {
-      margin-bottom: 5px;
+      margin-bottom: 10rpx;
     }
   }
   .hr {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
     height: 0;
-    border-bottom: 1px dashed #ffffff;
+    border-bottom: 2rpx dashed #ffffff;
   }
   .about-word {
-    margin-left: 1px;
-    margin-right: 6px;
+    margin-left: 2rpx;
+    margin-right: 12rpx;
   }
 }
 </style>

@@ -52,8 +52,8 @@
 </template>
 <style lang="less">
 .schedule-container {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
 }
 .schedule-wrap {
   color: white;
@@ -61,43 +61,43 @@
 
 .splatfest {
   .schedule-title {
-    margin-bottom: 20px;
+    margin-bottom: 40rpx;
   }
 }
 
 .schedule-title {
   justify-content: space-between;
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
   view {
     display: flex;
     align-items: center;
     .schedule-logo {
-      width: 40px;
+      width: 80rpx;
       height: 0;
     }
     text {
       font-size: 56rpx;
-      margin-left: 10px;
+      margin-left: 20rpx;
       line-height: 1em;
     }
   }
   .schedule-close-icon {
     display: block;
     border-radius: 50%;
-    box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+    box-shadow: 2rpx 2rpx 0 rgba(0, 0, 0, 0.5);
   }
 }
 .schedule-list {
   font-size: 24rpx;
-  margin-bottom: 15px;
+  margin-bottom: 30rpx;
   .schedule-list-title {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: 0 5px;
+    margin-top: 10rpx;
+    margin-bottom: 20rpx;
+    padding: 0 10rpx;
     text {
       line-height: 1em;
       color: #eeeeee;
@@ -113,22 +113,22 @@
     & > view {
       width: 50%;
       position: relative;
-      padding: 0 5px;
+      padding: 0 10rpx;
       image {
         width: 100%;
-        height: 80px;
-        border-radius: 15px;
+        height: 160rpx;
+        border-radius: 30rpx;
         vertical-align: top;
       }
       text {
         position: absolute;
         font-size: 1em;
-        bottom: 5px;
-        right: 8px;
+        bottom: 10rpx;
+        right: 16rpx;
         background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
+        border-radius: 20rpx;
         line-height: 1em;
-        padding: 5px 5px;
+        padding: 10rpx 10rpx;
       }
     }
   }
@@ -139,18 +139,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5px;
-  padding: 0 5px 10px;
+  margin-bottom: 10rpx;
+  padding: 0 10rpx 20rpx;
   font-size: 24rpx;
   .schedule-card-splatfest-block-title {
-    margin-top: 5px;
+    margin-top: 10rpx;
     position: relative;
     .block-banner {
       display: flex;
       flex-direction: column;
       align-items: center;
       line-height: 2.2em;
-      padding: 2px 35px 0;
+      padding: 4rpx 70rpx 0;
       .splatfest-name {
         font-size: 1.4em;
       }
@@ -160,23 +160,23 @@
     }
     .splatfest-badge {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 80rpx;
+      height: 80rpx;
       &.splatfest-badge-alpha {
-        left: -10px;
-        top: -15px;
+        left: -20rpx;
+        top: -30rpx;
         transform: rotate(-10deg);
       }
       &.splatfest-badge-bravo {
-        right: -12px;
-        bottom: -10px;
+        right: -24rpx;
+        bottom: -20rpx;
         transform: rotate(10deg);
       }
     }
   }
   .schedule-card-splatfest-block-images {
     display: block;
-    max-width: 180px;
+    max-width: 360rpx;
     width: 100%;
     display: flex;
     & > view {
@@ -185,18 +185,18 @@
       padding: 0;
       image {
         width: 100%;
-        height: 80px;
-        border-radius: 15px;
+        height: 160rpx;
+        border-radius: 30rpx;
       }
       text {
         position: absolute;
         font-size: 1em;
-        bottom: 8px;
-        right: 8px;
+        bottom: 16rpx;
+        right: 16rpx;
         background-color: rgba(0, 0, 0, 0.6);
-        border-radius: 10px;
+        border-radius: 20rpx;
         line-height: 1em;
-        padding: 5px 5px;
+        padding: 10rpx 10rpx;
       }
     }
   }

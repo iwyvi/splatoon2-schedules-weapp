@@ -1,6 +1,6 @@
 <style lang="less">
 .index-wrap {
-  margin-bottom: 20px;
+  margin-bottom: 40rpx;
 }
 .index-schedule-card {
   transform: rotate(0.5deg);
@@ -21,7 +21,7 @@
   font-size: 24rpx;
   text-align: center;
   line-height: 1.4em;
-  margin-top: 15px;
+  margin-top: 30rpx;
 }
 .index-region-picker {
   display: flex;
@@ -32,18 +32,18 @@
   text-align: center;
   color: #ffffff;
   font-size: 32rpx;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.2);
   navigator {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
     image {
-      width: 25px;
-      height: 25px;
-      margin-right: 5px;
+      width: 50rpx;
+      height: 50rpx;
+      margin-right: 10rpx;
     }
     text {
       line-height: 1em;

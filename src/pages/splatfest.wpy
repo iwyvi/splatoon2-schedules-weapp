@@ -14,7 +14,7 @@
           <region-picker></region-picker>
         </view>
       </view>
-      <loader wx:if="{{list.length===0}}"></loader>
+      <loader wx:if="{{list.length===0}}" :timeout.sync="timeout"></loader>
       <view wx:else class="splatfest-lists">
         <repeat for="{{list}}" key="index">
           <view class="splatfest-card-wrap" @tap="showModal" data-item="{{item}}">
@@ -26,7 +26,7 @@
     <view wx:if="{{isModalShow}}" class="splatfest-modal" @touchmove.stop="disablePageScroll" @tap.stop="closeModal">
       <splatfest-result-card :detail.sync="modalItem"></splatfest-result-card>
     </view>
-    <timer @timer-update.user="timerUpdate"></timer>
+    <timer @timer-update.user="timerUpdate" @timer-timeout.user="timerTimeout"></timer>
   </view>
 </template>
 <script>
@@ -82,7 +82,8 @@ export default class Splatfest extends wepy.page {
   data = {
     list: [],
     isModalShow: false,
-    modalItem: {}
+    modalItem: {},
+    timeout: false
   }
 
   methods = {
@@ -94,7 +95,11 @@ export default class Splatfest extends wepy.page {
     timerUpdate() {
       this.startUpdate()
     },
-    disablePageScroll() {},
+    timerTimeout() {
+      this.timeout = true
+      this.$apply()
+    },
+    disablePageScroll() {}, // 使用空方法来阻止滚动
     showModal($event) {
       if (!this.isModalShow) {
         const targetItem = $event.currentTarget.dataset.item

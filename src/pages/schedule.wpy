@@ -9,7 +9,7 @@
         </view>
         <icon class="schedule-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
-      <loader wx:if="{{list.length===0 || !isSplatfestLoaded}}"></loader>
+      <loader wx:if="{{list.length===0 || !isSplatfestLoaded}}" :timeout.sync="timeout"></loader>
       <view wx:else>
         <view wx:if="{{computedMode==='splatfest' && latestSplatfest}}" class="schedule-card-block schedule-card-splatfest-block">
           <view class="schedule-card-block-images schedule-card-splatfest-block-images">
@@ -47,7 +47,7 @@
         </view>
       </view>
     </view>
-    <timer @timer-update.user="timerUpdate"></timer>
+    <timer @timer-update.user="timerUpdate" @timer-timeout.user="timerTimeout"></timer>
   </view>
 </template>
 <style lang="less">
@@ -249,7 +249,8 @@ export default class Schedule extends wepy.page {
     isSplatfestLoaded: false,
     latestSplatfest: {},
     isLatestSplatfestEnd: true, // 最近的祭典是否已经结束
-    isLatestSplatfestStart: false // 最近的祭典是否开始
+    isLatestSplatfestStart: false, // 最近的祭典是否开始
+    timeout: false
   }
 
   watch = {
@@ -306,11 +307,16 @@ export default class Schedule extends wepy.page {
     },
     timerUpdate() {
       this.startUpdate()
+    },
+    timerTimeout() {
+      this.timeout = true
+      this.$apply()
     }
   }
 
   loadSchedule() {
-    const mode = this.computedMode === 'splatfest' ? 'regular' : this.computedMode
+    const mode =
+      this.computedMode === 'splatfest' ? 'regular' : this.computedMode
     this.list = this.schedule[mode].list
     this.$apply()
     wx.stopPullDownRefresh()

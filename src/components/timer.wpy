@@ -6,7 +6,10 @@ import wepy from 'wepy'
 
 export default class Timer extends wepy.component {
   data = {
-    timer: null
+    timer: null,
+    delay: 1000 * 60, // timer间隔
+    timeoutTimer: null, // 用于告诉页面是否到超时时间
+    timeoutDelay: 5000
   }
 
   events = {
@@ -18,11 +21,24 @@ export default class Timer extends wepy.component {
     }
   }
 
+  startTimeoutTimer() {
+    this.timeoutTimer = setTimeout(() => {
+      this.$emit('timer-timeout')
+    }, this.timeoutDelay)
+  }
+
+  stopTimeoutTimer() {
+    if (this.timeoutTimer) {
+      clearTimeout(this.timeoutTimer)
+      this.timeoutTimer = null
+    }
+  }
+
   startTimer() {
     if (!this.timer) {
       this.timer = setInterval(() => {
         this.$emit('timer-update')
-      }, 1000 * 60)
+      }, this.delay)
     }
   }
 
@@ -35,10 +51,12 @@ export default class Timer extends wepy.component {
 
   onLoad() {
     this.startTimer()
+    this.startTimeoutTimer()
   }
 
   onUnload() {
     this.stopTimer()
+    this.stopTimeoutTimer()
   }
 }
 </script>

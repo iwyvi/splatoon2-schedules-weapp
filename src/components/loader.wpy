@@ -4,6 +4,7 @@
       <view></view>
       <view></view>
     </view>
+    <view wx:if="{{timeout}}" class="loader-hint splatoon">请求超时，请下拉页面刷新</view>
   </view>
 </template>
 <script>
@@ -14,6 +15,10 @@ export default class Loader extends wepy.component {
     inline: {
       type: Boolean,
       default: false
+    },
+    timeout: {
+      type: Boolean,
+      default: false
     }
   }
 
@@ -21,9 +26,17 @@ export default class Loader extends wepy.component {
 }
 </script>
 <style>
+.loader-hint {
+  font-size: 28rpx;
+  line-height: 1em;
+  margin-top: 20rpx;
+  color: #ffffff;
+}
 .block-loader {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   margin-top: 20rpx;
   margin-bottom: 20rpx;
@@ -37,6 +50,7 @@ export default class Loader extends wepy.component {
 }
 .la-ball-spin-rotate {
   display: block;
+  margin-bottom: 25rpx;
   font-size: 0;
   color: #fff;
 }

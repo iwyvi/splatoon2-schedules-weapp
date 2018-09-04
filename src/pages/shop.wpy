@@ -8,7 +8,7 @@
         <text>小程序只展示当前SplatNet中的装备</text>
         <text>购买需要在APP里进行操作</text>
       </view>
-      <loader wx:if="{{list.length===0}}"></loader>
+      <loader wx:if="{{list.length===0}}" :timeout.sync="timeout"></loader>
       <view wx:else>
         <view class="shop-item" wx:for="{{listWithComputedTime}}" wx:key="end_time">
           <view class="item-title">
@@ -68,7 +68,7 @@
         </view>
       </view>
     </view>
-    <timer @timer-update.user="timerUpdate"></timer>
+    <timer @timer-update.user="timerUpdate" @timer-timeout.user="timerTimeout"></timer>
   </view>
 </template>
 <script>
@@ -111,7 +111,8 @@ export default class Shop extends wepy.page {
 
   data = {
     list: [],
-    listWithComputedTime: []
+    listWithComputedTime: [],
+    timeout: false
   }
 
   watch = {
@@ -123,6 +124,10 @@ export default class Shop extends wepy.page {
   methods = {
     timerUpdate() {
       this.startUpdateShop()
+    },
+    timerTimeout() {
+      this.timeout = true
+      this.$apply()
     }
   }
 
@@ -280,7 +285,6 @@ export default class Shop extends wepy.page {
         align-items: center;
         justify-content: center;
         -webkit-mask-size: 1000rpx 1600rpx;
-        mask-size: 1000rpx 1600rpx;
       }
     }
   }

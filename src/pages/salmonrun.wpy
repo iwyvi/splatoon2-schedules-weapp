@@ -5,7 +5,7 @@
         <image class="salmonrun-logo" mode="widthFix" src="../assets/img/salmon-run.png"></image>
         <text class="splatoon">Salmon Run</text>
       </view>
-      <loader wx:if="{{listWithDetail.length===0}}"></loader>
+      <loader wx:if="{{listWithDetail.length===0}}" :timeout.sync="timeout"></loader>
       <view wx:else>
         <view class="salmonrun-block">
           <view class="salmonrun-block-status splatoon">{{firstStatus}}</view>
@@ -65,7 +65,7 @@
         </view>
       </view>
     </view>
-    <timer @timer-update.user="timerUpdate"></timer>
+    <timer @timer-update.user="timerUpdate" @timer-timeout.user="timerTimeout"></timer>
   </view>
 </template>
 <script>
@@ -117,7 +117,8 @@ export default class Salmonrun extends wepy.page {
 
   data = {
     listWithDetail: [],
-    restList: []
+    restList: [],
+    timeout: true
   }
 
   watch = {
@@ -129,6 +130,10 @@ export default class Salmonrun extends wepy.page {
   methods = {
     timerUpdate() {
       this.startUpdateSalmonrun()
+    },
+    timerTimeout() {
+      this.timeout = true
+      this.$apply()
     }
   }
 

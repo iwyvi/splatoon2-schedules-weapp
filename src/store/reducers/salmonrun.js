@@ -21,8 +21,7 @@ const defaultState = {
   },
   updatedAt: 0, // 记录上次加载时间
   activedAt: 0,
-  isError: false,
-  reloadCount: 0
+  isError: false
 }
 
 export default handleActions({

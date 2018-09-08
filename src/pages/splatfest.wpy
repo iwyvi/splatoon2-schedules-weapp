@@ -75,7 +75,7 @@ export default class Splatfest extends wepy.page {
     region() {
       this.list = []
       this.$apply()
-      this.methods.updateSplatfest()
+      this.startUpdate()
     }
   }
 
@@ -133,6 +133,8 @@ export default class Splatfest extends wepy.page {
   }
 
   startUpdate() {
+    this.timeout = false
+    this.$broadcast('reload-timer')
     this.methods.updateSplatfest()
   }
 

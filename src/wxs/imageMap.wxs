@@ -88,7 +88,7 @@ module.exports = {
     src: 'https://i.loli.net/2018/07/11/5b45b64689f34.jpg'
   },
   '/images/coop_stage/e07d73b7d9f0c64e552b34a2e6c29b8564c63388.png': {
-    name: 'coop_stage:Marooner\'s Bay',
+    name: "coop_stage:Marooner's Bay",
     src: 'https://i.loli.net/2018/07/11/5b45b64654938.jpg'
   },
   '/images/coop_stage/65c68c6f0641cc5654434b78a6f10b0ad32ccdee.png': {
@@ -280,7 +280,7 @@ module.exports = {
     src: 'https://i.loli.net/2018/08/13/5b714daa40fed.png'
   },
   '/images/weapon/fdcd7cbe806eb84df374ea8f7e074ac9637d4762.png': {
-    name: 'weapon:N-ZAP \'85',
+    name: "weapon:N-ZAP '85",
     src: 'https://i.loli.net/2018/08/13/5b714daa415d9.png'
   },
   '/images/weapon/c8d18b0264f1acd1e7d374a8b2c3b6fc526c790a.png': {
@@ -402,5 +402,11 @@ module.exports = {
   },
   '/images/festival/f58424b54825c0bfd0aebfeb09dff036.png': {
     src: 'https://i.loli.net/2018/08/13/5b71543b4603d.png'
+  },
+  '/images/festival/36863b3199e0b89356bb4f611264cb69.png': {
+    src: 'https://i.loli.net/2018/09/08/5b933f875b907.png'
+  },
+  '/images/coop_weapons/746f7e90bc151334f0bf0d2a1f0987e311b03736.png': {
+    src: '../assets/img/salmon-run-random-weapon.png'
   }
 }

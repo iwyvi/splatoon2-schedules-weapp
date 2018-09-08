@@ -118,7 +118,7 @@ export default class Salmonrun extends wepy.page {
   data = {
     listWithDetail: [],
     restList: [],
-    timeout: true
+    timeout: false
   }
 
   watch = {

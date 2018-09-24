@@ -1,10 +1,13 @@
 module.exports = {
-  getRateInteger: function (rate) {
+  getRateInteger: function(rate) {
     return parseInt(rate / 100)
   },
-  getRateDecimal: function (rate) {
+  getRateDecimal: function(rate) {
     var result = parseInt(rate % 100)
     var resultString = '0' + result
     return resultString.slice(-2)
+  },
+  getRateContribution: function(contribution) {
+    return Number(contribution).toFixed(3)
   }
 }

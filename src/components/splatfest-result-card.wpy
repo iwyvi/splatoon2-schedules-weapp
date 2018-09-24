@@ -26,38 +26,88 @@
           <view wx-if="{{detail.summary.vote}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
         </view>
       </view>
-      <view class="splatfest-result-item">
-        <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
-          <view class="splatfest-result-rate-number">
-            {{splatfestWxs.getRateInteger(detail.rates.solo.alpha)}}.
-            <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.alpha)}}%</text>
+      <view wx:if="{{version === 1}}">
+        <view class="splatfest-result-item">
+          <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+            <view class="splatfest-result-rate-number">
+              {{splatfestWxs.getRateInteger(detail.rates.solo.alpha)}}.
+              <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.alpha)}}%</text>
+            </view>
+            <view wx-if="{{!detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
           </view>
-          <view wx-if="{{!detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
+          <view class="splatfest-result-mode splatoon2">Solo</view>
+          <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+            <view class="splatfest-result-rate-number">
+              {{splatfestWxs.getRateInteger(detail.rates.solo.bravo)}}.
+              <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.bravo)}}%</text>
+            </view>
+            <view wx-if="{{detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          </view>
         </view>
-        <view class="splatfest-result-mode splatoon2">Solo</view>
-        <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
-          <view class="splatfest-result-rate-number">
-            {{splatfestWxs.getRateInteger(detail.rates.solo.bravo)}}.
-            <text>{{splatfestWxs.getRateDecimal(detail.rates.solo.bravo)}}%</text>
+        <view class="splatfest-result-item">
+          <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+            <view class="splatfest-result-rate-number">
+              {{splatfestWxs.getRateInteger(detail.rates.team.alpha)}}.
+              <text>{{splatfestWxs.getRateDecimal(detail.rates.team.alpha)}}%</text>
+            </view>
+            <view wx-if="{{!detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
           </view>
-          <view wx-if="{{detail.summary.solo}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          <view class="splatfest-result-mode splatoon2">Team</view>
+          <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+            <view class="splatfest-result-rate-number">
+              {{splatfestWxs.getRateInteger(detail.rates.team.bravo)}}.
+              <text>{{splatfestWxs.getRateDecimal(detail.rates.team.bravo)}}%</text>
+            </view>
+            <view wx-if="{{detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          </view>
         </view>
       </view>
-      <view class="splatfest-result-item">
-        <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
-          <view class="splatfest-result-rate-number">
-            {{splatfestWxs.getRateInteger(detail.rates.team.alpha)}}.
-            <text>{{splatfestWxs.getRateDecimal(detail.rates.team.alpha)}}%</text>
+      <view wx:elseif="{{version === 2}}">
+        <view class="splatfest-result-item">
+          <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+            <view class="splatfest-result-rate-number">
+              <view>
+                {{splatfestWxs.getRateInteger(detail.rates.regular.alpha)}}.
+                <text>{{splatfestWxs.getRateDecimal(detail.rates.regular.alpha)}}%</text>
+              </view>
+              <view class="splatfest-result-rate-contribution">Average {{splatfestWxs.getRateContribution(detail.contribution_alpha.regular)}}</view>
+            </view>
+            <view wx-if="{{!detail.summary.regular}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
           </view>
-          <view wx-if="{{!detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
+          <view class="splatfest-result-mode splatoon2">Normal</view>
+          <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+            <view class="splatfest-result-rate-number">
+              <view>
+                {{splatfestWxs.getRateInteger(detail.rates.regular.bravo)}}.
+                <text>{{splatfestWxs.getRateDecimal(detail.rates.regular.bravo)}}%</text>
+              </view>
+              <view class="splatfest-result-rate-contribution">Average {{splatfestWxs.getRateContribution(detail.contribution_bravo.regular)}}</view>
+            </view>
+            <view wx-if="{{detail.summary.regular}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          </view>
         </view>
-        <view class="splatfest-result-mode splatoon2">Team</view>
-        <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
-          <view class="splatfest-result-rate-number">
-            {{splatfestWxs.getRateInteger(detail.rates.team.bravo)}}.
-            <text>{{splatfestWxs.getRateDecimal(detail.rates.team.bravo)}}%</text>
+        <view class="splatfest-result-item">
+          <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
+            <view class="splatfest-result-rate-number">
+              <view>
+                {{splatfestWxs.getRateInteger(detail.rates.challenge.alpha)}}.
+                <text>{{splatfestWxs.getRateDecimal(detail.rates.challenge.alpha)}}%</text>
+              </view>
+              <view class="splatfest-result-rate-contribution">Average {{splatfestWxs.getRateContribution(detail.contribution_alpha.challenge)}}</view>
+            </view>
+            <view wx-if="{{!detail.summary.challenge}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.alpha.css_rgb}}"></view>
           </view>
-          <view wx-if="{{detail.summary.team}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          <view class="splatfest-result-mode splatoon2">Challenge</view>
+          <view class="splatfest-result-rate splatfest-result-rate-bravo splatoon2">
+            <view class="splatfest-result-rate-number">
+              <view>
+                {{splatfestWxs.getRateInteger(detail.rates.challenge.bravo)}}.
+                <text>{{splatfestWxs.getRateDecimal(detail.rates.challenge.bravo)}}%</text>
+              </view>
+              <view class="splatfest-result-rate-contribution">Average {{splatfestWxs.getRateContribution(detail.contribution_bravo.challenge)}}</view>
+            </view>
+            <view wx-if="{{detail.summary.challenge}}" class="splatfest-result-win ink-mask" style="background-color: {{detail.colors.bravo.css_rgb}}"></view>
+          </view>
         </view>
       </view>
     </view>
@@ -80,6 +130,12 @@ export default class SplatfestResultCard extends wepy.component {
     detail: {
       type: Object,
       required: true
+    }
+  }
+
+  computed = {
+    version() {
+      return this.detail.festival_version || 1
     }
   }
 
@@ -126,6 +182,7 @@ export default class SplatfestResultCard extends wepy.component {
     line-height: 1em;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-top: 20rpx;
     padding-bottom: 20rpx;
     margin-top: 30rpx;
@@ -147,6 +204,11 @@ export default class SplatfestResultCard extends wepy.component {
         width: 112rpx;
         height: 100rpx;
         z-index: -1;
+      }
+      .splatfest-result-rate-contribution {
+        font-size: 20rpx;
+        line-height: 1.2em;
+        color: #cccccc;
       }
     }
     .splatfest-result-mode {

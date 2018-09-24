@@ -62,7 +62,7 @@
           </view>
         </view>
       </view>
-      <view wx:elseif="{{version === 2}}">
+      <view wx:elif="{{version === 2}}">
         <view class="splatfest-result-item">
           <view class="splatfest-result-rate splatfest-result-rate-alpha splatoon2">
             <view class="splatfest-result-rate-number">

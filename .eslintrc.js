@@ -16,7 +16,7 @@ module.exports = {
   settings: {
     'html/html-extensions': ['.html', '.wpy']
   },
-  // add your custom rules here
+// add your custom rules here
   'rules': {
     // allow paren-less arrow functions
     'arrow-parens': 0,

@@ -34,19 +34,17 @@ export default class LocaleMixin extends wepy.mixin {
             break
           case 'rules':
             text = this.localeData.rules[data.key].name
+            break
+          case 'coop_stages':
+            text = this.localeData.coop_stages[data.image].name
         }
       } catch (e) {}
       if (text) {
         return text
       }
     }
-    switch (type) {
-      case 'stage':
-        return data.name
-      case 'game_modes':
-        return data.name
-      case 'rules':
-        return data.name
+    if (data.name) {
+      return data.name
     }
     return ''
   }
@@ -113,5 +111,18 @@ export default class LocaleMixin extends wepy.mixin {
       }
     }
     return rawSplatfest || {}
+  }
+
+  generateSalmonrunData(salmon) {
+    if (salmon) {
+      return {
+        ...salmon,
+        stage: {
+          ...salmon.stage,
+          name: this.getLocaleText('coop_stages', salmon.stage)
+        }
+      }
+    }
+    return salmon || {}
   }
 }

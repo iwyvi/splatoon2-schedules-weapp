@@ -17,7 +17,7 @@
             <view class="salmonrun-block-content">
               <view class="salmonrun-block-content-image">
                 <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[0].stage.image)}}"></image>
-                <text class="splatoon2">{{listWithDetail[0].stage.name}}</text>
+                <text class="splatoon2">{{localeListWithDetail[0].stage.name}}</text>
               </view>
               <view class="salmonrun-block-content-details">
                 <text class="splatoon">提供的武器</text>
@@ -42,7 +42,7 @@
               <view class="salmonrun-block-content">
                 <view class="salmonrun-block-content-image">
                   <image mode="widthFix" src="{{imageWxs.getImageUrl(listWithDetail[1].stage.image)}}"></image>
-                  <text class="splatoon2">{{listWithDetail[1].stage.name}}</text>
+                  <text class="splatoon2">{{localeListWithDetail[1].stage.name}}</text>
                 </view>
                 <view class="salmonrun-block-content-details">
                   <text class="splatoon">提供的武器</text>
@@ -80,10 +80,15 @@ import timer from '@/components/timer'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 
+import LocaleMixin from '@/mixins/LocaleMixin'
+
 @connect(
   {
     salmonrun(state) {
       return state.salmonrun
+    },
+    locale(state) {
+      return state.locale
     }
   },
   { updateSalmonrun }
@@ -99,6 +104,8 @@ export default class Salmonrun extends wepy.page {
     timer
   }
 
+  mixins = [LocaleMixin]
+
   wxs = {
     timeWxs,
     imageWxs
@@ -112,6 +119,11 @@ export default class Salmonrun extends wepy.page {
       const startTime = this.listWithDetail[0].start_time
       const now = Date.now()
       return parseInt(`${startTime}000`) <= now ? 'Open!' : 'Soon!'
+    },
+    localeListWithDetail() {
+      return this.listWithDetail.map((salmon) => {
+        return this.generateSalmonrunData(salmon)
+      })
     }
   }
 
@@ -124,6 +136,9 @@ export default class Salmonrun extends wepy.page {
   watch = {
     salmonrun() {
       this.loadSalmonrun()
+    },
+    locale() {
+      this.setLocaleData(this.locale)
     }
   }
 
@@ -151,6 +166,7 @@ export default class Salmonrun extends wepy.page {
 
   onLoad() {
     this.startUpdateSalmonrun()
+    this.setLocaleData(this.locale)
   }
 
   onShow() {

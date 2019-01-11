@@ -9,12 +9,14 @@ export default class LocaleMixin extends wepy.mixin {
   /** 直接传入locale的state */
   setLocaleData(localeState) {
     this.isLocaleDataLoaded = false
-    if (localeState) {
+    console.log(localeState)
+    if (localeState && localeState.locale) {
       const locale = localeState.locale
       const localeData = localeState.localeData[locale]
       if (localeData) {
         this.localeData = localeData.data
         this.isLocaleDataLoaded = true
+        this.$apply()
         return
       }
     }

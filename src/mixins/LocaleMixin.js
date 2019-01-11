@@ -37,6 +37,13 @@ export default class LocaleMixin extends wepy.mixin {
             break
           case 'coop_stages':
             text = this.localeData.coop_stages[data.image].name
+            break
+          case 'gear':
+            let gear = this.localeData.gear[data.id]
+            if (!gear) {
+              gear = this.localeData.gear[data.kind][data.id]
+            }
+            text = gear.name
         }
       } catch (e) {}
       if (text) {
@@ -124,5 +131,18 @@ export default class LocaleMixin extends wepy.mixin {
       }
     }
     return salmon || {}
+  }
+
+  generateShopItemData(item) {
+    if (item) {
+      return {
+        ...item,
+        gear: {
+          ...item.gear,
+          name: this.getLocaleText('gear', item.gear)
+        }
+      }
+    }
+    return item || {}
   }
 }

@@ -10,7 +10,7 @@
       </view>
       <loader wx:if="{{list.length===0}}" :timeout.sync="timeout"></loader>
       <view wx:else>
-        <view class="shop-item" wx:for="{{listWithComputedTime}}" wx:key="end_time">
+        <view class="shop-item" wx:for="{{localeList}}" wx:key="end_time">
           <view class="item-title">
             <text class="splatoon">{{item.timeString}}</text>
           </view>
@@ -49,7 +49,7 @@
                 </view>
                 <view class="item-detail-info item-detail-original">
                   <text class="item-detail-info-title splatoon">原始属性</text>
-                  <view class="item-skill">
+                  <view class="item-skill" wx:if="{{item.original_gear}}">
                     <view class="item-skill-main">
                       <image src="{{imageWxs.getImageUrl(item.original_gear.skill.image)}}"></image>
                     </view>
@@ -57,10 +57,11 @@
                       <image wx:for="{{shopWxs.generateSubSkillImageArray(item.original_gear.rarity)}}" wx:key="index" src="../assets/img/blank-skill-slot.png"></image>
                     </view>
                   </view>
-                  <view class="item-cash" wx:if="{{item.original_gear.price}}">
+                  <view class="item-cash" wx:if="{{item.original_gear && item.original_gear.price}}">
                     <image src="../assets/img/cash.png"></image>
                     <text class="splatoon2">{{item.original_gear.price}}</text>
                   </view>
+                  <text wx:if="{{!item.original_gear}}" class="splatoon">-</text>
                 </view>
               </view>
             </view>
@@ -84,10 +85,15 @@ import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 import shopWxs from '../wxs/shop.wxs'
 
+import LocaleMixin from '@/mixins/LocaleMixin'
+
 @connect(
   {
     shop(state) {
       return state.shop
+    },
+    locale(state) {
+      return state.locale
     }
   },
   { updateShop }
@@ -102,6 +108,8 @@ export default class Shop extends wepy.page {
     loader,
     timer
   }
+
+  mixins = [LocaleMixin]
 
   wxs = {
     timeWxs,
@@ -118,6 +126,9 @@ export default class Shop extends wepy.page {
   watch = {
     shop() {
       this.loadShop()
+    },
+    locale() {
+      this.setLocaleData(this.locale)
     }
   }
 
@@ -128,6 +139,14 @@ export default class Shop extends wepy.page {
     timerTimeout() {
       this.timeout = true
       this.$apply()
+    }
+  }
+
+  computed = {
+    localeList() {
+      return this.listWithComputedTime.map((item) => {
+        return this.generateShopItemData(item)
+      })
     }
   }
 
@@ -177,6 +196,7 @@ export default class Shop extends wepy.page {
 
   onLoad() {
     this.startUpdateShop()
+    this.setLocaleData(this.locale)
   }
 
   onShow() {

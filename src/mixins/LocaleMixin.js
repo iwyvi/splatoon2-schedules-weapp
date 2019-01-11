@@ -51,6 +51,28 @@ export default class LocaleMixin extends wepy.mixin {
     return ''
   }
 
+  generateModeTitle(mode) {
+    let modeName = ''
+    switch (mode) {
+      case 'regular':
+        modeName = 'Regular Battle'
+        break
+      case 'gachi':
+        modeName = 'Ranked Battle'
+        break
+      case 'league':
+        modeName = 'League Battle'
+        break
+      case 'splatfest':
+        modeName = 'Splatfest Battle'
+        break
+    }
+    return this.getLocaleText('game_modes', {
+      key: mode,
+      name: modeName
+    })
+  }
+
   generateBattleData(rawBattle) {
     if (rawBattle) {
       return {

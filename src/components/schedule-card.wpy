@@ -126,25 +126,7 @@ export default class ScheduleCard extends wepy.component {
       }
     },
     titleText() {
-      let modeName = ''
-      switch (this.mode) {
-        case 'regular':
-          modeName = 'Regular Battle'
-          break
-        case 'gachi':
-          modeName = 'Ranked Battle'
-          break
-        case 'league':
-          modeName = 'League Battle'
-          break
-        case 'splatfest':
-          modeName = 'Splatfest Battle'
-          break
-      }
-      return this.getLocaleText('game_modes', {
-        key: this.mode,
-        name: modeName
-      })
+      return this.generateModeTitle(this.mode)
     },
     battleNow() {
       return this.generateBattleData(this.list[0])

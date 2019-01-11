@@ -9,13 +9,13 @@
         </view>
         <icon class="schedule-close-icon" @tap="backToIndex" type="clear" size="24" color="#ffffff" />
       </view>
-      <loader wx:if="{{list.length===0 || !isSplatfestLoaded}}" :timeout.sync="timeout"></loader>
+      <loader wx:if="{{localeList.length===0 || !isSplatfestLoaded}}" :timeout.sync="timeout"></loader>
       <view wx:else>
         <view wx:if="{{computedMode==='splatfest' && latestSplatfest}}" class="schedule-card-block schedule-card-splatfest-block">
           <view class="schedule-card-block-images schedule-card-splatfest-block-images">
             <view>
               <image mode="widthFix" src="{{imageWxs.getImageUrl(latestSplatfest.special_stage.image)}}"></image>
-              <text class="splatoon2">{{latestSplatfest.special_stage.name}}</text>
+              <text class="splatoon2">{{localeSplatfest.special_stage.name}}</text>
             </view>
           </view>
           <view class="schedule-card-splatfest-block-title">
@@ -28,7 +28,7 @@
           </view>
         </view>
         <view class="schedule-lists">
-          <view class="schedule-list" wx:for="{{list}}" wx:key="end_time">
+          <view class="schedule-list" wx:for="{{localeList}}" wx:key="end_time">
             <view class="schedule-list-title">
               <text class="schedule-list-title-mode splatoon2">{{item.rule.name}}</text>
               <text class="splatoon2">{{timeWxs.generateScheduleTimeString(item.start_time, item.end_time)}}</text>
@@ -215,6 +215,8 @@ import splatfestLogo from '@/components/splatfest-logo'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
 
+import LocaleMixin from '@/mixins/LocaleMixin'
+
 @connect(
   {
     schedule(state) {
@@ -222,6 +224,9 @@ import imageWxs from '../wxs/image.wxs'
     },
     splatfest(state) {
       return state.splatfest
+    },
+    locale(state) {
+      return state.locale
     }
   },
   { updateSchedule, updateSplatfest }
@@ -237,6 +242,8 @@ export default class Schedule extends wepy.page {
     timer,
     'splatfest-logo': splatfestLogo
   }
+
+  mixins = [LocaleMixin]
 
   wxs = {
     timeWxs,
@@ -259,6 +266,9 @@ export default class Schedule extends wepy.page {
     },
     splatfest() {
       this.loadSplatfest()
+    },
+    locale() {
+      this.setLocaleData(this.computedMode)
     }
   }
 
@@ -284,18 +294,15 @@ export default class Schedule extends wepy.page {
       }
     },
     titleText() {
-      switch (this.computedMode) {
-        case 'regular':
-          return 'Regular Battle'
-        case 'gachi':
-          return 'Ranked Battle'
-        case 'league':
-          return 'League Battle'
-        case 'splatfest':
-          return 'Splatfest Battle'
-        default:
-          return 'Loading'
-      }
+      return this.generateModeTitle(this.mode)
+    },
+    localeList() {
+      return this.list.map((battle) => {
+        return this.generateBattleData(battle)
+      })
+    },
+    localeSplatfest() {
+      return this.generateSplatfestData(this.latestSplatfest)
     }
   }
 
@@ -363,6 +370,7 @@ export default class Schedule extends wepy.page {
     if (mode) {
       this.mode = mode
     }
+    this.setLocaleData(this.locale)
     this.startUpdate()
   }
 

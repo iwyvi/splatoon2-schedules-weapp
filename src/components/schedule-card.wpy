@@ -31,10 +31,15 @@
         <view class="schedule-card-block-images">
           <view>
             <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_a.image)}}"></image>
+            <!-- <text>{{battleNow.stage_a.name}}</text> -->
+            <!-- <text class="splatoon2"> -->
+            <!-- <locale-text-0 class="splatoon2" target="stage" fullPath="stage_a" :wrapData.sync="battleNow"></locale-text-0> -->
+            <!-- </text> -->
             <text class="splatoon2">{{battleNow.stage_a.name}}</text>
           </view>
           <view>
             <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNow.stage_b.image)}}"></image>
+            <!-- <locale-text-1 class="splatoon2" target="stage" fullPath="stage_b" :wrapData.sync="battleNow"></locale-text-1> -->
             <text class="splatoon2">{{battleNow.stage_b.name}}</text>
           </view>
         </view>
@@ -50,10 +55,12 @@
             <view>
               <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_a.image)}}"></image>
               <text class="splatoon2">{{battleNext.stage_a.name}}</text>
+              <!-- <locale-text-2 class="splatoon2" target="stage" fullPath="stage_a" :wrapData.sync="battleNext"></locale-text-2> -->
             </view>
             <view>
               <image mode="widthFix" src="{{imageWxs.getImageUrl(battleNext.stage_b.image)}}"></image>
               <text class="splatoon2">{{battleNext.stage_b.name}}</text>
+              <!-- <locale-text-3 class="splatoon2" target="stage" fullPath="stage_b" :wrapData.sync="battleNext"></locale-text-3> -->
             </view>
           </view>
         </view>
@@ -66,12 +73,20 @@
 </template>
 <script>
 import wepy from 'wepy'
+import { connect } from 'wepy-redux'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
+
+import LocaleMixin from '@/mixins/LocaleMixin'
 
 import loader from '@/components/loader'
 import splatfestLogo from '@/components/splatfest-logo'
 
+@connect({
+  locale(state) {
+    return state.locale
+  }
+})
 export default class ScheduleCard extends wepy.component {
   props = {
     mode: {
@@ -89,6 +104,8 @@ export default class ScheduleCard extends wepy.component {
     loader,
     'splatfest-logo': splatfestLogo
   }
+
+  mixins = [LocaleMixin]
 
   wxs = {
     timeWxs,
@@ -109,36 +126,37 @@ export default class ScheduleCard extends wepy.component {
       }
     },
     titleText() {
+      let modeName = ''
       switch (this.mode) {
         case 'regular':
-          return 'Regular Battle'
+          modeName = 'Regular Battle'
+          break
         case 'gachi':
-          return 'Ranked Battle'
+          modeName = 'Ranked Battle'
+          break
         case 'league':
-          return 'League Battle'
+          modeName = 'League Battle'
+          break
         case 'splatfest':
-          return 'Splatfest Battle'
-        default:
-          return ''
+          modeName = 'Splatfest Battle'
+          break
       }
+      return this.getLocaleText('game_modes', {
+        key: this.mode,
+        name: modeName
+      })
     },
     battleNow() {
-      return (
-        this.list[0] || {
-          rule: {},
-          stage_a: {},
-          stage_b: {}
-        }
-      )
+      return this.generateBattleData(this.list[0])
     },
     battleNext() {
-      return (
-        this.list[1] || {
-          rule: {},
-          stage_a: {},
-          stage_b: {}
-        }
-      )
+      return this.generateBattleData(this.list[1])
+    }
+  }
+
+  watch = {
+    locale() {
+      this.setLocaleData(this.locale)
     }
   }
 
@@ -146,7 +164,9 @@ export default class ScheduleCard extends wepy.component {
 
   methods = {}
 
-  onLoad() {}
+  onLoad() {
+    this.setLocaleData(this.locale)
+  }
 }
 </script>
 <style lang="less">

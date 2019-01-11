@@ -8,16 +8,19 @@
       </view>
     </view>
     <view class="setting-content">
-      <!-- <view class="setting-item dot-background">
-        <text>语言设置</text>
-        <picker range-key="value" @change="changeLocale" value="{{localeIndex}}" range="{{localeList}}">
-          <view class="picker">
-            {{localeList[localeIndex].value}}
-          </view>
-        </picker>
-      </view> -->
       <view class="setting-item dot-background">
         <navigator url="splatfest">祭典</navigator>
+      </view>
+      <view class="setting-item dot-background">
+        <text>语言设置</text>
+        <picker
+          range-key="value"
+          @change="changeLocale"
+          value="{{localeIndex}}"
+          range="{{localeList}}"
+        >
+          <view class="picker">{{localeList[localeIndex].value}}</view>
+        </picker>
       </view>
       <view class="setting-item dot-background">
         <navigator url="about">关于</navigator>
@@ -27,30 +30,62 @@
 </template>
 <script>
 import wepy from 'wepy'
+import { connect } from 'wepy-redux'
 
+import { updateLocale, updateLocaleData } from '../store/actions'
+
+@connect(
+  {
+    locale(state) {
+      return state.locale
+    }
+  },
+  { updateLocale, updateLocaleData }
+)
 export default class Setting extends wepy.page {
   config = {
     navigationBarTitleText: '设置'
   }
 
   data = {
-    localeIndex: 0,
+    localeIndex: 'en',
     localeList: [
       {
         id: 'en',
         value: '英语'
       },
       {
-        id: 'jp',
+        id: 'ja',
         value: '日语'
       }
     ]
   }
 
+  watch = {
+    locale() {
+      this.setLocale()
+    }
+  }
+
   methods = {
     changeLocale({ detail }) {
-      this.localeIndex = detail.value
+      const localeAction = this.methods.updateLocale(this.localeList[detail.value].id)
+      if (localeAction.payload) {
+        this.methods.updateLocaleData(localeAction.payload)
+      }
     }
+  }
+
+  setLocale() {
+    const index = this.localeList.findIndex((v) => {
+      return this.locale.locale === v.id
+    })
+    this.localeIndex = index === -1 ? 'en' : index
+    this.$apply()
+  }
+
+  onLoad() {
+    this.setLocale()
   }
 }
 </script>

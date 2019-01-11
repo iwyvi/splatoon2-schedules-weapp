@@ -79,4 +79,17 @@ export default class LocaleMixin extends wepy.mixin {
       stage_b: {}
     }
   }
+
+  generateSplatfestData(rawSplatfest) {
+    if (rawSplatfest && rawSplatfest.festival_id) {
+      return {
+        ...rawSplatfest,
+        special_stage: {
+          ...rawSplatfest.special_stage,
+          name: this.getLocaleText('stage', rawSplatfest.special_stage)
+        }
+      }
+    }
+    return rawSplatfest || {}
+  }
 }

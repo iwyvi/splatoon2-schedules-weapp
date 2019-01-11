@@ -11,7 +11,7 @@
         <view class="schedule-card-block-images schedule-card-splatfest-block-images">
           <view>
             <image mode="widthFix" src="{{imageWxs.getImageUrl(splatfest.special_stage.image)}}"></image>
-            <text class="splatoon2">{{splatfest.special_stage.name}}</text>
+            <text class="splatoon2">{{localeSplatfest.special_stage.name}}</text>
           </view>
         </view>
         <view class="schedule-card-splatfest-block-title">
@@ -151,6 +151,9 @@ export default class ScheduleCard extends wepy.component {
     },
     battleNext() {
       return this.generateBattleData(this.list[1])
+    },
+    localeSplatfest() {
+      return this.generateSplatfestData(this.splatfest)
     }
   }
 

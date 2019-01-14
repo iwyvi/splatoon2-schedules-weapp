@@ -24,6 +24,7 @@ export default class LocaleMixin extends wepy.mixin {
         }
       }
     }
+    this.$broadcast('change-locale-data')
     this.$apply()
   }
 

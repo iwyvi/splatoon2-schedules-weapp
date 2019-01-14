@@ -73,20 +73,12 @@
 </template>
 <script>
 import wepy from 'wepy'
-import { connect } from 'wepy-redux'
 import timeWxs from '../wxs/time.wxs'
 import imageWxs from '../wxs/image.wxs'
-
-import LocaleMixin from '@/mixins/LocaleMixin'
 
 import loader from '@/components/loader'
 import splatfestLogo from '@/components/splatfest-logo'
 
-@connect({
-  locale(state) {
-    return state.locale
-  }
-})
 export default class ScheduleCard extends wepy.component {
   props = {
     mode: {
@@ -104,8 +96,6 @@ export default class ScheduleCard extends wepy.component {
     loader,
     'splatfest-logo': splatfestLogo
   }
-
-  mixins = [LocaleMixin]
 
   wxs = {
     timeWxs,
@@ -126,22 +116,22 @@ export default class ScheduleCard extends wepy.component {
       }
     },
     titleText() {
-      return this.generateModeTitle(this.mode)
+      return this.$parent.generateModeTitle(this.mode)
     },
     battleNow() {
-      return this.generateBattleData(this.list[0])
+      return this.$parent.generateBattleData(this.list[0])
     },
     battleNext() {
-      return this.generateBattleData(this.list[1])
+      return this.$parent.generateBattleData(this.list[1])
     },
     localeSplatfest() {
-      return this.generateSplatfestData(this.splatfest)
+      return this.$parent.generateSplatfestData(this.splatfest)
     }
   }
 
-  watch = {
-    locale() {
-      this.setLocaleData(this.locale)
+  events = {
+    'change-locale-data': () => {
+      this.$apply()
     }
   }
 
@@ -149,9 +139,7 @@ export default class ScheduleCard extends wepy.component {
 
   methods = {}
 
-  onLoad() {
-    this.setLocaleData(this.locale)
-  }
+  onLoad() {}
 }
 </script>
 <style lang="less">

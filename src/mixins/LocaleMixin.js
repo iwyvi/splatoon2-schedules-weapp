@@ -3,27 +3,32 @@ import wepy from 'wepy'
 export default class LocaleMixin extends wepy.mixin {
   data = {
     localeData: {},
-    isLocaleDataLoaded: false
+    isLocaleDataLoaded: false,
+    isUseLocaleData: false
   }
 
   /** 直接传入locale的state */
   setLocaleData(localeState) {
     this.isLocaleDataLoaded = false
+    this.localeData = {}
     if (localeState && localeState.locale) {
       const locale = localeState.locale
-      const localeData = localeState.localeData[locale]
-      if (localeData) {
-        this.localeData = localeData.data
-        this.isLocaleDataLoaded = true
-        this.$apply()
-        return
+      if (locale === 'en') {
+        this.isUseLocaleData = false
+      } else {
+        this.isUseLocaleData = true
+        const localeData = localeState.localeData[locale]
+        if (localeData) {
+          this.localeData = localeData.data
+          this.isLocaleDataLoaded = true
+        }
       }
     }
-    this.localeData = {}
+    this.$apply()
   }
 
   getLocaleText(type, data) {
-    if (this.isLocaleDataLoaded) {
+    if (this.isUseLocaleData && this.isLocaleDataLoaded) {
       let text = ''
       try {
         switch (type) {

@@ -1,0 +1,119 @@
+<template>
+  <view>
+    <picker range-key="value" @change="changeLocale" value="{{localeIndex}}" range="{{localeList}}">
+      <view class="picker">{{localeName}}</view>
+    </picker>
+  </view>
+</template>
+<script>
+import wepy from 'wepy'
+import { connect } from 'wepy-redux'
+
+import { updateLocale, updateLocaleData } from '../store/actions'
+
+@connect(
+  {
+    locale(state) {
+      return state.locale
+    }
+  },
+  { updateLocale, updateLocaleData }
+)
+export default class LocalePicker extends wepy.component {
+  data = {
+    localeIndex: -1,
+    localeList: [
+      {
+        id: 'en',
+        value: '英语'
+      },
+      {
+        id: 'ja',
+        value: '日语'
+      },
+      {
+        id: 'fr',
+        value: '法语'
+      },
+      {
+        id: 'es',
+        value: '西班牙语'
+      },
+      {
+        id: 'de',
+        value: '德语'
+      },
+      {
+        id: 'it',
+        value: '意大利语'
+      },
+      {
+        id: 'nl',
+        value: '荷兰语'
+      },
+      {
+        id: 'ru',
+        value: '俄语'
+      }
+    ],
+    changeLocaleTimer: 0
+  }
+
+  watch = {
+    locale() {
+      this.setLocale()
+    }
+  }
+
+  computed = {
+    localeName() {
+      const locale = this.localeList[this.localeIndex]
+      if (!locale) {
+        return '...'
+      }
+      return locale.value
+    }
+  }
+
+  methods = {
+    changeLocale({ detail }) {
+      if (this.localeList[detail.value].id !== this.localeIndex) {
+        wx.showLoading({
+          title: '切换语言中'
+        })
+        this.changeLocaleTimer = setTimeout(() => {
+          wx.hideLoading()
+        }, 10000)
+        const localeAction = this.methods.updateLocale(
+          this.localeList[detail.value].id
+        )
+        if (localeAction.payload) {
+          this.methods.updateLocaleData(localeAction.payload)
+        }
+      }
+    }
+  }
+
+  setLocale() {
+    const index = this.localeList.findIndex((v) => {
+      return this.locale.locale === v.id
+    })
+    this.localeIndex = index === -1 ? 'en' : index
+    this.$apply()
+    wx.hideLoading({
+      complete() {
+        clearTimeout(this.changeLocaleTimer)
+      }
+    })
+  }
+
+  onLoad() {
+    this.setLocale()
+  }
+}
+</script>
+<style lang="less">
+.picker {
+  position: relative;
+}
+</style>

@@ -1,6 +1,6 @@
 {
   "name": "splatoon2-schedules-weapp",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "乌贼日历",
   "main": "dist/app.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "leancloud-storage": "^3.7.3",
+    "leancloud-storage": "^3.13.2",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
     "redux-promise": "^0.6.0",

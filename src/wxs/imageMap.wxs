@@ -385,9 +385,6 @@ module.exports = {
   '/images/festival/cd7322e6ee0545d354b525178ff7512b.png': {
     src: 'https://i.loli.net/2018/08/13/5b7153533f08e.png'
   },
-  '/images/festival/c8e8fde799fd509053aa694e0673f27a.png': {
-    src: 'https://i.loli.net/2018/08/13/5b715355b6285.png'
-  },
   '/images/festival/c191f55f6f7eaa1224c3ffc2238e5e2d.png': {
     src: 'https://i.loli.net/2018/08/13/5b71535b39b54.png'
   },

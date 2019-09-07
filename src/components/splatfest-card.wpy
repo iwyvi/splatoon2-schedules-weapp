@@ -9,7 +9,7 @@
           <view class="splatfest-panel-win-mask ink-mask"></view>
           <text class="splatoon">VICTORY</text>
         </view>
-        <image class="splatfest-panel-image" mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}"></image>
+        <image class="splatfest-panel-image" mode="widthFix" src="{{imageWxs.getImageUrl(detail.images.panel)}}" lazy-load></image>
         <text class="splatfest-panel-names splatoon splatfest-panel-alpha-name">{{detail.names.alpha_long}}</text>
         <text class="splatfest-panel-names splatoon splatfest-panel-bravo-name">{{detail.names.bravo_long}}</text>
       </view>

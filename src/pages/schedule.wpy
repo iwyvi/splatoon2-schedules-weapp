@@ -35,11 +35,11 @@
             </view>
             <view class="schedule-list-images">
               <view>
-                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_a.image)}}"></image>
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_a.image)}}" lazy-load></image>
                 <text class="splatoon2">{{item.stage_a.name}}</text>
               </view>
               <view>
-                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_b.image)}}"></image>
+                <image mode="widthFix" src="{{imageWxs.getImageUrl(item.stage_b.image)}}" lazy-load></image>
                 <text class="splatoon2">{{item.stage_b.name}}</text>
               </view>
             </view>

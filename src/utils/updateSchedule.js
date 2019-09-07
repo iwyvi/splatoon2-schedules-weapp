@@ -1,11 +1,16 @@
 /**
  * 通过上次更新时间判断现在是否需要进行新的更新请求
+ * 原本是为了节省请求次数，反正现在也没什么人用了，限制3秒一次就行了
  * @param {number} updatedAt 上次更新时间
  */
 export function judgeUpdateStatus(updatedAt) {
   const now = Date.now()
-  const updatedDate = new Date(updatedAt)
-  if (now - ((60 - updatedDate.getMinutes()) * 60 * 1000) > updatedAt) {
+  // const updatedDate = new Date(updatedAt)
+  // if (now - ((60 - updatedDate.getMinutes()) * 60 * 1000) > updatedAt) {
+  //   return true
+  // }
+  // return false
+  if (now - updatedAt >= 3000) {
     return true
   }
   return false

@@ -101,7 +101,7 @@ export default class LocalePicker extends wepy.component {
     this.localeIndex = index === -1 ? 'en' : index
     this.$apply()
     wx.hideLoading({
-      complete() {
+      complete: () => {
         clearTimeout(this.changeLocaleTimer)
       }
     })

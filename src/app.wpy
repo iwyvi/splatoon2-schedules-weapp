@@ -13,7 +13,7 @@ import store from './store'
 import leancloudConfig from './config/leancloud'
 
 AV.init({
-  serverURLs: 'https://avoscloud.com',
+  serverURLs: leancloudConfig.serverURLs,
   appId: leancloudConfig.appId,
   appKey: leancloudConfig.appKey
 })

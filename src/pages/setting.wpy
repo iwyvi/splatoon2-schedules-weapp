@@ -16,9 +16,6 @@
         <locale-picker class="setting-item-picker"></locale-picker>
       </view>
       <view class="setting-item dot-background">
-        <view class="setting-item-view" @tap="navigateToMiniProgram">给开发者赞赏</view>
-      </view>
-      <view class="setting-item dot-background">
         <navigator url="about">关于</navigator>
       </view>
     </view>
@@ -42,20 +39,7 @@ export default class Setting extends wepy.page {
 
   onLoad() {}
 
-  methods = {
-    navigateToMiniProgram() {
-      wx.navigateToMiniProgram({
-        appId: 'wx18a2ac992306a5a4',
-        path: 'pages/apps/largess/detail?id=2oAOwrV1yU8%3D',
-        fail() {
-          wx.showToast({
-            title: '跳转失败，请稍后重试',
-            icon: 'none'
-          })
-        }
-      })
-    }
-  }
+  methods = {}
 }
 </script>
 <style lang="less">

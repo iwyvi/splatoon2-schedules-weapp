@@ -22,6 +22,12 @@
           <text selectable="true">https://github.com/iwyvi/splatoon2-schedules-weapp</text>
         </view>
         <view class="hr"></view>
+        <view>
+          小程序累计收到赞赏收入
+          <text class="splatoon2 about-word">209.07</text>
+          元，感谢各位乌贼的支持！
+        </view>
+        <view class="hr"></view>
         <view>小纯洁
           <text class="splatoon2 about-word">IwYvI</text>
         </view>

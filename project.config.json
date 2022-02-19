@@ -1,90 +1,96 @@
 {
-	"description": "乌贼日历",
-	"setting": {
-		"urlCheck": true,
-		"es6": false,
-		"postcss": false,
-		"minified": false,
-		"newFeature": true,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false
-	},
-	"compileType": "miniprogram",
-	"appid": "wx1f05fd247e4274ab",
-	"projectname": "%E4%B9%8C%E8%B4%BC%E6%97%A5%E5%8E%86",
-	"miniprogramRoot": "dist/",
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "日程页面",
-					"pathName": "pages/schedule",
-					"query": "mode=regular"
-				},
-				{
-					"id": -1,
-					"name": "设置",
-					"pathName": "pages/setting",
-					"query": ""
-				},
-				{
-					"id": 2,
-					"name": "打工",
-					"pathName": "pages/salmonrun",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "商店",
-					"pathName": "pages/shop",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "关于",
-					"pathName": "pages/about",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "祭典",
-					"pathName": "pages/splatfest",
-					"query": ""
-				},
-				{
-					"id": -1,
-					"name": "日程祭典",
-					"pathName": "pages/schedule",
-					"query": "mode=splatfest"
-				}
-			]
-		}
-	}
+  "description": "乌贼日历",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false,
+    "newFeature": true,
+    "scopeDataCheck": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "showES6CompileOption": false
+  },
+  "compileType": "miniprogram",
+  "appid": "wx1f05fd247e4274ab",
+  "projectname": "%E4%B9%8C%E8%B4%BC%E6%97%A5%E5%8E%86",
+  "miniprogramRoot": "dist/",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "cloudfunctionRoot": "cloudfunctions/",
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "日程页面",
+          "pathName": "pages/schedule",
+          "query": "mode=regular"
+        },
+        {
+          "id": -1,
+          "name": "设置",
+          "pathName": "pages/setting",
+          "query": ""
+        },
+        {
+          "id": 2,
+          "name": "打工",
+          "pathName": "pages/salmonrun",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "商店",
+          "pathName": "pages/shop",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "关于",
+          "pathName": "pages/about",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "祭典",
+          "pathName": "pages/splatfest",
+          "query": ""
+        },
+        {
+          "id": -1,
+          "name": "日程祭典",
+          "pathName": "pages/schedule",
+          "query": "mode=splatfest"
+        }
+      ]
+    }
+  }
 }

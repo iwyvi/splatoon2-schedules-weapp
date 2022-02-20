@@ -1,13 +1,7 @@
-import {
-  handleActions
-} from 'redux-actions'
-import {
-  UPDATE_SALMONRUN
-} from '../types/salmonrun'
+import { handleActions } from 'redux-actions'
+import { UPDATE_SALMONRUN } from '../types/salmonrun'
 
-import {
-  updateSalmonrun
-} from '../../utils/updateSchedule'
+import { updateSalmonrun } from '../../utils/updateSchedule'
 
 /**
  * reducer名为salmonrun
@@ -20,23 +14,21 @@ const defaultState = {
     list: []
   },
   updatedAt: 0, // 记录上次加载时间
-  activedAt: 0,
   isError: false
 }
 
-export default handleActions({
-  [UPDATE_SALMONRUN](state, {
-    payload,
-    error
-  }) {
-    if (error) {
-      state.isError = true
-    } else if (payload) {
-      updateSalmonrun(state, payload)
+export default handleActions(
+  {
+    [UPDATE_SALMONRUN](state, { payload, error }) {
+      if (error) {
+        state.isError = true
+      } else if (payload) {
+        updateSalmonrun(state, payload)
+      }
+      return {
+        ...state
+      }
     }
-    return {
-      ...state,
-      activedAt: Date.now()
-    }
-  }
-}, defaultState)
+  },
+  defaultState
+)

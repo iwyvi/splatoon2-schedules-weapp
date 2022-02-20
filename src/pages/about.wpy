@@ -5,18 +5,24 @@
         <text class="splatoon">ABOUT</text>
       </view>
       <view class="about-content">
-        <view>乌贼日历为
-          <text class="splatoon2 about-word">Splatoon2</text>玩家提供地图时刻表等信息的查询。</view>
+        <view>
+          乌贼日历为
+          <text class="splatoon2 about-word">Splatoon2</text>玩家提供地图时刻表等信息的查询。
+        </view>
         <view>只是最近闲来无事写的一个小程序。</view>
         <view class="hr"></view>
-        <view>小程序基于
-          <text class="splatoon2 about-word">wepy</text>构建，数据存储于
-          <text class="splatoon2 about-word">LeanCloud</text>。</view>
-        <view>小程序中日程、打工、商店和祭典等数据均来自：
+        <view>
+          小程序基于
+          <text class="splatoon2 about-word">wepy</text>构建，数据存储于微信云开发数据库（2022 年 2 月迁入，之前数据存储于
+          <text class="splatoon2 about-word">LeanCloud</text>）。
+        </view>
+        <view>
+          小程序中日程、打工、商店和祭典等数据均来自：
           <text selectable="true">https://splatoon2.ink/</text>
         </view>
         <view>小程序中的图片部分存于 SM.MS图床，其他直接从任天堂服务器获取。</view>
-        <view>小程序源码在
+        <view>
+          小程序源码在
           <text class="splatoon2 about-word">GitHub</text>以
           <text class="splatoon2 about-word">MIT</text>协议开源：
           <text selectable="true">https://github.com/iwyvi/splatoon2-schedules-weapp</text>
@@ -24,14 +30,15 @@
         <view class="hr"></view>
         <view>
           小程序累计收到赞赏收入
-          <text class="splatoon2 about-word">209.07</text>
-          元，感谢各位乌贼的支持！
+          <text class="splatoon2 about-word">209.07</text>元，感谢各位乌贼的支持！
         </view>
         <view class="hr"></view>
-        <view>小纯洁
+        <view>
+          小纯洁
           <text class="splatoon2 about-word">IwYvI</text>
         </view>
-        <view>邮箱：
+        <view>
+          邮箱：
           <text selectable="true">splatoon2-schedules@iwyvi.com</text>
         </view>
       </view>

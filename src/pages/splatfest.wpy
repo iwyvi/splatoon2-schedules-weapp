@@ -22,8 +22,19 @@
           </view>
         </repeat>
       </view>
+      <view wx:if="{{list.length === 20}}" class="splatfest-more">
+        <view>
+          <text>微信云开发数据库仅支持单次请求 20 条数据</text>
+        </view>
+        <text>更多数据请去官方 APP 查看</text>
+      </view>
     </view>
-    <view wx:if="{{isModalShow}}" class="splatfest-modal" @touchmove.stop="disablePageScroll" @tap.stop="closeModal">
+    <view
+      wx:if="{{isModalShow}}"
+      class="splatfest-modal"
+      @touchmove.stop="disablePageScroll"
+      @tap.stop="closeModal"
+    >
       <splatfest-result-card :detail.sync="modalItem"></splatfest-result-card>
     </view>
     <timer @timer-update.user="timerUpdate" @timer-timeout.user="timerTimeout"></timer>
@@ -204,6 +215,12 @@ export default class Splatfest extends wepy.page {
 }
 .splatfest-region-picker {
   display: flex;
+}
+.splatfest-more {
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 22rpx;
+  color: #f0f0f0;
 }
 .splatfest-modal {
   position: fixed;

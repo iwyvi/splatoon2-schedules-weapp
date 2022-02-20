@@ -10,14 +10,12 @@ exports.main = async (event, context) => {
 
   const collectionName = 'Festival'
 
-  const _ = db.command
-
   const checkFestivalStatus = async (region, rawFestival) => {
     const { data } = await db
       .collection(collectionName)
       .where({
-        region: _.eq(region),
-        festival_id: _.eq(rawFestival.festival_id)
+        region,
+        festival_id: rawFestival.festival_id
       })
       .limit(1)
       .get()

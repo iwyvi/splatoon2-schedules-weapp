@@ -10,8 +10,6 @@ exports.main = async (event, context) => {
 
   const collectionName = 'SalmonRunSchedule'
 
-  const _ = db.command
-
   /**
    * 检测是否已存入这条打工信息
    * @param {object} rawSchedule
@@ -20,7 +18,7 @@ exports.main = async (event, context) => {
     const { data } = await db
       .collection(collectionName)
       .where({
-        start_time: _.eq(rawSchedule.start_time)
+        end_time: rawSchedule.end_time
       })
       .limit(1)
       .get()
@@ -41,7 +39,7 @@ exports.main = async (event, context) => {
       const { data } = await db
         .collection(collectionName)
         .where({
-          start_time: _.eq(rawScheduleDetail.start_time)
+          end_time: rawScheduleDetail.end_time
         })
         .limit(1)
         .get()

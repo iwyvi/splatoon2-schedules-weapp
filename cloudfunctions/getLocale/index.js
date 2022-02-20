@@ -14,15 +14,13 @@ exports.main = async (event, context) => {
 
   const collectionName = 'Locale'
 
-  const _ = db.command
-
   const updateLocaleData = async (locale, localeData) => {
     const savedLocaleData = JSON.stringify(localeData)
 
     const { data } = await db
       .collection(collectionName)
       .where({
-        locale: _.eq(locale)
+        locale
       })
       .limit(1)
       .get()

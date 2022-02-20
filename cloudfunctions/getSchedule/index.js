@@ -12,8 +12,6 @@ exports.main = async (event, context) => {
 
   const collectionName = 'Schedule'
 
-  const _ = db.command
-
   /**
    * 检查此条是否已经保存
    * @param {object} rawSchedule
@@ -22,8 +20,8 @@ exports.main = async (event, context) => {
     const { data } = await db
       .collection(collectionName)
       .where({
-        mode_key: _.eq(rawSchedule.game_mode.key),
-        start_time: _.eq(rawSchedule.start_time)
+        mode_key: rawSchedule.game_mode.key,
+        end_time: rawSchedule.end_time
       })
       .limit(1)
       .get()

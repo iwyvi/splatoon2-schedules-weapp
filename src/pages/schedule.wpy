@@ -361,7 +361,7 @@ export default class Schedule extends wepy.page {
   }
 
   startUpdate() {
-    this.methods.updateSchedule()
+    this.methods.updateSchedule(this.mode)
     this.methods.updateSplatfest()
   }
 

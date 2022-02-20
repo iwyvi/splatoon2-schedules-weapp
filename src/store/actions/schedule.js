@@ -5,7 +5,10 @@ import store from '../index'
 
 import { judgeUpdateStatus } from '../../utils/updateSchedule'
 
-export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
+/**
+ * 传入 modeKey 则只请求对应模式的数据
+ */
+export const updateSchedule = createAction(UPDATE_SCHEDULE, (modeKey) => {
   const updatedAt = store.getState().schedule.updatedAt
 
   if (!judgeUpdateStatus(updatedAt)) {
@@ -19,7 +22,8 @@ export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
   return db
     .collection('Schedule')
     .where({
-      end_time: _.gt(parseInt(Date.now() / 1000))
+      end_time: _.gt(parseInt(Date.now() / 1000)),
+      mode_key: modeKey
     })
     .orderBy('end_time', 'asc')
     .get()

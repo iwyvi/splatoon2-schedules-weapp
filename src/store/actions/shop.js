@@ -1,16 +1,9 @@
-import {
-  createAction
-} from 'redux-actions'
-import AV from 'leancloud-storage'
-import {
-  UPDATE_SHOP
-} from '../types/shop'
+import { createAction } from 'redux-actions'
+import { UPDATE_SHOP } from '../types/shop'
 
 import store from '../index'
 
-import {
-  judgeUpdateStatus
-} from '../../utils/updateSchedule'
+import { judgeUpdateStatus } from '../../utils/updateSchedule'
 
 export const updateShop = createAction(UPDATE_SHOP, () => {
   const updatedAt = store.getState().shop.updatedAt
@@ -19,10 +12,16 @@ export const updateShop = createAction(UPDATE_SHOP, () => {
     return
   }
 
-  const query = new AV.Query('Gear')
-  query.greaterThan('end_time', parseInt(Date.now() / 1000))
-  return query.find()
-    .then((results) => {
-      return results.map((v) => v.attributes)
+  const db = wx.cloud.database()
+
+  const _ = db.command
+
+  return db
+    .collection('Gear')
+    .where({
+      end_time: _.gt(parseInt(Date.now() / 1000))
     })
+    .orderBy('end_time', 'asc')
+    .get()
+    .then((res) => res.data)
 })

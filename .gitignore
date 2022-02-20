@@ -6,4 +6,4 @@ dist
 
 .wepycache
 
-src/config/leancloud.js
+src/config/wxcloud.js

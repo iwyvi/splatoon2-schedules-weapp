@@ -23,7 +23,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "leancloud-storage": "^3.15.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.6.5",
     "redux-promise": "^0.6.0",

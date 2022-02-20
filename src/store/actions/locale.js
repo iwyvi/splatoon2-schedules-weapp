@@ -1,5 +1,4 @@
 import { createAction } from 'redux-actions'
-import AV from 'leancloud-storage'
 
 import { UPDATE_LOCALE, UPDATE_LOCALE_DATA } from '../types'
 import store from '../index'
@@ -19,9 +18,14 @@ export const updateLocaleData = createAction(UPDATE_LOCALE_DATA, (locale) => {
     return
   }
 
-  const query = new AV.Query('Locale')
-  query.equalTo('locale', locale)
-  return query.first().then((result) => {
-    return result.attributes
-  })
+  const db = wx.cloud.database()
+
+  return db
+    .collection('Locale')
+    .where({
+      locale
+    })
+    .limit(1)
+    .get()
+    .then((res) => (res.data && res.data[0] ? res.data[0] : undefined))
 })

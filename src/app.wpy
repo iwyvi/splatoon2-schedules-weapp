@@ -3,19 +3,16 @@
 </style>
 
 <script>
-import AV from 'leancloud-storage'
 import wepy from 'wepy'
 import 'wepy-async-function'
 
 import { setStore } from 'wepy-redux'
 import store from './store'
 
-import leancloudConfig from './config/leancloud'
+import wxcloudConfig from './config/wxcloud'
 
-AV.init({
-  serverURLs: leancloudConfig.serverURLs,
-  appId: leancloudConfig.appId,
-  appKey: leancloudConfig.appKey
+wx.cloud.init({
+  env: wxcloudConfig.env
 })
 
 setStore(store)

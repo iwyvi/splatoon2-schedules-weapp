@@ -1,16 +1,9 @@
-import {
-  createAction
-} from 'redux-actions'
-import AV from 'leancloud-storage'
-import {
-  UPDATE_SPLATFEST
-} from '../types/splatfest'
+import { createAction } from 'redux-actions'
+import { UPDATE_SPLATFEST } from '../types/splatfest'
 
 import store from '../index'
 
-import {
-  judgeUpdateStatus
-} from '../../utils/updateSchedule'
+import { judgeUpdateStatus } from '../../utils/updateSchedule'
 
 export const updateSplatfest = createAction(UPDATE_SPLATFEST, () => {
   const updatedAt = store.getState().splatfest.updatedAt
@@ -22,14 +15,17 @@ export const updateSplatfest = createAction(UPDATE_SPLATFEST, () => {
     return
   }
 
-  const query = new AV.Query('Festival')
-  query.equalTo('region', region)
-  return query.find()
-    .then((results) => {
-      return {
-        list: results.map((v) => v.attributes),
-        isForce: isRegionChanged,
-        region
-      }
+  const db = wx.cloud.database()
+
+  return db
+    .collection('Festival')
+    .where({
+      region
     })
+    .get()
+    .then((res) => ({
+      list: res.data || [],
+      isForce: isRegionChanged,
+      region
+    }))
 })

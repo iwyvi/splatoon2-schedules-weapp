@@ -1,16 +1,9 @@
-import {
-  createAction
-} from 'redux-actions'
-import AV from 'leancloud-storage'
-import {
-  UPDATE_SCHEDULE
-} from '../types/schedule'
+import { createAction } from 'redux-actions'
+import { UPDATE_SCHEDULE } from '../types/schedule'
 
 import store from '../index'
 
-import {
-  judgeUpdateStatus
-} from '../../utils/updateSchedule'
+import { judgeUpdateStatus } from '../../utils/updateSchedule'
 
 export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
   const updatedAt = store.getState().schedule.updatedAt
@@ -19,10 +12,16 @@ export const updateSchedule = createAction(UPDATE_SCHEDULE, () => {
     return
   }
 
-  const query = new AV.Query('Schedule')
-  query.greaterThan('end_time', parseInt(Date.now() / 1000))
-  return query.find()
-    .then((results) => {
-      return results.map((v) => v.attributes)
+  const db = wx.cloud.database()
+
+  const _ = db.command
+
+  return db
+    .collection('Schedule')
+    .where({
+      end_time: _.gt(parseInt(Date.now() / 1000))
     })
+    .orderBy('end_time', 'asc')
+    .get()
+    .then((res) => res.data)
 })

@@ -8,6 +8,12 @@
 
 ## 开发说明
 
+新版本数据服务由微信云开发提供
+
+1. 配置微信云开发：`src/config/wxcloud.sample.js`，复制一份并将sample去掉，即保存为`wxcloud.js`
+
+---
+
 此项目基于wepy开发，数据服务由LeanCloud提供
 
 1. 配置LeanCloud：`src/config/leancloud.sample.js`，复制一份并将sample去掉，即保存为`leancloud.js`
